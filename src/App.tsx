@@ -1,4 +1,5 @@
 import { Header, SkipLink } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import { LinkButton } from '@/components/ui/button'
 
 function App() {
@@ -40,6 +41,15 @@ function App() {
           </p>
         ))}
       </main>
+
+      <Footer
+        copyright={<>© 2026 Tommy Truong</>}
+        links={[
+          { href: '/privacy', label: 'Privacy' },
+          { href: '/terms', label: 'Terms' },
+          { href: '/rss', label: 'RSS' },
+        ]}
+      />
     </>
   )
 }
