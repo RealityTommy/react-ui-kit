@@ -59,3 +59,108 @@ Code committed here has been read and understood by a human, not just accepted f
 ## License
 
 By contributing, you agree your contributions are licensed under the [MIT License](./LICENSE).
+
+## Commit conventions
+
+We use [Conventional Commits](https://www.conventionalcommits.org/).
+Prefix every commit message with one of:
+
+- **`feat:`** — new user-facing feature or component
+- **`fix:`** — bug fix
+- **`docs:`** — documentation only (READMEs, JSDoc, code comments)
+- **`chore:`** — housekeeping, tooling, config (not user-facing)
+- **`refactor:`** — code change that neither fixes a bug nor adds a feature
+- **`test:`** — adding or updating tests
+
+**One reason per commit.** If a commit needs "and" in its message, it
+probably needs to be split. The test: could you `git revert` this
+commit and leave the repo in a coherent state?
+
+Push only after local verification passes (see below).
+
+## Verification before every commit
+
+```powershell
+pnpm lint
+pnpm build
+```
+
+Both must pass. Two known warnings are accepted and expected:
+
+- `react-refresh/only-export-components` on `button.tsx` — because
+  `buttonVariants` is a legitimately reused function export.
+- `react-refresh/only-export-components` on `container.tsx` — same
+  reason for `containerVariants`.
+
+Anything else is a real signal. Do not push through unexplained
+warnings or errors.
+
+## Component authoring
+
+New hand-written components go in `src/components/layout/` (or a
+sibling folder). See
+[`src/components/layout/README.md`](./src/components/layout/README.md)
+for the full authoring pattern.
+
+New primitives (Button, Input, Dialog analogs) come from the shadcn
+CLI into `src/components/ui/`. See
+[`src/components/ui/README.md`](./src/components/ui/README.md) for
+the rules around that folder.
+
+## Comment style
+
+Every hand-written component file follows four rules:
+
+1. **File-level docblock at the top** — describes what the file
+   exports and when to use it. One short paragraph, not an essay.
+
+2. **Section headers** for logical blocks (variants, component,
+   hooks). Format:
+   ```tsx
+   // ---------------------------------------------------------------
+   // Variants
+   // ---------------------------------------------------------------
+   ```
+
+3. **Inline comments only where the *why* isn't obvious from the
+   code.** Never explain what the code does when the code is already
+   clear — explain the reason it's done this way.
+
+4. **JSDoc on every export**, including a one-line description and an
+   `@example` block. This is the highest-leverage comment type
+   because it powers hover-tooltips in VS Code.
+
+**Anti-patterns to avoid:**
+
+- Restating code (`// increment i by 1`)
+- Novel-length explanations (extract a helper with a better name
+  instead)
+- Comments that duplicate what the code says — they drift out of sync
+
+## Cargo-culted imports
+
+If a file doesn't reference `React.SomeName` anywhere, don't
+`import type * as React from "react"`. The modern JSX transform
+handles JSX-only files without any React import. TypeScript will
+flag unused imports on build.
+
+## Tailwind gotcha: no dynamic class strings
+
+Tailwind's JIT compiler scans source files for **literal** class
+names. This does not work:
+
+```tsx
+const cls = `${breakpoint}:flex`  // ← invisible to Tailwind
+```
+
+Instead, map to a static string:
+
+```tsx
+const cls = breakpoint === "md" ? "md:flex" : "lg:flex"
+```
+
+## Git operations
+
+- Use `git mv` when renaming or moving files — preserves history.
+- Rebase or amend only local (unpushed) commits. Once pushed, treat
+  history as immutable.
