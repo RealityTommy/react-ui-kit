@@ -1,64 +1,75 @@
-# react-ui-kit
+# React + TypeScript + Vite
 
-A personal React UI framework — reusable layout and navigation components, built to be dropped into future React projects.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Distributed shadcn/ui-style: components live in your project, fully owned and editable. No versioned package to fight with.
+Currently, two official plugins are available:
 
-## Stack
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-- **Vite** — dev server and build
-- **React** + **TypeScript**
-- **Tailwind CSS** — utility-first styling
-- **Radix UI** — unstyled, accessible primitives
-- **shadcn-style registry** — copy components into your project, own them
+## React Compiler
 
-Accessibility target: **WCAG 2.1 AA** baked in from day one.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## v1 scope
+## Expanding the ESLint configuration
 
-Layout and navigation only — deliberately narrow so v1 actually ships.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- Header (logo / nav / actions slots)
-- Primary navigation (desktop horizontal)
-- Mobile menu (hamburger → drawer/sheet)
-- Secondary navigation (sub-nav or sidebar)
-- Footer
-- Container / layout wrappers (page shell, section)
-- Design tokens (colors, spacing, typography scale)
-- Theme provider (light / dark)
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## v2 (planned, not yet built)
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-Form and feedback components — added once v1 is used in a real project.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-- Button, Input, Textarea, Select, Checkbox, Radio
-- Dialog / Modal, Toast, Tooltip
-- Card, Badge
+```
 
-## Getting started
+You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
 
-*(To be filled in after Phase 2 scaffold. Will cover: clone, `pnpm install`, `pnpm dev`, and how to copy a component into a consuming project.)*
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Using components in another project
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-*(To be filled in once the registry pattern is set up in Phase 3. Rough idea: run a small CLI or copy from `src/components/` into your target project, then customize freely.)*
-
-## Project structure
-
-*(To be filled in after Phase 2.)*
-
-## Development
-
-*(To be filled in after Phase 2 — dev server, build, lint, typecheck commands.)*
-
-## Status
-
-Early — actively being built as a learning project. See [CONTRIBUTING.md](./CONTRIBUTING.md) for how the codebase is developed.
-
-## License
-
-[MIT](./LICENSE)
-
-## AI disclosure
-
-This project is developed with AI assistance in a coaching role. Design decisions and code are reviewed and typed by a human before commit.
+```
