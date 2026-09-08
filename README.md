@@ -73,3 +73,70 @@ export default defineConfig([
 ])
 
 ```
+
+## Repo structure
+
+```
+src/
+├── components/
+│   ├── ui/          ← shadcn-managed primitives (Button, Dialog, Sheet)
+│   └── layout/      ← hand-written layouts (Container, Header)
+├── lib/
+│   └── utils.ts     ← cn() helper
+├── App.tsx          ← demo page — not part of the library
+├── main.tsx         ← Vite entry
+└── index.css        ← Tailwind entry + global tokens
+```
+
+Each meaningful folder has its own README explaining what belongs
+there and why:
+
+- [`src/components/README.md`](./src/components/README.md) — folder
+  layout overview
+- [`src/components/ui/README.md`](./src/components/ui/README.md) —
+  the shadcn-managed rules
+- [`src/components/layout/README.md`](./src/components/layout/README.md) —
+  the hand-authored component pattern
+
+Start with those before adding new components. See
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions,
+comment style, and verification steps.
+
+## What's built
+
+**Primitives (`ui/`):**
+- Button + LinkButton (React Aria)
+- Dialog (centered modal)
+- Sheet (side drawer)
+
+**Layouts (`layout/`):**
+- Container — max-width + responsive padding
+- Header — sticky nav with mobile drawer and skip link
+
+## Quick start — Header preset
+
+```tsx
+import { Header, SkipLink } from "@/components/layout/header"
+import { LinkButton } from "@/components/ui/button"
+
+function App() {
+  return (
+    <>
+      <SkipLink />
+      <Header
+        logo={{ href: "/", label: "My Site" }}
+        nav={[
+          { href: "/docs", label: "Docs" },
+          { href: "/blog", label: "Blog" },
+        ]}
+        actions={
+          <LinkButton href="/github" variant="outline" size="sm">
+            GitHub
+          </LinkButton>
+        }
+      />
+      <main id="main-content">…</main>
+    </>
+  )
+}
+```
