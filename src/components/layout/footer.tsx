@@ -62,6 +62,17 @@ type FooterProps = {
  * @example
  * // Full-width footer for dashboard layouts
  * <Footer size="full" copyright={...} />
+ *
+ * @example
+ * // Links with icons (Lucide components)
+ * import { Shield, FileText } from "lucide-react"
+ * <Footer
+ *   copyright={...}
+ *   links={[
+ *     { href: "/privacy", label: "Privacy", icon: Shield },
+ *     { href: "/terms", label: "Terms", icon: FileText },
+ *   ]}
+ * />
  */
 function Footer({ copyright, links, size = 'contained' }: FooterProps) {
   return (
@@ -102,9 +113,13 @@ function Footer({ copyright, links, size = 'contained' }: FooterProps) {
                 // hint that a new window will open (WCAG G201).
                 {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 // Match Header's inline nav styling for visual
-                // consistency across page chrome.
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                // consistency across page chrome. inline-flex +
+                // gap-2 supports optional leading icons; icons
+                // render at size-4 with aria-hidden since the
+                // label is the accessible name.
+                className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
+                {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
                 {item.label}
                 {item.external && <span className="sr-only"> (opens in new window)</span>}
               </a>
