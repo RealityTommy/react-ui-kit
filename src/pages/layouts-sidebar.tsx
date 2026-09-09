@@ -1,0 +1,55 @@
+/**
+ * LayoutsSidebarPage — demos Header + Sidebar + Main + Footer.
+ *
+ * Sidebar sits left of Main inside a flex container. Consumer owns
+ * the flex composition (Sidebar doesn't wrap Main). On mobile the
+ * Sidebar items appear inside Header's drawer as a "Pages" group.
+ */
+
+import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
+import { Header, SkipLink } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
+import { Footer } from '@/components/layout/footer'
+import { LayoutProvider } from '@/components/layout/layout-provider'
+import { Sidebar } from '@/components/layout/sidebar'
+import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { primaryNav } from './index'
+
+// Sample sidebar entries — mix of grouped and one flat item to
+// exercise both rendering paths.
+const sidebarEntries: (NavLeaf | NavGroup)[] = [
+  { href: '#/layouts/sidebar', label: 'Overview', icon: Home },
+  {
+    label: 'Getting Started',
+    items: [
+      { href: '#/layouts/sidebar/install', label: 'Installation', icon: Rocket },
+      { href: '#/layouts/sidebar/theming', label: 'Theming', icon: Palette },
+    ],
+  },
+  {
+    label: 'Components',
+    items: [{ href: '#/layouts/sidebar/parts', label: 'Parts', icon: Puzzle }],
+  },
+]
+
+function LayoutsSidebarPage() {
+  return (
+    <LayoutProvider sidebarNav={sidebarEntries} activeHref="#/layouts/sidebar">
+      <SkipLink />
+      <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+      <div className="flex">
+        <Sidebar aria-label="Section" />
+        <Main>
+          <h1 className="text-3xl font-semibold mb-4">Layouts / Sidebar</h1>
+          <p className="text-muted-foreground">
+            Header + Sidebar + Main + Footer. Sidebar is a left rail (240px) with grouped links. On
+            mobile the entries appear inside the hamburger drawer as a "Pages" group.
+          </p>
+        </Main>
+      </div>
+      <Footer copyright={<>© 2026 Tommy Truong</>} />
+    </LayoutProvider>
+  )
+}
+
+export { LayoutsSidebarPage }
