@@ -1,12 +1,21 @@
 # `layout/` — hand-written layout primitives
 
 This folder holds components authored in-repo, following the
-conventions below. Reference implementations: `container.tsx` and
-`header/`.
+conventions below. Reference implementations:
+
+- `container.tsx` — the simplest example (variants + cva)
+- `main.tsx`, `footer.tsx` — preset components (no variants, no cva)
+- `header/` — multi-file component with barrel
+- `types.ts` — shared types
 
 ## The authoring pattern
 
-Every hand-written component in this kit follows the same skeleton:
+Every hand-written component in this kit follows the same skeleton.
+`cva` is used **only when the component has variants** (multiple visual
+modes). Simple presets like Main and Footer skip cva entirely — see
+those files for reference.
+
+### Full skeleton with variants (Container-style)
 
 ```tsx
 /**
@@ -62,33 +71,76 @@ function ComponentName({
 export { ComponentName, componentVariants }
 ```
 
+### Skeleton without variants (Footer/Main-style)
+
+For preset components that don't need multiple visual modes, drop cva
+entirely. Type props directly and inline the className:
+
+```tsx
+type ComponentProps = React.ComponentProps<"div"> & {
+  /** Custom preset prop. */
+  intent?: "reading" | "app"
+}
+
+function Component({ className, intent = "reading", ...props }: ComponentProps) {
+  return (
+    <div
+      data-slot="component"
+      data-intent={intent}
+      className={cn("static classes here", className)}
+      {...props}
+    />
+  )
+}
+
+export { Component, type ComponentProps }
+```
+
 ## The building blocks
 
-- **`cva`** — variant-to-class-string mapper. Use it whenever a
-  component has more than one visual "mode."
+- **`cva`** — variant-to-class-string mapper. Use it *only* when a
+  component has more than one visual mode. Skip it for presets.
 - **`cn()`** from `"cn"` — merges class strings + resolves Tailwind
   conflicts. Always wrap final className output.
-- **`data-slot="component-name"`** — stable CSS/JS hook. Never
-  target our components by class name; target by `data-slot`.
-- **`data-<variant>={value}`** — echoes variant props as attributes
-  so consumers can style based on state (`data-size="lg"`, etc.).
+- **`data-slot="component-name"`** — stable CSS/JS hook. Never target
+  our components by class name; target by `data-slot`.
+- **`data-<variant>={value}`** — echoes variant/preset props as
+  attributes so consumers can style based on state (`data-size="lg"`,
+  `data-intent="app"`).
 - **`React.ComponentProps<"element">`** — types the base HTML props
   automatically. Better than enumerating.
 - **`VariantProps<typeof xVariants>`** — pulls variant prop types
-  from the cva config. Single source of truth.
+  from the cva config. Single source of truth. Only relevant when
+  using cva.
+- **`Omit<React.ComponentProps<"element">, "id">`** — use when a prop
+  must be enforced by the component (e.g., Main enforces
+  `id="main-content"` as the SkipLink target).
 
 ## Exports
 
-Always export `{ ComponentName, componentVariants }`. The variants
-export is a plain function, which triggers a `react-refresh` lint
-warning — that's expected and accepted (see `CONTRIBUTING.md`).
+When using cva, always export `{ ComponentName, componentVariants }`.
+The variants export is a plain function, which triggers a
+`react-refresh` lint warning — that's expected and accepted (see
+`CONTRIBUTING.md`).
+
+When not using cva, export `{ Component, type ComponentProps }` so
+consumers can type their own wrappers.
 
 ## When to use a folder vs. a single file
 
-- **Single file** (`container.tsx`) — one component, one file.
+- **Single file** (`container.tsx`, `main.tsx`, `footer.tsx`) — one
+  component, one file. Use this by default.
 - **Folder** (`header/`) — the component has ~3+ concerns worth
-  splitting (e.g., Header has SkipLink + MobileNav + main). Include a
-  barrel `index.ts` with the public API and shared types.
+  splitting (Header has SkipLink + MobileNav + main composition).
+  Include a barrel `index.ts` with the public API and any re-exports
+  of shared types.
+
+## Shared types
+
+Types used by two or more layout components live in `types.ts`.
+Currently `NavItem` (Header + Footer). When a type graduates from
+one-consumer to two-consumers, move it and update the previous
+location to re-export from `types.ts` for backward compatibility.
 
 ## A11y baseline
 
@@ -99,7 +151,9 @@ Non-negotiable for anything in this folder:
 - Screen-reader hints for icon-only interactive elements
 - `focus-visible:` (not `focus:`) for focus rings
 - Reflow at 320px viewport width — never break
-- Skip links for any page-level layout
+- Skip links for any page-level layout (see `header/skip-link.tsx`)
+- External links: `target="_blank" rel="noopener noreferrer"` +
+  `<span className="sr-only"> (opens in new window)</span>` (WCAG G201)
 
 If a component has complex interaction (dialog, menu, disclosure),
 build on top of the React Aria primitives in `ui/` rather than
