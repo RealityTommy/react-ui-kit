@@ -78,10 +78,14 @@ verification steps, and debugging playbook.
 **Layouts (`layout/`):**
 
 - Container — max-width + responsive padding, 6 size variants
-- Header — sticky nav with scroll-triggered blur, mobile hamburger drawer, prop-configurable breakpoint
-- Main — `<main id="main-content">` landmark with `reading` / `app` size presets
-- Footer — copyright + optional secondary links, semantic `<footer>` landmark
+- Header — sticky nav with scroll-triggered blur, mobile hamburger drawer, prop-configurable breakpoint, `contained` / `full` size
+- Main — `<main id="main-content">` landmark with `contained` / `full` size presets
+- Footer — copyright + optional secondary links, `contained` / `full` size, semantic `<footer>` landmark
 - SkipLink — WCAG 2.4.1 keyboard bypass to `#main-content`
+
+Header, Main, and Footer share a single `size` prop (`"contained"` default
+= Container 2xl ~1536px, or `"full"` = edge-to-edge with padding). Keep all
+three in sync for consistent page chrome.
 
 ## Quick start — full page shell
 
@@ -95,6 +99,9 @@ function App() {
   return (
     <>
       <SkipLink />
+      {/* All three layout components default to size="contained"
+          (Container 2xl ~1536px). Switch all three to size="full"
+          for edge-to-edge dashboards. */}
       <Header
         logo={{ href: "/", label: "My Site" }}
         nav={[
@@ -107,7 +114,7 @@ function App() {
           </LinkButton>
         }
       />
-      <Main size="app">
+      <Main>
         <h1>Page title</h1>
         <p>Content goes here.</p>
       </Main>

@@ -78,15 +78,15 @@ entirely. Type props directly and inline the className:
 
 ```tsx
 type ComponentProps = React.ComponentProps<"div"> & {
-  /** Custom preset prop. */
-  intent?: "reading" | "app"
+  /** Layout width behavior. */
+  size?: "contained" | "full"
 }
 
-function Component({ className, intent = "reading", ...props }: ComponentProps) {
+function Component({ className, size = "contained", ...props }: ComponentProps) {
   return (
     <div
       data-slot="component"
-      data-intent={intent}
+      data-size={size}
       className={cn("static classes here", className)}
       {...props}
     />
@@ -105,8 +105,8 @@ export { Component, type ComponentProps }
 - **`data-slot="component-name"`** — stable CSS/JS hook. Never target
   our components by class name; target by `data-slot`.
 - **`data-<variant>={value}`** — echoes variant/preset props as
-  attributes so consumers can style based on state (`data-size="lg"`,
-  `data-intent="app"`).
+  attributes so consumers can style based on state (`data-size="contained"`,
+  `data-size="full"`).
 - **`React.ComponentProps<"element">`** — types the base HTML props
   automatically. Better than enumerating.
 - **`VariantProps<typeof xVariants>`** — pulls variant prop types
@@ -115,6 +115,19 @@ export { Component, type ComponentProps }
 - **`Omit<React.ComponentProps<"element">, "id">`** — use when a prop
   must be enforced by the component (e.g., Main enforces
   `id="main-content"` as the SkipLink target).
+
+## Layout size API (page-chrome consistency)
+
+Header, Main, and Footer share a single `size` prop with two values:
+
+- **`"contained"`** (default) — Container `2xl` (~1536px max-width).
+  Keeps page chrome aligned across every page in the kit.
+- **`"full"`** — edge-to-edge with horizontal padding only. Use for
+  full-bleed dashboards, hero sections, or marketing pages.
+
+Keep all three in sync (`"contained"` together, or `"full"` together)
+so the page chrome shares one visual rhythm. Mixing is technically
+allowed but should be a deliberate design choice, not a default.
 
 ## Exports
 
