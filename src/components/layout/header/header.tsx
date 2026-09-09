@@ -9,6 +9,12 @@
  * button that opens a right-side drawer (see mobile-nav.tsx).
  * At or above the breakpoint, nav links render inline.
  *
+ * When a LayoutProvider is above Header in the tree with
+ * `secondaryNav` or `sidebarNav` config, those items are rendered
+ * as extra sections inside the mobile drawer — so consumers get
+ * a single unified menu on mobile without SecondaryNav / Sidebar
+ * needing their own drawers.
+ *
  * Renders semantic <header> + <nav aria-label="Primary"> for
  * screen-reader landmark navigation.
  */
@@ -16,6 +22,7 @@
 import * as React from 'react'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
+import { useLayout } from '@/components/layout/layout-provider'
 import { MobileNav } from './mobile-nav'
 import type { NavItem } from './index'
 
@@ -97,9 +104,25 @@ function useScrolledPast(threshold: number): boolean {
  * @example
  * // Full-width header for dashboard layouts
  * <Header size="full" logo={...} nav={...} />
+ *
+ * @example
+ * // Nav items with icons (Lucide components)
+ * import { Home, Book, Info } from "lucide-react"
+ * <Header
+ *   nav={[
+ *     { href: "/", label: "Home", icon: Home },
+ *     { href: "/docs", label: "Docs", icon: Book },
+ *     { href: "/about", label: "About", icon: Info },
+ *   ]}
+ * />
  */
 function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained' }: HeaderProps) {
   const scrolled = useScrolledPast(10)
+
+  // Pull secondaryNav / sidebarNav from LayoutProvider (if any) so
+  // MobileNav can render them as extra drawer sections. Empty
+  // object default means no provider = no extra sections.
+  const { secondaryNav, sidebarNav } = useLayout()
 
   // Tailwind can't consume dynamic class strings, so we map the
   // breakpoint prop to a static class string. `hidden md:flex`
@@ -139,15 +162,18 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
           {logo.label}
         </a>
 
-        {/* Inline nav — visible at/above breakpoint. */}
+        {/* Inline nav — visible at/above breakpoint.
+            Icons render before labels when NavItem.icon is provided;
+            aria-hidden on the icon since the label is the accessible name. */}
         <nav aria-label="Primary" className={cn('items-center gap-1', inlineNavVisibility)}>
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
+              {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
               {item.label}
               {item.external && <span className="sr-only"> (opens in new window)</span>}
             </a>
@@ -155,11 +181,13 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
         </nav>
 
         {/* Right side: actions + mobile hamburger.
-            Actions are always visible; hamburger is breakpoint-gated. */}
+            Actions are always visible; hamburger is breakpoint-gated.
+            secondaryNav/sidebarNav come from LayoutProvider context and
+            get rendered as extra drawer sections on mobile. */}
         <div className="flex items-center gap-2">
           {actions}
           <div className={mobileNavVisibility}>
-            <MobileNav nav={nav} />
+            <MobileNav nav={nav} secondaryNav={secondaryNav} sidebarNav={sidebarNav} />
           </div>
         </div>
       </Container>
