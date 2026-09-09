@@ -28,7 +28,7 @@
  */
 
 import * as React from 'react'
-import type { NavItem, NavGroup } from './types'
+import type { NavLeaf, NavGroup } from './types'
 
 // ---------------------------------------------------------------
 // Context
@@ -38,14 +38,22 @@ type LayoutContextValue = {
   /**
    * Items for the SecondaryNav component. When present, Header's
    * mobile drawer will render them below the primary nav.
+   *
+   * Typed as NavLeaf[] because SecondaryNav doesn't support
+   * dropdowns — its consumers are tabs, which shouldn't have
+   * submenus. (Header's `nav` prop still accepts NavItem[] with
+   * NavParent dropdowns; those live on the primary nav only.)
    */
-  secondaryNav?: NavItem[]
+  secondaryNav?: NavLeaf[]
   /**
    * Items for the Sidebar component. When present, Header's mobile
    * drawer will render them below the primary nav (and below
    * secondaryNav if both are present).
+   *
+   * Typed as (NavLeaf | NavGroup)[] — Sidebar supports grouping
+   * as its hierarchy primitive but not dropdowns.
    */
-  sidebarNav?: (NavItem | NavGroup)[]
+  sidebarNav?: (NavLeaf | NavGroup)[]
   /**
    * Currently active URL. Used by SecondaryNav and Sidebar to
    * apply `aria-current="page"` and active-state styling. Match

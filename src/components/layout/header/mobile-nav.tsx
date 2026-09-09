@@ -8,6 +8,10 @@
  * wraps React Aria's Modal for focus trap, escape-to-close, and
  * dismiss-on-outside-tap out of the box.
  *
+ * The primary section supports NavParent entries — they render as
+ * a labeled group with indented children rather than as a dropdown
+ * (dropdowns inside a drawer would be awkward on touch).
+ *
  * When Header is inside a LayoutProvider that supplies secondaryNav
  * or sidebarNav, those items appear as extra drawer sections below
  * the primary nav — divided visually so screen-reader landmark
@@ -17,25 +21,29 @@
 import { MenuIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { isNavGroup, type NavItem, type NavGroup } from '../types'
+import { isNavGroup, isNavParent, type NavItem, type NavLeaf, type NavGroup } from '../types'
 
 // ---------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------
 
 type MobileNavProps = {
-  /** Primary nav items. Always rendered as the first section. */
+  /**
+   * Primary nav items. Always rendered as the first section.
+   * Accepts NavLeaf and NavParent; parents render as labeled groups
+   * with indented children (no dropdown on mobile).
+   */
   nav: NavItem[]
   /**
    * Optional secondary nav items (from LayoutProvider). Rendered
    * as a second section under the primary nav with its own heading.
    */
-  secondaryNav?: NavItem[]
+  secondaryNav?: NavLeaf[]
   /**
    * Optional sidebar nav items (from LayoutProvider). Rendered as
    * a third section — supports flat items or grouped items.
    */
-  sidebarNav?: (NavItem | NavGroup)[]
+  sidebarNav?: (NavLeaf | NavGroup)[]
 }
 
 // ---------------------------------------------------------------
@@ -43,13 +51,13 @@ type MobileNavProps = {
 // ---------------------------------------------------------------
 
 /**
- * Renders a single NavItem as a drawer link.
+ * Renders a single NavLeaf as a drawer link.
  *
- * Extracted so all three drawer sections (primary, secondary,
- * sidebar) share identical link styling — no drift risk if we
- * tweak the class list later.
+ * Extracted so all drawer sections (primary, secondary, sidebar,
+ * and parent children) share identical link styling — no drift
+ * risk if we tweak the class list later.
  */
-function DrawerLink({ item }: { item: NavItem }) {
+function DrawerLink({ item }: { item: NavLeaf }) {
   return (
     <a
       href={item.href}
@@ -62,6 +70,41 @@ function DrawerLink({ item }: { item: NavItem }) {
       {item.label}
       {item.external && <span className="sr-only"> (opens in new window)</span>}
     </a>
+  )
+}
+
+/**
+ * Renders a NavParent as a labeled group with indented children.
+ *
+ * On desktop, Header renders parents as click-to-open dropdowns.
+ * In the drawer we don't have that constraint (already a menu),
+ * so we flatten to a group + indented list. Simpler to scan on
+ * touch and doesn't require nested dropdown interactions.
+ *
+ * The parent label uses `div` (not a heading) because the drawer
+ * itself is inside a Dialog landmark; adding a heading here would
+ * introduce a doubled announcement. The indent + muted color +
+ * icon presence make the grouping visually clear.
+ */
+function DrawerParent({
+  item,
+}: {
+  item: { label: string; icon?: NavLeaf['icon']; children: NavLeaf[] }
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="inline-flex items-center gap-3 px-3 py-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
+        {item.label}
+      </div>
+      {/* Indented children — pl-6 to align text under parent label,
+          keeping the icon aligned with the parent's icon slot. */}
+      <div className="flex flex-col gap-1 pl-6">
+        {item.children.map((child) => (
+          <DrawerLink key={child.href} item={child} />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -120,11 +163,17 @@ function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
         <div className="flex flex-col gap-1 p-4">
           {/* Primary section. `aria-label="Primary"` matches the
               desktop nav's label so users have a consistent
-              landmark name across viewports. */}
+              landmark name across viewports. Parents render as
+              labeled groups with indented children (no dropdowns
+              inside the drawer). */}
           <nav aria-label="Primary" className="flex flex-col gap-1">
-            {nav.map((item) => (
-              <DrawerLink key={item.href} item={item} />
-            ))}
+            {nav.map((item, i) =>
+              isNavParent(item) ? (
+                <DrawerParent key={`parent-${item.label}-${i}`} item={item} />
+              ) : (
+                <DrawerLink key={item.href} item={item} />
+              ),
+            )}
           </nav>
 
           {/* Secondary section — only rendered when LayoutProvider
@@ -143,7 +192,7 @@ function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
           )}
 
           {/* Sidebar section — also from LayoutProvider. Supports
-              flat NavItem[] or grouped NavGroup[] via isNavGroup
+              flat NavLeaf[] or grouped NavGroup[] via isNavGroup
               type guard. Groups render with a small sub-heading
               above their items. */}
           {hasSidebar && (

@@ -9,6 +9,10 @@
  * button that opens a right-side drawer (see mobile-nav.tsx).
  * At or above the breakpoint, nav links render inline.
  *
+ * Nav items that have `children` (NavParent) render as dropdown
+ * menus on desktop via React Aria's MenuTrigger; on mobile they
+ * appear as labeled groups with indented children in the drawer.
+ *
  * When a LayoutProvider is above Header in the tree with
  * `secondaryNav` or `sidebarNav` config, those items are rendered
  * as extra sections inside the mobile drawer — so consumers get
@@ -20,11 +24,13 @@
  */
 
 import * as React from 'react'
+import { ChevronDownIcon } from 'lucide-react'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
 import { useLayout } from '@/components/layout/layout-provider'
+import { DropdownMenu, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { MobileNav } from './mobile-nav'
-import type { NavItem } from './index'
+import { isNavParent, type NavItem, type NavLeaf, type NavParent } from '../types'
 
 // ---------------------------------------------------------------
 // Types
@@ -36,7 +42,11 @@ type HeaderProps = {
     href: string
     label: string
   }
-  /** Primary nav links, left-to-right in render order. */
+  /**
+   * Primary nav entries. Accepts a mix of NavLeaf (plain links)
+   * and NavParent (dropdown triggers with children). Left-to-right
+   * in render order.
+   */
   nav: NavItem[]
   /** Right-side content: theme toggle, CTA button, avatar, etc. */
   actions?: React.ReactNode
@@ -85,6 +95,74 @@ function useScrolledPast(threshold: number): boolean {
 }
 
 // ---------------------------------------------------------------
+// Inline nav item renderers
+// ---------------------------------------------------------------
+
+/**
+ * Renders a NavLeaf as a plain anchor in the inline (desktop) nav.
+ * Shared trigger class list keeps parent triggers visually identical
+ * to leaf links (so the row reads as one nav, not two styles).
+ */
+function InlineLeaf({ item }: { item: NavLeaf }) {
+  return (
+    <a
+      href={item.href}
+      {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={inlineTriggerClass}
+    >
+      {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
+      {item.label}
+      {item.external && <span className="sr-only"> (opens in new window)</span>}
+    </a>
+  )
+}
+
+/**
+ * Renders a NavParent as a click-to-open dropdown trigger with a
+ * chevron affordance. Uses React Aria's MenuTrigger (via shadcn's
+ * DropdownMenu primitive) for full a11y — keyboard nav, focus
+ * trap, escape-to-close, and dismiss-on-outside-click.
+ */
+function InlineParent({ item }: { item: NavParent }) {
+  return (
+    <DropdownMenuTrigger>
+      <button type="button" className={inlineTriggerClass}>
+        {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
+        {item.label}
+        <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
+      </button>
+      <DropdownMenu>
+        {item.children.map((child) => (
+          <DropdownMenuItem key={child.href} textValue={child.label}>
+            {/* React Aria's MenuItem swallows onAction, but a plain
+                anchor still handles href navigation and preserves
+                right-click / open-in-new-tab. */}
+            <a
+              href={child.href}
+              {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="inline-flex w-full items-center gap-2"
+            >
+              {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
+              {child.label}
+              {child.external && <span className="sr-only"> (opens in new window)</span>}
+            </a>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenu>
+    </DropdownMenuTrigger>
+  )
+}
+
+/**
+ * Shared className for inline nav triggers (both leaf anchors and
+ * parent buttons). Extracted so both variants stay visually
+ * identical — critical because the nav should read as one row, not
+ * two competing styles.
+ */
+const inlineTriggerClass =
+  'inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+
+// ---------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------
 
@@ -113,6 +191,21 @@ function useScrolledPast(threshold: number): boolean {
  *     { href: "/", label: "Home", icon: Home },
  *     { href: "/docs", label: "Docs", icon: Book },
  *     { href: "/about", label: "About", icon: Info },
+ *   ]}
+ * />
+ *
+ * @example
+ * // Nav with a dropdown parent (NavParent)
+ * <Header
+ *   nav={[
+ *     { href: "/", label: "Home" },
+ *     {
+ *       label: "Layouts",
+ *       children: [
+ *         { href: "/layouts/secondary", label: "Secondary" },
+ *         { href: "/layouts/sidebar",   label: "Sidebar" },
+ *       ],
+ *     },
  *   ]}
  * />
  */
@@ -162,22 +255,21 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
           {logo.label}
         </a>
 
-        {/* Inline nav — visible at/above breakpoint.
-            Icons render before labels when NavItem.icon is provided;
-            aria-hidden on the icon since the label is the accessible name. */}
+        {/* Inline nav — visible at/above breakpoint. Renders
+            NavLeaf as an anchor and NavParent as a dropdown; both
+            share `inlineTriggerClass` so the row looks uniform.
+            Key strategy: leaves use item.href (unique); parents
+            use item.label (also unique in practice — no two nav
+            entries should share a label). Index fallback handles
+            the theoretical dup case. */}
         <nav aria-label="Primary" className={cn('items-center gap-1', inlineNavVisibility)}>
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-              {item.label}
-              {item.external && <span className="sr-only"> (opens in new window)</span>}
-            </a>
-          ))}
+          {nav.map((item, i) =>
+            isNavParent(item) ? (
+              <InlineParent key={`parent-${item.label}-${i}`} item={item} />
+            ) : (
+              <InlineLeaf key={item.href} item={item} />
+            ),
+          )}
         </nav>
 
         {/* Right side: actions + mobile hamburger.

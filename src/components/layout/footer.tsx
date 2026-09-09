@@ -12,10 +12,9 @@
  * a nav landmark for the link list.
  */
 
-import type * as React from 'react'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
-import type { NavItem } from './types'
+import type { NavLeaf } from './types'
 
 // ---------------------------------------------------------------
 // Types
@@ -30,8 +29,11 @@ type FooterProps = {
   /**
    * Secondary links shown on the right (Privacy, Terms, etc.).
    * Optional — omit for a copyright-only footer.
+   *
+   * Typed as NavLeaf[] (not NavItem[]) — dropdowns don't
+   * semantically belong in a footer.
    */
-  links?: NavItem[]
+  links?: NavLeaf[]
   /**
    * Layout width behavior.
    * - "contained" (default): Container 2xl (~1536px max-width).

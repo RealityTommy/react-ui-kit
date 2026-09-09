@@ -19,7 +19,7 @@
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
 import { useLayout } from '@/components/layout/layout-provider'
-import type { NavItem } from './types'
+import type { NavLeaf } from './types'
 
 // ---------------------------------------------------------------
 // Types
@@ -35,8 +35,12 @@ type SecondaryNavProps = {
   /**
    * Nav items. When omitted, reads from LayoutProvider's
    * `secondaryNav`. Explicit prop overrides context.
+   *
+   * Typed as NavLeaf[] (not NavItem[]) — dropdowns don't
+   * semantically belong in a tab bar. If you need multi-level
+   * navigation at the section level, use Sidebar with NavGroup[].
    */
-  items?: NavItem[]
+  items?: NavLeaf[]
   /**
    * Currently active URL. Exact match on `item.href === activeHref`
    * applies `aria-current="page"` and active-state styling. When

@@ -1,7 +1,7 @@
 /**
  * Sidebar — left-rail navigation for section pages.
  *
- * Preset API: pass items (flat NavItems or NavGroups), get a
+ * Preset API: pass items (flat NavLeaves or NavGroups), get a
  * vertical link rail with active-state styling and optional
  * icon-only mode. Not sticky — scrolls with content.
  *
@@ -24,7 +24,7 @@
 import { cn } from 'cn'
 import { useLayout } from '@/components/layout/layout-provider'
 import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip'
-import { isNavGroup, type NavItem, type NavGroup } from '../types'
+import { isNavGroup, type NavLeaf, type NavGroup } from '../types'
 
 // ---------------------------------------------------------------
 // Types
@@ -40,11 +40,15 @@ type SidebarProps = {
    */
   'aria-label': string
   /**
-   * Nav entries — flat items or labeled groups. When omitted,
+   * Nav entries — flat leaves or labeled groups. When omitted,
    * reads from LayoutProvider's `sidebarNav`. Explicit prop
    * overrides context.
+   *
+   * Typed as (NavLeaf | NavGroup)[] (not NavItem-based) — dropdowns
+   * don't belong in a sidebar. Grouping is Sidebar's hierarchy
+   * primitive; dropdowns are Header's.
    */
-  items?: (NavItem | NavGroup)[]
+  items?: (NavLeaf | NavGroup)[]
   /**
    * Currently active URL. Exact match on `item.href === activeHref`
    * applies `aria-current="page"` and active-state styling. When
@@ -55,7 +59,7 @@ type SidebarProps = {
    * Visual density.
    * - `labeled` (default): 240px wide, icon + label + group headings.
    * - `icon-only`: 56px wide, icons only with hover/focus tooltips.
-   *   Requires every NavItem to have an `icon` — icon-only mode
+   *   Requires every NavLeaf to have an `icon` — icon-only mode
    *   with a label-only item would render a blank clickable box.
    */
   variant?: SidebarVariant
@@ -66,7 +70,7 @@ type SidebarProps = {
 // ---------------------------------------------------------------
 
 /**
- * Renders a single NavItem. Icon-only mode wraps in a TooltipTrigger
+ * Renders a single NavLeaf. Icon-only mode wraps in a TooltipTrigger
  * so the label surfaces on hover/focus without occupying rail space.
  *
  * Active state uses a transparent-border base + border-l-2 on
@@ -78,7 +82,7 @@ function SidebarItem({
   active,
   iconOnly,
 }: {
-  item: NavItem
+  item: NavLeaf
   active: boolean
   iconOnly: boolean
 }) {
