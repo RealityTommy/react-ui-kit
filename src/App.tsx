@@ -1,4 +1,5 @@
 import { Header, SkipLink } from '@/components/layout/header'
+import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { LinkButton } from '@/components/ui/button'
 
@@ -27,20 +28,20 @@ function App() {
       {/* Main content — id matches SkipLink's default href.
           Long enough to actually scroll and see the sticky
           header's scrolled state kick in. */}
-      <main id="main-content" className="mx-auto max-w-3xl px-4 py-8">
+      <Main size="app">
         <h1 className="text-3xl font-semibold mb-4">Test page</h1>
         <p className="text-muted-foreground mb-6">
           Scroll down to see the header's scrolled state. Resize the window below 768px to see the
-          mobile hamburger.
+          mobile hamburger. Scroll to bottom to see the Footer. Change size="app" to size="reading"
+          (or omit) to see the narrower layout.
         </p>
-        {/* Long filler content to enable scrolling. */}
         {Array.from({ length: 40 }).map((_, i) => (
           <p key={i} className="mb-4 text-sm text-foreground">
             Paragraph {i + 1} — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         ))}
-      </main>
+      </Main>
 
       <Footer
         copyright={<>© 2026 Tommy Truong</>}
