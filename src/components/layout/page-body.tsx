@@ -21,6 +21,11 @@
  * otherwise Main would apply a second Container cap inside the
  * one PageBody already provides (double-capping, narrower than
  * intended).
+ *
+ * Sticky-footer note: PageBody carries `flex-1` on its outer div
+ * so when it sits inside a PageShell (min-h-svh flex-column), the
+ * Sidebar + Main pair grows to fill the space between Header and
+ * Footer. Outside PageShell the `flex-1` is a harmless no-op.
  */
 
 import type * as React from 'react'
@@ -68,14 +73,27 @@ type PageBodyProps = React.ComponentProps<'div'> & {
  */
 function PageBody({ className, size = 'contained', children, ...props }: PageBodyProps) {
   return (
-    <div data-slot="page-body" data-size={size} className={cn('w-full', className)} {...props}>
+    <div
+      data-slot="page-body"
+      data-size={size}
+      className={cn(
+        // flex-1 so PageBody grows to fill remaining vertical space
+        // when nested inside a PageShell (min-h-svh flex-column).
+        // Harmless outside a flex-column parent.
+        'w-full flex-1',
+        className,
+      )}
+      {...props}
+    >
       <Container
         size={size === 'full' ? 'full' : '2xl'}
         // flex-row for Sidebar + Main layout. Container already
         // provides horizontal padding and max-width; we just need
         // the flex direction and a stable min-height so Main can
-        // grow with its content.
-        className="flex"
+        // grow with its content. h-full lets the Sidebar + Main
+        // pair stretch to PageBody's height when we're growing to
+        // fill viewport space (short demo pages).
+        className="flex h-full"
       >
         {children}
       </Container>

@@ -7,15 +7,19 @@
  * `secondaryNavLabel` prop drives both the drawer section heading
  * on mobile and matches SecondaryNav's `aria-label` on desktop —
  * a11y landmark and visible heading stay in sync.
+ *
+ * PageShell wraps the whole tree so Footer pins to the viewport
+ * bottom on this short demo page (Main only has one paragraph).
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
+import { PageShell } from '@/components/layout/page-shell'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { SecondaryNav } from '@/components/layout/secondary-nav'
 import type { NavLeaf } from '@/components/layout/types'
-import { primaryNav } from './index'
+import { primaryNav, footerLinks } from './index'
 
 // Sample section tabs — kept in-page since this is demo content.
 const sectionNav: NavLeaf[] = [
@@ -32,18 +36,20 @@ function LayoutsSecondaryPage() {
       secondaryNavLabel="Documentation"
       activeHref="#/layouts/secondary"
     >
-      <SkipLink />
-      <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
-      <SecondaryNav aria-label="Documentation" />
-      <Main>
-        <h1 className="text-3xl font-semibold mb-4">Layouts / Secondary</h1>
-        <p className="text-muted-foreground">
-          Header + SecondaryNav + Main + Footer. The section tabs above scroll away with the page
-          (not sticky). On mobile they appear inside the hamburger drawer under a "Documentation"
-          heading.
-        </p>
-      </Main>
-      <Footer copyright={<>© 2026 Tommy Truong</>} />
+      <PageShell>
+        <SkipLink />
+        <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+        <SecondaryNav aria-label="Documentation" />
+        <Main>
+          <h1 className="text-3xl font-semibold mb-4">Layouts / Secondary</h1>
+          <p className="text-muted-foreground">
+            Header + SecondaryNav + Main + Footer. The section tabs above scroll away with the page
+            (not sticky). On mobile they appear inside the hamburger drawer under a "Documentation"
+            heading.
+          </p>
+        </Main>
+        <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
+      </PageShell>
     </LayoutProvider>
   )
 }
