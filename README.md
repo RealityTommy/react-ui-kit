@@ -1,122 +1,94 @@
-# React + TypeScript + Vite
+# react-ui-kit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal, opinionated React component library. Layouts and navigation for
+now — forms and feedback in v2. Built for reuse across my own projects.
 
-Currently, two official plugins are available:
+Distribution model is shadcn-style: **copy the components you want into your
+consuming project and edit freely.** No npm install, no lock-in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- **Vite** + **React 19** + **TypeScript** (strict)
+- **Tailwind CSS v4**
+- **shadcn/ui** with the `aria-nova` preset — components are backed by
+  [React Aria Components](https://react-spectrum.adobe.com/react-aria/) for
+  accessibility depth over Radix
+- **Lucide** icons, **Geist** font
+- **MIT** licensed
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```powershell
+# Install dependencies
+pnpm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Run the demo page at http://localhost:5173
+pnpm dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# Verify (before committing)
+pnpm lint
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Node 24 + pnpm 12 (via corepack) recommended.
 
 ## Repo structure
 
 ```
 src/
 ├── components/
-│   ├── ui/          ← shadcn-managed primitives (Button, Dialog, Sheet)
-│   └── layout/      ← hand-written layouts (Container, Header)
+│   ├── ui/                    ← shadcn-managed primitives
+│   │   ├── button.tsx         ← Button + LinkButton (React Aria)
+│   │   ├── dialog.tsx         ← centered modal
+│   │   └── sheet.tsx          ← side drawer
+│   └── layout/                ← hand-written layouts
+│       ├── container.tsx      ← max-width + responsive padding
+│       ├── main.tsx           ← <main> landmark with size presets
+│       ├── footer.tsx         ← copyright + secondary links
+│       ├── types.ts           ← shared types (NavItem)
+│       └── header/            ← multi-file: Header + SkipLink + MobileNav
+│           ├── index.ts       ← public API barrel
+│           ├── header.tsx
+│           ├── skip-link.tsx
+│           └── mobile-nav.tsx
 ├── lib/
-│   └── utils.ts     ← cn() helper
-├── App.tsx          ← demo page — not part of the library
-├── main.tsx         ← Vite entry
-└── index.css        ← Tailwind entry + global tokens
+│   └── utils.ts               ← cn() helper
+├── App.tsx                    ← demo page (not part of the library)
+├── main.tsx                   ← Vite entry
+└── index.css                  ← Tailwind entry + global tokens
 ```
 
-Each meaningful folder has its own README explaining what belongs
-there and why:
+Each meaningful folder has its own README explaining what belongs there and why:
 
-- [`src/components/README.md`](./src/components/README.md) — folder
-  layout overview
-- [`src/components/ui/README.md`](./src/components/ui/README.md) —
-  the shadcn-managed rules
-- [`src/components/layout/README.md`](./src/components/layout/README.md) —
-  the hand-authored component pattern
+- [`src/components/README.md`](./src/components/README.md) — folder layout overview
+- [`src/components/ui/README.md`](./src/components/ui/README.md) — shadcn-managed rules
+- [`src/components/layout/README.md`](./src/components/layout/README.md) — hand-authored component pattern
 
-Start with those before adding new components. See
-[`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions,
-comment style, and verification steps.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
+verification steps, and debugging playbook.
 
 ## What's built
 
 **Primitives (`ui/`):**
+
 - Button + LinkButton (React Aria)
 - Dialog (centered modal)
 - Sheet (side drawer)
 
 **Layouts (`layout/`):**
-- Container — max-width + responsive padding
-- Header — sticky nav with mobile drawer and skip link
 
-## Quick start — Header preset
+- Container — max-width + responsive padding, 6 size variants
+- Header — sticky nav with scroll-triggered blur, mobile hamburger drawer, prop-configurable breakpoint
+- Main — `<main id="main-content">` landmark with `reading` / `app` size presets
+- Footer — copyright + optional secondary links, semantic `<footer>` landmark
+- SkipLink — WCAG 2.4.1 keyboard bypass to `#main-content`
+
+## Quick start — full page shell
 
 ```tsx
 import { Header, SkipLink } from "@/components/layout/header"
+import { Main } from "@/components/layout/main"
+import { Footer } from "@/components/layout/footer"
 import { LinkButton } from "@/components/ui/button"
 
 function App() {
@@ -135,8 +107,22 @@ function App() {
           </LinkButton>
         }
       />
-      <main id="main-content">…</main>
+      <Main size="app">
+        <h1>Page title</h1>
+        <p>Content goes here.</p>
+      </Main>
+      <Footer
+        copyright={<>© 2026 Your Name</>}
+        links={[
+          { href: "/privacy", label: "Privacy" },
+          { href: "/terms", label: "Terms" },
+        ]}
+      />
     </>
   )
 }
 ```
+
+## License
+
+[MIT](./LICENSE) — copy, adapt, use freely.
