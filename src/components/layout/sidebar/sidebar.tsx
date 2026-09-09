@@ -20,6 +20,16 @@
  * Reads items and activeHref from LayoutProvider when props are
  * omitted, so Header's mobile drawer picks up the same config.
  * Hidden on mobile (drawer handles it).
+ *
+ * Visual: shadcn Nova sidebar look — full-row rounded fills for
+ * active/hover instead of a left-border accent. Muted background
+ * on the active row (matches the shadcn dashboard pattern used
+ * by Vercel/Linear/etc.), group headings shrunk and softened, and
+ * the whole rail sits on a subtle right border (no fill) so it
+ * doesn't fight Main for visual weight. Uses existing --muted /
+ * --border / --foreground tokens rather than a dedicated
+ * --sidebar-* set — one theming surface, works with any future
+ * palette swap without extra config.
  */
 
 import { cn } from 'cn'
@@ -74,9 +84,10 @@ type SidebarProps = {
  * Renders a single NavLeaf. Icon-only mode wraps in a TooltipTrigger
  * so the label surfaces on hover/focus without occupying rail space.
  *
- * Active state uses a transparent-border base + border-l-2 on
- * active — no layout shift when toggling active, consistent with
- * SecondaryNav's underline pattern.
+ * Active state fills the full row with a muted background (Nova
+ * sidebar pattern) — no border accent, no layout shift. The row
+ * is already flex + rounded, so filling on active is a pure paint
+ * change with no reflow.
  */
 function SidebarItem({
   item,
@@ -101,18 +112,20 @@ function SidebarItem({
       {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       className={cn(
         // Base: flex + gap for icon-label alignment, block-level so
-        // the full row is clickable, rounded for the hover surface.
+        // the full row is clickable, rounded for the hover/active
+        // surface. rounded-md matches Nova's item radius (tighter
+        // than the outer rail so hover pills sit cleanly inside).
         'flex items-center rounded-md text-sm font-medium',
         // Variant-driven padding: labeled has room for text, icon-only
         // is a tight 40px square inside the 56px rail.
-        iconOnly ? 'justify-center p-2' : 'gap-3 px-3 py-2',
-        // Left accent bar lives on a transparent border by default
-        // so row width stays stable when active toggles.
-        'border-l-2 border-transparent',
-        // Idle color + hover.
-        'text-muted-foreground hover:text-foreground hover:bg-muted',
-        // Active state — foreground text, accent border, muted bg.
-        'data-[active=true]:text-foreground data-[active=true]:border-foreground data-[active=true]:bg-muted',
+        iconOnly ? 'h-10 w-10 justify-center' : 'gap-3 px-3 py-2',
+        // Idle color + hover — full-row hover fill for the Nova
+        // dashboard feel. transition-colors smooths the paint.
+        'text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+        // Active state — full-row muted fill + foreground text.
+        // Same fill as hover so active looks like "the row you're
+        // hovering, permanently" — Nova's convention.
+        'data-[active=true]:bg-muted data-[active=true]:text-foreground',
         // Focus ring — focus-visible only, matches kit standard.
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
       )}
@@ -147,6 +160,9 @@ function SidebarItem({
  * Renders a group's heading + items. In icon-only mode the heading
  * is hidden (no room) but a top-border divider preserves the
  * visual grouping.
+ *
+ * Heading uses the Nova convention: extra-small, muted, uppercase,
+ * tight tracking — reads as a section marker rather than shouting.
  */
 function SidebarGroup({
   group,
@@ -171,9 +187,7 @@ function SidebarGroup({
       )}
     >
       {!iconOnly && (
-        <div className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          {group.label}
-        </div>
+        <div className="px-3 pb-1 text-xs font-medium text-muted-foreground/70">{group.label}</div>
       )}
       {group.items.map((item) => (
         <SidebarItem
@@ -261,10 +275,13 @@ function Sidebar({
         'hidden md:block',
         // Fixed width per variant: 240px labeled, 56px icon-only.
         iconOnly ? 'w-14' : 'w-60',
-        // Right border marks the boundary from Main content.
+        // Right border marks the boundary from Main content. No
+        // background fill — the rail should feel like part of the
+        // page surface, not a separate panel.
         'shrink-0 border-r border-border',
-        // Padding: tighter for icon-only rail.
-        iconOnly ? 'py-4' : 'p-4',
+        // Padding: symmetric on all sides for labeled, tighter
+        // horizontally for icon-only since icons center themselves.
+        iconOnly ? 'px-2 py-4' : 'p-3',
       )}
     >
       <nav aria-label={ariaLabel} className="flex flex-col gap-0.5">
