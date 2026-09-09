@@ -25,6 +25,7 @@
 
 import * as React from 'react'
 import { ChevronDownIcon } from 'lucide-react'
+import { Pressable } from 'react-aria-components'
 import { cn } from 'cn'
 import { Container } from '@/components/layout/container'
 import { useLayout } from '@/components/layout/layout-provider'
@@ -126,11 +127,13 @@ function InlineLeaf({ item }: { item: NavLeaf }) {
 function InlineParent({ item }: { item: NavParent }) {
   return (
     <DropdownMenuTrigger>
-      <button type="button" className={inlineTriggerClass}>
-        {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-        {item.label}
-        <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
-      </button>
+      <Pressable>
+        <button type="button" className={inlineTriggerClass}>
+          {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
+          {item.label}
+          <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
+        </button>
+      </Pressable>
       <DropdownMenu>
         {item.children.map((child) => (
           <DropdownMenuItem key={child.href} textValue={child.label}>
