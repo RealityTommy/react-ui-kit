@@ -21,6 +21,7 @@ import { HomePage } from './home'
 import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
+import { LayoutsColumnsPage } from './layouts-columns'
 
 // ---------------------------------------------------------------
 // Routes
@@ -40,6 +41,7 @@ const routes: Route[] = [
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
+  { path: '/layouts/columns', component: LayoutsColumnsPage },
 ]
 
 // ---------------------------------------------------------------
@@ -59,6 +61,7 @@ const primaryNav: NavItem[] = [
       { href: '#/layouts/secondary', label: 'Secondary' },
       { href: '#/layouts/sidebar', label: 'Sidebar' },
       { href: '#/layouts/full', label: 'Full' },
+      { href: '#/layouts/columns', label: 'Columns' },
     ],
   },
 ]
