@@ -40,6 +40,12 @@ type HeaderProps = {
    * nav items or unusually long labels.
    */
   mobileBreakpoint?: 'md' | 'lg'
+  /**
+   * Layout width behavior.
+   * - "contained" (default): Container 2xl (~1536px max-width).
+   * - "full": edge-to-edge with horizontal padding only.
+   */
+  size?: 'contained' | 'full'
 }
 
 // ---------------------------------------------------------------
@@ -87,8 +93,12 @@ function useScrolledPast(threshold: number): boolean {
  *   ]}
  *   actions={<LinkButton href="/github" variant="outline">GitHub</LinkButton>}
  * />
+ *
+ * @example
+ * // Full-width header for dashboard layouts
+ * <Header size="full" logo={...} nav={...} />
  */
-function Header({ logo, nav, actions, mobileBreakpoint = 'md' }: HeaderProps) {
+function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained' }: HeaderProps) {
   const scrolled = useScrolledPast(10)
 
   // Tailwind can't consume dynamic class strings, so we map the
@@ -102,6 +112,7 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md' }: HeaderProps) {
     <header
       data-slot="header"
       data-scrolled={scrolled}
+      data-size={size}
       className={cn(
         // Sticky + full width. z-40 sits below skip-link (z-100)
         // but above page content.
@@ -115,7 +126,10 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md' }: HeaderProps) {
         'data-[scrolled=true]:bg-background/80 data-[scrolled=true]:border-b data-[scrolled=true]:border-border data-[scrolled=true]:backdrop-blur-md',
       )}
     >
-      <Container size="xl" className="flex h-full items-center justify-between gap-4">
+      <Container
+        size={size === 'full' ? 'full' : '2xl'}
+        className="flex h-full items-center justify-between gap-4"
+      >
         {/* Logo — left. Plain <a> for now; consumers can wrap
             with their router link if needed via a future prop. */}
         <a
