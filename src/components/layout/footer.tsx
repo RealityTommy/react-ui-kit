@@ -32,6 +32,12 @@ type FooterProps = {
    * Optional — omit for a copyright-only footer.
    */
   links?: NavItem[]
+  /**
+   * Layout width behavior.
+   * - "contained" (default): Container 2xl (~1536px max-width).
+   * - "full": edge-to-edge with horizontal padding only.
+   */
+  size?: 'contained' | 'full'
 }
 
 // ---------------------------------------------------------------
@@ -52,11 +58,16 @@ type FooterProps = {
  *     { href: "/terms", label: "Terms" },
  *   ]}
  * />
+ *
+ * @example
+ * // Full-width footer for dashboard layouts
+ * <Footer size="full" copyright={...} />
  */
-function Footer({ copyright, links }: FooterProps) {
+function Footer({ copyright, links, size = 'contained' }: FooterProps) {
   return (
     <footer
       data-slot="footer"
+      data-size={size}
       className={cn(
         // Top border marks the page/footer boundary. No background —
         // Footer sits on the page, unlike Header which overlays it.
@@ -66,7 +77,7 @@ function Footer({ copyright, links }: FooterProps) {
       )}
     >
       <Container
-        size="xl"
+        size={size === 'full' ? 'full' : '2xl'}
         className={cn(
           // Flex row with space-between on wide viewports.
           // `flex-wrap` + `gap-4` gracefully stacks when the row
