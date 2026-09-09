@@ -14,6 +14,26 @@
  * Renders semantic <nav aria-label="..."> — the aria-label prop
  * is required because multiple nav landmarks need distinct names
  * for screen-reader landmark navigation.
+ *
+ * Visual: shadcn Nova "pill" tab style. A muted rounded tray holds
+ * the tabs; the active tab fills to the background color with a
+ * subtle shadow, matching Vercel/Linear dashboards. We hand-roll
+ * the pill classes onto real <a> anchors (rather than using
+ * ui/tabs.tsx directly) because ui/tabs is React Aria Tabs, which
+ * manages selection internally and doesn't support anchor
+ * navigation. Real links preserve middle-click, Cmd+click, browser
+ * tooltips, and crawlability — the right primitive for
+ * navigate-between-pages, not switch-between-panels.
+ *
+ * Layout structure:
+ *   <nav>                    ← full-width landmark, py-3 breathing room
+ *     <Container>            ← page-aligned gutter (matches Header/Footer)
+ *       <div tray>           ← inline-flex w-fit, hugs its tabs flush-left
+ *         <a>...<a>          ← individual pills
+ *
+ * The inner <div> is what hugs the tabs — Container provides the
+ * horizontal alignment with the rest of the page (logo, headings,
+ * footer text), and the div sits flush-left inside that gutter.
  */
 
 import { cn } from 'cn'
@@ -48,7 +68,10 @@ type SecondaryNavProps = {
    */
   activeHref?: string
   /**
-   * Layout width behavior.
+   * Layout width behavior — controls the OUTER Container's max
+   * width (which sets where the tray's left edge lands). The tray
+   * itself always hugs its content; `size` only affects the page
+   * gutter alignment.
    * - "contained" (default): Container 2xl (~1536px max-width),
    *   matches Header/Footer default alignment.
    * - "full": edge-to-edge with horizontal padding only.
@@ -61,10 +84,10 @@ type SecondaryNavProps = {
 // ---------------------------------------------------------------
 
 /**
- * Horizontal sub-nav bar. Renders a tab-like row of links below
- * the Header. Active item gets an underline. On mobile the
- * component renders nothing — Header's drawer picks up the same
- * items via LayoutProvider context.
+ * Horizontal sub-nav bar. Renders a pill-style row of links below
+ * the Header. Active item gets a filled background pill with subtle
+ * shadow. On mobile the component renders nothing — Header's drawer
+ * picks up the same items via LayoutProvider context.
  *
  * @example
  * <LayoutProvider secondaryNav={docsNav} activeHref={pathname}>
@@ -109,55 +132,67 @@ function SecondaryNav({
         // Hidden on mobile — Header's drawer renders these items.
         // Shown from md+ where the row has room to breathe.
         'hidden md:block',
-        // Bottom border marks the boundary from Main content below.
-        'w-full border-b border-border',
+        // Full-width landmark with vertical padding for row
+        // breathing room. Horizontal alignment is delegated to
+        // the inner Container so tabs line up with Header/Footer.
+        'w-full py-3',
       )}
     >
-      <Container
-        size={size === 'full' ? 'full' : '2xl'}
-        className={cn(
-          // Horizontal scroll on overflow — tabs stay one line
-          // rather than wrapping to a second row (which would
-          // reintroduce a stacking/height problem).
-          'flex items-center gap-1 overflow-x-auto',
-        )}
-      >
-        {items.map((item) => {
-          const isActive = item.href === activeHref
-          return (
-            <a
-              key={item.href}
-              href={item.href}
-              // aria-current="page" on the active item — the
-              // canonical way to mark "you are here" for screen
-              // readers. We echo the same state to `data-active`
-              // for CSS targeting.
-              aria-current={isActive ? 'page' : undefined}
-              data-active={isActive}
-              {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className={cn(
-                // Base: inline-flex for icon + label alignment,
-                // gap-2 between icon and label, whitespace-nowrap
-                // so labels don't wrap mid-item during scroll.
-                'inline-flex items-center gap-2 whitespace-nowrap px-3 py-3 text-sm font-medium',
-                // Underline lives on a transparent border by default
-                // so the row height doesn't change when active
-                // state toggles. Active flips border to foreground.
-                'border-b-2 border-transparent',
-                // Idle color + hover, matching Header's inline nav.
-                'text-muted-foreground hover:text-foreground',
-                // Active state — foreground text and visible underline.
-                'data-[active=true]:text-foreground data-[active=true]:border-foreground',
-                // Focus ring — focus-visible only, matches kit standard.
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-              )}
-            >
-              {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-              {item.label}
-              {item.external && <span className="sr-only"> (opens in new window)</span>}
-            </a>
-          )
-        })}
+      <Container size={size === 'full' ? 'full' : '2xl'}>
+        <div
+          className={cn(
+            // The pill "tray" — muted background containing all
+            // tabs. Matches Nova's TabsList variant="default":
+            // rounded-lg, bg-muted, small inner padding so active
+            // pills have room to fill without touching the tray
+            // edge. inline-flex + w-fit makes the tray hug its
+            // tabs rather than stretching across Container's full
+            // inner width, so it reads as a compact segmented
+            // control flush against the page's left gutter.
+            'inline-flex w-fit items-center gap-1 rounded-lg bg-muted p-[3px]',
+          )}
+        >
+          {items.map((item) => {
+            const isActive = item.href === activeHref
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                // aria-current="page" on the active item — the
+                // canonical way to mark "you are here" for screen
+                // readers. We echo the same state to `data-active`
+                // for CSS targeting.
+                aria-current={isActive ? 'page' : undefined}
+                data-active={isActive}
+                {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className={cn(
+                  // Base pill — matches Nova's TabsTrigger idle
+                  // state: rounded-md so the pill sits nicely
+                  // inside the rounded-lg tray, small horizontal
+                  // padding, subtle muted text color that lifts
+                  // to foreground on hover.
+                  'inline-flex items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium',
+                  // Idle color + hover — muted-foreground /
+                  // foreground matches Header's inline nav for
+                  // cross-component consistency.
+                  'text-muted-foreground transition-colors hover:text-foreground',
+                  // Active state — mirrors Nova's data-selected:
+                  // background fills to page bg (creating the
+                  // "pill lifted off the tray" effect), text goes
+                  // full foreground, subtle shadow for depth.
+                  'data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm',
+                  // Focus ring — focus-visible only, matches kit
+                  // standard.
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                )}
+              >
+                {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
+                {item.label}
+                {item.external && <span className="sr-only"> (opens in new window)</span>}
+              </a>
+            )
+          })}
+        </div>
       </Container>
     </nav>
   )
