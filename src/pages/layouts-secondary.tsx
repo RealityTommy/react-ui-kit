@@ -3,7 +3,10 @@
  *
  * SecondaryNav sits directly under Header for section-level tabs.
  * On mobile, SecondaryNav's items appear inside Header's drawer
- * (via LayoutProvider), so the mobile menu stays unified.
+ * (via LayoutProvider), so the mobile menu stays unified. The
+ * `secondaryNavLabel` prop drives both the drawer section heading
+ * on mobile and matches SecondaryNav's `aria-label` on desktop —
+ * a11y landmark and visible heading stay in sync.
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
@@ -24,15 +27,20 @@ const sectionNav: NavLeaf[] = [
 
 function LayoutsSecondaryPage() {
   return (
-    <LayoutProvider secondaryNav={sectionNav} activeHref="#/layouts/secondary">
+    <LayoutProvider
+      secondaryNav={sectionNav}
+      secondaryNavLabel="Documentation"
+      activeHref="#/layouts/secondary"
+    >
       <SkipLink />
       <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
-      <SecondaryNav aria-label="Section" />
+      <SecondaryNav aria-label="Documentation" />
       <Main>
         <h1 className="text-3xl font-semibold mb-4">Layouts / Secondary</h1>
         <p className="text-muted-foreground">
           Header + SecondaryNav + Main + Footer. The section tabs above scroll away with the page
-          (not sticky). On mobile they appear inside the hamburger drawer as a "Section" group.
+          (not sticky). On mobile they appear inside the hamburger drawer under a "Documentation"
+          heading.
         </p>
       </Main>
       <Footer copyright={<>© 2026 Tommy Truong</>} />

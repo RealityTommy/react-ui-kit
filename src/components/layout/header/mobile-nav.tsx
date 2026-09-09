@@ -9,13 +9,22 @@
  * dismiss-on-outside-tap out of the box.
  *
  * The primary section supports NavParent entries — they render as
- * a labeled group with indented children rather than as a dropdown
- * (dropdowns inside a drawer would be awkward on touch).
+ * a labeled sub-group with indented children rather than as a
+ * dropdown (dropdowns inside a drawer would be awkward on touch).
  *
  * When Header is inside a LayoutProvider that supplies secondaryNav
  * or sidebarNav, those items appear as extra drawer sections below
  * the primary nav — divided visually so screen-reader landmark
- * navigation still works section-by-section.
+ * navigation still works section-by-section. Section headings come
+ * from `secondaryNavLabel` / `sidebarNavLabel` on the provider,
+ * with generic fallbacks if the consumer omitted them.
+ *
+ * Visual hierarchy (small-caps at every level, sized to signal depth):
+ * - SectionHeading (secondaryNavLabel, sidebarNavLabel): landmark
+ *   boundary — biggest.
+ * - SubGroupLabel (NavParent labels, NavGroup labels): sub-group
+ *   inside a section — smaller + lighter weight, indented children.
+ * - DrawerLink: individual link.
  */
 
 import { MenuIcon } from 'lucide-react'
@@ -30,8 +39,8 @@ import { isNavGroup, isNavParent, type NavItem, type NavLeaf, type NavGroup } fr
 type MobileNavProps = {
   /**
    * Primary nav items. Always rendered as the first section.
-   * Accepts NavLeaf and NavParent; parents render as labeled groups
-   * with indented children (no dropdown on mobile).
+   * Accepts NavLeaf and NavParent; parents render as sub-group
+   * labels with indented children (no dropdown on mobile).
    */
   nav: NavItem[]
   /**
@@ -40,10 +49,22 @@ type MobileNavProps = {
    */
   secondaryNav?: NavLeaf[]
   /**
+   * Visible heading text for the secondary section (from
+   * LayoutProvider's `secondaryNavLabel`). Falls back to a generic
+   * label when omitted.
+   */
+  secondaryNavLabel?: string
+  /**
    * Optional sidebar nav items (from LayoutProvider). Rendered as
    * a third section — supports flat items or grouped items.
    */
   sidebarNav?: (NavLeaf | NavGroup)[]
+  /**
+   * Visible heading text for the sidebar section (from
+   * LayoutProvider's `sidebarNavLabel`). Falls back to a generic
+   * label when omitted.
+   */
+  sidebarNavLabel?: string
 }
 
 // ---------------------------------------------------------------
@@ -54,8 +75,8 @@ type MobileNavProps = {
  * Renders a single NavLeaf as a drawer link.
  *
  * Extracted so all drawer sections (primary, secondary, sidebar,
- * and parent children) share identical link styling — no drift
- * risk if we tweak the class list later.
+ * and parent/group children) share identical link styling — no
+ * drift risk if we tweak the class list later.
  */
 function DrawerLink({ item }: { item: NavLeaf }) {
   return (
@@ -73,49 +94,14 @@ function DrawerLink({ item }: { item: NavLeaf }) {
   )
 }
 
-/**
- * Renders a NavParent as a labeled group with indented children.
- *
- * On desktop, Header renders parents as click-to-open dropdowns.
- * In the drawer we don't have that constraint (already a menu),
- * so we flatten to a group + indented list. Simpler to scan on
- * touch and doesn't require nested dropdown interactions.
- *
- * The parent label uses `div` (not a heading) because the drawer
- * itself is inside a Dialog landmark; adding a heading here would
- * introduce a doubled announcement. The indent + muted color +
- * icon presence make the grouping visually clear.
- */
-function DrawerParent({
-  item,
-}: {
-  item: { label: string; icon?: NavLeaf['icon']; children: NavLeaf[] }
-}) {
-  return (
-    <div className="flex flex-col gap-1">
-      <div className="inline-flex items-center gap-3 px-3 py-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-        {item.icon && <item.icon className="size-4 shrink-0" aria-hidden="true" />}
-        {item.label}
-      </div>
-      {/* Indented children — pl-6 to align text under parent label,
-          keeping the icon aligned with the parent's icon slot. */}
-      <div className="flex flex-col gap-1 pl-6">
-        {item.children.map((child) => (
-          <DrawerLink key={child.href} item={child} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
 // ---------------------------------------------------------------
-// Section heading
+// Group / heading renderers
 // ---------------------------------------------------------------
 
 /**
- * Small-caps heading between drawer sections. Also the `id` that
- * the corresponding <nav aria-labelledby={id}> points at so
- * screen-readers announce the section name on landmark navigation.
+ * Landmark section heading. The biggest heading tier because it
+ * marks a landmark boundary (<nav aria-labelledby> points at these
+ * ids so screen-readers announce the section name).
  */
 function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
   return (
@@ -125,6 +111,57 @@ function SectionHeading({ id, children }: { id: string; children: React.ReactNod
     >
       {children}
     </h2>
+  )
+}
+
+/**
+ * Sub-group label — NavParent labels and NavGroup labels. One
+ * level below SectionHeading in visual weight: slightly smaller,
+ * lighter weight, but same small-caps treatment so the "grouping"
+ * language is consistent across the drawer.
+ *
+ * `<div>` not `<h3>` because these aren't semantic landmarks — the
+ * enclosing <nav> already gives screen-readers a group boundary via
+ * aria-labelledby, and doubled headings inside a landmark would
+ * clutter announcement.
+ */
+function SubGroupLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+      {children}
+    </div>
+  )
+}
+
+/**
+ * Renders a NavParent as a sub-group label with indented children.
+ *
+ * On desktop, Header renders parents as click-to-open dropdowns.
+ * In the drawer we don't have that constraint (already a menu), so
+ * we flatten to a labeled group + indented list. Simpler on touch
+ * than a nested dropdown.
+ */
+function DrawerParent({
+  item,
+}: {
+  item: { label: string; icon?: NavLeaf['icon']; children: NavLeaf[] }
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <SubGroupLabel>
+        {item.icon && (
+          <item.icon className="size-4 shrink-0 inline-block mr-2 -mt-0.5" aria-hidden="true" />
+        )}
+        {item.label}
+      </SubGroupLabel>
+      {/* pl-6 matches sidebar group children so all indented items
+          in the drawer share one indent depth. */}
+      <div className="flex flex-col gap-1 pl-6">
+        {item.children.map((child) => (
+          <DrawerLink key={child.href} item={child} />
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -138,9 +175,21 @@ function SectionHeading({ id, children }: { id: string; children: React.ReactNod
  * Rendered by <Header /> when the viewport is below its
  * `mobileBreakpoint` prop.
  */
-function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
+function MobileNav({
+  nav,
+  secondaryNav,
+  secondaryNavLabel,
+  sidebarNav,
+  sidebarNavLabel,
+}: MobileNavProps) {
   const hasSecondary = secondaryNav && secondaryNav.length > 0
   const hasSidebar = sidebarNav && sidebarNav.length > 0
+
+  // Section-heading text: consumer-provided label wins, generic
+  // fallback otherwise. Kept in variables for readability at the
+  // render site.
+  const secondaryHeading = secondaryNavLabel ?? 'Section'
+  const sidebarHeading = sidebarNavLabel ?? 'Pages'
 
   return (
     <SheetTrigger>
@@ -164,7 +213,7 @@ function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
           {/* Primary section. `aria-label="Primary"` matches the
               desktop nav's label so users have a consistent
               landmark name across viewports. Parents render as
-              labeled groups with indented children (no dropdowns
+              sub-group labels with indented children (no dropdowns
               inside the drawer). */}
           <nav aria-label="Primary" className="flex flex-col gap-1">
             {nav.map((item, i) =>
@@ -177,12 +226,12 @@ function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
           </nav>
 
           {/* Secondary section — only rendered when LayoutProvider
-              supplies items. Divider + labeled heading distinguishes
-              it as its own landmark. */}
+              supplies items. Divider + landmark heading distinguishes
+              it as its own <nav>. */}
           {hasSecondary && (
             <>
               <hr className="my-2 border-border" />
-              <SectionHeading id="mobile-nav-secondary">Section</SectionHeading>
+              <SectionHeading id="mobile-nav-secondary">{secondaryHeading}</SectionHeading>
               <nav aria-labelledby="mobile-nav-secondary" className="flex flex-col gap-1">
                 {secondaryNav.map((item) => (
                   <DrawerLink key={item.href} item={item} />
@@ -193,25 +242,25 @@ function MobileNav({ nav, secondaryNav, sidebarNav }: MobileNavProps) {
 
           {/* Sidebar section — also from LayoutProvider. Supports
               flat NavLeaf[] or grouped NavGroup[] via isNavGroup
-              type guard. Groups render with a small sub-heading
-              above their items. */}
+              type guard. Groups render with a SubGroupLabel + indented
+              children — same shape and indent as NavParent above. */}
           {hasSidebar && (
             <>
               <hr className="my-2 border-border" />
-              <SectionHeading id="mobile-nav-sidebar">Pages</SectionHeading>
+              <SectionHeading id="mobile-nav-sidebar">{sidebarHeading}</SectionHeading>
               <nav aria-labelledby="mobile-nav-sidebar" className="flex flex-col gap-1">
                 {sidebarNav.map((entry, i) =>
                   isNavGroup(entry) ? (
-                    // Group: render label + items. `key` uses index
+                    // Group: label + indented items. `key` uses index
                     // because group labels aren't guaranteed unique
                     // (unlike hrefs, which we validate elsewhere).
                     <div key={`group-${i}`} className="flex flex-col gap-1">
-                      <div className="px-3 pt-2 pb-1 text-xs font-medium text-muted-foreground">
-                        {entry.label}
+                      <SubGroupLabel>{entry.label}</SubGroupLabel>
+                      <div className="flex flex-col gap-1 pl-6">
+                        {entry.items.map((item) => (
+                          <DrawerLink key={item.href} item={item} />
+                        ))}
                       </div>
-                      {entry.items.map((item) => (
-                        <DrawerLink key={item.href} item={item} />
-                      ))}
                     </div>
                   ) : (
                     <DrawerLink key={entry.href} item={entry} />

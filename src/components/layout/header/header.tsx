@@ -17,7 +17,8 @@
  * `secondaryNav` or `sidebarNav` config, those items are rendered
  * as extra sections inside the mobile drawer — so consumers get
  * a single unified menu on mobile without SecondaryNav / Sidebar
- * needing their own drawers.
+ * needing their own drawers. The drawer section headings come
+ * from `secondaryNavLabel` / `sidebarNavLabel` on the provider.
  *
  * Renders semantic <header> + <nav aria-label="Primary"> for
  * screen-reader landmark navigation.
@@ -123,6 +124,11 @@ function InlineLeaf({ item }: { item: NavLeaf }) {
  * chevron affordance. Uses React Aria's MenuTrigger (via shadcn's
  * DropdownMenu primitive) for full a11y — keyboard nav, focus
  * trap, escape-to-close, and dismiss-on-outside-click.
+ *
+ * The button is wrapped in <Pressable> because React Aria's
+ * MenuTrigger only wires trigger behavior onto RAC Button or
+ * Pressable children; a plain <button> renders visually but
+ * silently no-ops as a trigger.
  */
 function InlineParent({ item }: { item: NavParent }) {
   return (
@@ -215,10 +221,11 @@ const inlineTriggerClass =
 function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained' }: HeaderProps) {
   const scrolled = useScrolledPast(10)
 
-  // Pull secondaryNav / sidebarNav from LayoutProvider (if any) so
-  // MobileNav can render them as extra drawer sections. Empty
-  // object default means no provider = no extra sections.
-  const { secondaryNav, sidebarNav } = useLayout()
+  // Pull secondaryNav / sidebarNav (plus their drawer heading
+  // labels) from LayoutProvider so MobileNav can render them
+  // as extra drawer sections. Empty object default means no
+  // provider = no extra sections.
+  const { secondaryNav, secondaryNavLabel, sidebarNav, sidebarNavLabel } = useLayout()
 
   // Tailwind can't consume dynamic class strings, so we map the
   // breakpoint prop to a static class string. `hidden md:flex`
@@ -277,12 +284,19 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
 
         {/* Right side: actions + mobile hamburger.
             Actions are always visible; hamburger is breakpoint-gated.
-            secondaryNav/sidebarNav come from LayoutProvider context and
-            get rendered as extra drawer sections on mobile. */}
+            secondaryNav/sidebarNav (+ their labels) come from
+            LayoutProvider context and get rendered as extra drawer
+            sections on mobile. */}
         <div className="flex items-center gap-2">
           {actions}
           <div className={mobileNavVisibility}>
-            <MobileNav nav={nav} secondaryNav={secondaryNav} sidebarNav={sidebarNav} />
+            <MobileNav
+              nav={nav}
+              secondaryNav={secondaryNav}
+              secondaryNavLabel={secondaryNavLabel}
+              sidebarNav={sidebarNav}
+              sidebarNavLabel={sidebarNavLabel}
+            />
           </div>
         </div>
       </Container>

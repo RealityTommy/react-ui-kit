@@ -11,17 +11,24 @@
  * standalone by passing props directly. Explicit props always
  * override context (standard React pattern).
  *
+ * `secondaryNavLabel` / `sidebarNavLabel` are visible drawer
+ * headings, separate from the components' `aria-label` (which is
+ * the landmark name for screen readers). Usually you'll set both
+ * to the same value, but they're independent so consumers can pick
+ * a shorter drawer heading if the aria-label is verbose (e.g.,
+ * aria-label="Product documentation sections", drawer heading="Docs").
+ *
  * @example
- * // Full page shell with shared config:
  * <LayoutProvider
  *   secondaryNav={[
  *     { href: "/docs/overview", label: "Overview" },
  *     { href: "/docs/theming", label: "Theming" },
  *   ]}
+ *   secondaryNavLabel="Documentation"
  *   activeHref={pathname}
  * >
  *   <Header logo={...} nav={primaryNav} />
- *   <SecondaryNav aria-label="Docs" />
+ *   <SecondaryNav aria-label="Documentation" />
  *   <Main>...</Main>
  *   <Footer copyright={...} />
  * </LayoutProvider>
@@ -46,6 +53,13 @@ type LayoutContextValue = {
    */
   secondaryNav?: NavLeaf[]
   /**
+   * Visible heading text for the secondary-nav section inside
+   * Header's mobile drawer. When omitted, the drawer uses a
+   * generic fallback ("Section"). Usually set to the same value
+   * as SecondaryNav's `aria-label` for consistency.
+   */
+  secondaryNavLabel?: string
+  /**
    * Items for the Sidebar component. When present, Header's mobile
    * drawer will render them below the primary nav (and below
    * secondaryNav if both are present).
@@ -54,6 +68,13 @@ type LayoutContextValue = {
    * as its hierarchy primitive but not dropdowns.
    */
   sidebarNav?: (NavLeaf | NavGroup)[]
+  /**
+   * Visible heading text for the sidebar section inside Header's
+   * mobile drawer. When omitted, the drawer uses a generic
+   * fallback ("Pages"). Usually set to the same value as Sidebar's
+   * `aria-label` for consistency.
+   */
+  sidebarNavLabel?: string
   /**
    * Currently active URL. Used by SecondaryNav and Sidebar to
    * apply `aria-current="page"` and active-state styling. Match
@@ -93,10 +114,18 @@ function LayoutProvider({ children, ...value }: LayoutProviderProps) {
   const memoized = React.useMemo<LayoutContextValue>(
     () => ({
       secondaryNav: value.secondaryNav,
+      secondaryNavLabel: value.secondaryNavLabel,
       sidebarNav: value.sidebarNav,
+      sidebarNavLabel: value.sidebarNavLabel,
       activeHref: value.activeHref,
     }),
-    [value.secondaryNav, value.sidebarNav, value.activeHref],
+    [
+      value.secondaryNav,
+      value.secondaryNavLabel,
+      value.sidebarNav,
+      value.sidebarNavLabel,
+      value.activeHref,
+    ],
   )
 
   return <LayoutContext.Provider value={memoized}>{children}</LayoutContext.Provider>

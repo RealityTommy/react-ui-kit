@@ -1,15 +1,19 @@
 /**
  * LayoutsSidebarPage — demos Header + Sidebar + Main + Footer.
  *
- * Sidebar sits left of Main inside a flex container. Consumer owns
- * the flex composition (Sidebar doesn't wrap Main). On mobile the
- * Sidebar items appear inside Header's drawer as a "Pages" group.
+ * Sidebar sits left of Main inside a PageBody, so the sidebar+
+ * content pair respects the same width cap as Header/Footer above.
+ * Main uses size="full" here since PageBody owns the cap — otherwise
+ * we'd double-cap (Container inside Container). On mobile the
+ * Sidebar items appear inside Header's drawer under the label set
+ * by `sidebarNavLabel` (matches Sidebar's aria-label for consistency).
  */
 
 import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
 import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
+import { PageBody } from '@/components/layout/page-body'
 import { LayoutProvider } from '@/components/layout/layout-provider'
 import { Sidebar } from '@/components/layout/sidebar'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
@@ -34,19 +38,24 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
 
 function LayoutsSidebarPage() {
   return (
-    <LayoutProvider sidebarNav={sidebarEntries} activeHref="#/layouts/sidebar">
+    <LayoutProvider
+      sidebarNav={sidebarEntries}
+      sidebarNavLabel="Documentation"
+      activeHref="#/layouts/sidebar"
+    >
       <SkipLink />
       <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
-      <div className="flex">
-        <Sidebar aria-label="Section" />
-        <Main>
+      <PageBody>
+        <Sidebar aria-label="Documentation" />
+        <Main size="full">
           <h1 className="text-3xl font-semibold mb-4">Layouts / Sidebar</h1>
           <p className="text-muted-foreground">
-            Header + Sidebar + Main + Footer. Sidebar is a left rail (240px) with grouped links. On
-            mobile the entries appear inside the hamburger drawer as a "Pages" group.
+            Header + Sidebar + Main + Footer. Sidebar and Main sit inside a PageBody so the pair
+            caps at the same width as Header/Footer above. On mobile the entries appear inside the
+            hamburger drawer under a "Documentation" heading.
           </p>
         </Main>
-      </div>
+      </PageBody>
       <Footer copyright={<>© 2026 Tommy Truong</>} />
     </LayoutProvider>
   )
