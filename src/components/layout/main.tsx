@@ -4,11 +4,11 @@
  * Preset API: pass a size intent, get the correct max-width plus
  * top spacing to sit below a sticky Header.
  *
- * Two intents:
- * - `reading` (default): narrow, optimized for line length and
- *   long-form content (articles, docs, blog posts).
- * - `app`: wider, matches Header/Footer alignment for dashboards,
- *   bento layouts, and multi-column pages.
+ * Two intents (consistent with Header/Footer):
+ * - `contained` (default): Container 2xl (~1536px max-width),
+ *   matches Header/Footer default alignment.
+ * - `full`: edge-to-edge with horizontal padding only, for
+ *   full-bleed dashboards and hero sections.
  *
  * Always renders <main id="main-content"> so the SkipLink from
  * @/components/layout/header has a target. The id is intentionally
@@ -24,14 +24,15 @@ import { Container } from '@/components/layout/container'
 // Types
 // ---------------------------------------------------------------
 
-type MainSize = 'reading' | 'app'
+type MainSize = 'contained' | 'full'
 
 type MainProps = Omit<React.ComponentProps<'main'>, 'id'> & {
   /**
-   * Content intent. Determines max-width via the underlying Container.
-   * - `reading`: ~768px, optimized for reading measure.
-   * - `app`: ~1280px, matches Header/Footer alignment.
-   * @default "reading"
+   * Layout width behavior. Matches Header/Footer for visual
+   * consistency across the page shell.
+   * - `contained` (default): Container 2xl (~1536px max-width).
+   * - `full`: edge-to-edge with horizontal padding only.
+   * @default "contained"
    */
   size?: MainSize
 }
@@ -41,10 +42,10 @@ type MainProps = Omit<React.ComponentProps<'main'>, 'id'> & {
 // ---------------------------------------------------------------
 
 // Semantic intent → Container size. Kept as a lookup so future
-// changes (e.g., "reading moves to 720px") happen in one place.
-const containerSizeFor: Record<MainSize, 'md' | 'xl'> = {
-  reading: 'md',
-  app: 'xl',
+// changes (e.g., "bump contained to 3xl") happen in one place.
+const containerSizeFor: Record<MainSize, '2xl' | 'full'> = {
+  contained: '2xl',
+  full: 'full',
 }
 
 // ---------------------------------------------------------------
@@ -55,23 +56,19 @@ const containerSizeFor: Record<MainSize, 'md' | 'xl'> = {
  * Renders <main id="main-content"> with size-preset Container.
  *
  * @example
- * // Reading page (docs, blog):
+ * // Contained page (default) — most pages:
  * <Main>
- *   <h1>Article title</h1>
+ *   <h1>Page title</h1>
  *   <p>...</p>
  * </Main>
  *
  * @example
- * // App page (dashboard, bento):
- * <Main size="app">
+ * // Full-width page (dashboard, hero, marketing):
+ * <Main size="full">
  *   <div className="grid grid-cols-3 gap-4">...</div>
  * </Main>
- *
- * @example
- * // Page with no sticky header (auth, splash):
- * <Main stickyHeaderOffset={false}>...</Main>
  */
-function Main({ className, size = 'reading', children, ...props }: MainProps) {
+function Main({ className, size = 'contained', children, ...props }: MainProps) {
   return (
     <main
       id="main-content"
