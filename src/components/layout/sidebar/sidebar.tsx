@@ -6,8 +6,9 @@
  * icon-only mode. Not sticky — scrolls with content.
  *
  * Composition: Sidebar doesn't wrap Main. Consumers place both
- * as siblings inside a flex container so the page owns its
- * layout. See @example blocks below.
+ * as siblings inside a PageBody so the sidebar+content pair
+ * respects the same max-width as Header/Footer above. See @example
+ * blocks below.
  *
  * Two variants:
  * - `labeled` (default): 240px wide, icon + label per item,
@@ -195,13 +196,16 @@ function SidebarGroup({
  * up the same items via LayoutProvider context.
  *
  * @example
- * // With LayoutProvider (shared config with mobile drawer):
+ * // With LayoutProvider (shared config with mobile drawer) —
+ * // PageBody wraps Sidebar+Main so the pair caps to the same
+ * // width as Header/Footer above. Main goes `size="full"` inside
+ * // PageBody so it doesn't double-cap.
  * <LayoutProvider sidebarNav={docsSidebar} activeHref={pathname}>
  *   <Header logo={...} nav={primaryNav} />
- *   <div className="flex">
+ *   <PageBody>
  *     <Sidebar aria-label="Docs" />
- *     <Main>...</Main>
- *   </div>
+ *     <Main size="full">...</Main>
+ *   </PageBody>
  * </LayoutProvider>
  *
  * @example

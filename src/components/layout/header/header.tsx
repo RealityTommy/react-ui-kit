@@ -5,6 +5,9 @@
  * that handles responsive layout, accessibility landmarks, and
  * scroll-triggered styling automatically.
  *
+ * Layout: logo pinned to the left, nav + actions grouped on the
+ * right. `justify-between` separates the two groups.
+ *
  * Below `mobileBreakpoint`, the nav collapses into a hamburger
  * button that opens a right-side drawer (see mobile-nav.tsx).
  * At or above the breakpoint, nav links render inline.
@@ -47,7 +50,7 @@ type HeaderProps = {
   /**
    * Primary nav entries. Accepts a mix of NavLeaf (plain links)
    * and NavParent (dropdown triggers with children). Left-to-right
-   * in render order.
+   * in render order, right-aligned adjacent to the actions.
    */
   nav: NavItem[]
   /** Right-side content: theme toggle, CTA button, avatar, etc. */
@@ -176,7 +179,7 @@ const inlineTriggerClass =
 // ---------------------------------------------------------------
 
 /**
- * Sticky top header with logo, nav, and actions.
+ * Sticky top header with logo (left) and nav + actions (right).
  *
  * @example
  * <Header
@@ -254,6 +257,8 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
     >
       <Container
         size={size === 'full' ? 'full' : '2xl'}
+        // Two top-level flex children (logo left, right-group right).
+        // justify-between pins them to opposite edges.
         className="flex h-full items-center justify-between gap-4"
       >
         {/* Logo — left. Plain <a> for now; consumers can wrap
@@ -265,38 +270,43 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
           {logo.label}
         </a>
 
-        {/* Inline nav — visible at/above breakpoint. Renders
-            NavLeaf as an anchor and NavParent as a dropdown; both
-            share `inlineTriggerClass` so the row looks uniform.
-            Key strategy: leaves use item.href (unique); parents
-            use item.label (also unique in practice — no two nav
-            entries should share a label). Index fallback handles
-            the theoretical dup case. */}
-        <nav aria-label="Primary" className={cn('items-center gap-1', inlineNavVisibility)}>
-          {nav.map((item, i) =>
-            isNavParent(item) ? (
-              <InlineParent key={`parent-${item.label}-${i}`} item={item} />
-            ) : (
-              <InlineLeaf key={item.href} item={item} />
-            ),
-          )}
-        </nav>
+        {/* Right group — inline nav + actions + mobile hamburger.
+            Grouped so justify-between pushes them together on the
+            right edge instead of centering the nav. */}
+        <div className="flex items-center gap-4">
+          {/* Inline nav — visible at/above breakpoint. Renders
+              NavLeaf as an anchor and NavParent as a dropdown; both
+              share `inlineTriggerClass` so the row looks uniform.
+              Key strategy: leaves use item.href (unique); parents
+              use item.label (also unique in practice — no two nav
+              entries should share a label). Index fallback handles
+              the theoretical dup case. */}
+          <nav aria-label="Primary" className={cn('items-center gap-1', inlineNavVisibility)}>
+            {nav.map((item, i) =>
+              isNavParent(item) ? (
+                <InlineParent key={`parent-${item.label}-${i}`} item={item} />
+              ) : (
+                <InlineLeaf key={item.href} item={item} />
+              ),
+            )}
+          </nav>
 
-        {/* Right side: actions + mobile hamburger.
-            Actions are always visible; hamburger is breakpoint-gated.
-            secondaryNav/sidebarNav (+ their labels) come from
-            LayoutProvider context and get rendered as extra drawer
-            sections on mobile. */}
-        <div className="flex items-center gap-2">
-          {actions}
-          <div className={mobileNavVisibility}>
-            <MobileNav
-              nav={nav}
-              secondaryNav={secondaryNav}
-              secondaryNavLabel={secondaryNavLabel}
-              sidebarNav={sidebarNav}
-              sidebarNavLabel={sidebarNavLabel}
-            />
+          {/* Actions + mobile hamburger.
+              Actions are always visible; hamburger is breakpoint-gated.
+              secondaryNav/sidebarNav (+ their labels) come from
+              LayoutProvider context and get rendered as extra drawer
+              sections on mobile. */}
+          <div className="flex items-center gap-2">
+            {actions}
+            <div className={mobileNavVisibility}>
+              <MobileNav
+                nav={nav}
+                secondaryNav={secondaryNav}
+                secondaryNavLabel={secondaryNavLabel}
+                sidebarNav={sidebarNav}
+                sidebarNavLabel={sidebarNavLabel}
+              />
+            </div>
           </div>
         </div>
       </Container>

@@ -74,7 +74,13 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
       id="main-content"
       data-slot="main"
       data-size={size}
-      className={cn('pt-3 lg:pt-4', className)}
+      className={cn(
+        // flex-1 + min-w-0 lets Main fill remaining space when it's
+        // a flex child (Sidebar layouts). No-op outside flex context.
+        'flex-1 min-w-0',
+        'pt-3 lg:pt-4',
+        className,
+      )}
       {...props}
     >
       <Container size={containerSizeFor[size]}>{children}</Container>
