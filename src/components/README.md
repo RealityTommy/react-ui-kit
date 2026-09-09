@@ -6,14 +6,16 @@ authorship model.
 ## Folder layout
 
 - **`ui/`** — Managed by the [shadcn CLI](https://ui.shadcn.com). These
-  are primitives (Button, Dialog, Sheet, etc.) generated from the
-  `aria-nova` style preset with React Aria under the hood. See
-  [`ui/README.md`](./ui/README.md) for the "don't hand-edit" rules.
+  are primitives (Button, Dialog, Sheet, Tabs, Tooltip, DropdownMenu)
+  generated from the `aria-nova` style preset with React Aria under the
+  hood. See [`ui/README.md`](./ui/README.md) for the "don't hand-edit"
+  rules.
 
 - **`layout/`** — Hand-written layout primitives and composed
-  components (Container, Header, Main, Footer). These follow our
-  in-repo authoring conventions. See
-  [`layout/README.md`](./layout/README.md) for the pattern.
+  components (Container, PageShell, PageBody, Header, Main, Footer,
+  SecondaryNav, Sidebar, LayoutProvider). These follow our in-repo
+  authoring conventions. See [`layout/README.md`](./layout/README.md)
+  for the pattern.
 
 ## Which folder should a new component go in?
 
@@ -31,11 +33,19 @@ hand-written work outside that blast radius.
 ## Shared types
 
 Types used by two or more layout components live in
-[`layout/types.ts`](./layout/types.ts) — currently `NavItem`, shared by
-Header and Footer. When a type is used by exactly one component, keep
-it in that component's file. When a second component starts using it,
-promote it to `layout/types.ts` and re-export from any barrels that
-were previously exporting it (so existing imports keep working).
+[`layout/types.ts`](./layout/types.ts). Current shared types:
+
+- `NavLeaf` — consumed by Header, Footer, SecondaryNav, Sidebar,
+  MobileNav, and inside `NavParent.children`
+- `NavParent` — consumed by Header (via `NavItem` union)
+- `NavItem` — union of `NavLeaf | NavParent`, consumed by Header
+- `NavGroup` — consumed by Sidebar for section headings
+- `isNavParent` / `isNavGroup` — type guards used by Header and Sidebar
+
+When a type is used by exactly one component, keep it in that
+component's file. When a second component starts using it, promote it
+to `layout/types.ts` and re-export from any barrels that were
+previously exporting it (so existing imports keep working).
 
 ## Import paths
 
@@ -46,8 +56,14 @@ import { Button, LinkButton } from "@/components/ui/button"
 import { Container } from "@/components/layout/container"
 import { Main } from "@/components/layout/main"
 import { Footer } from "@/components/layout/footer"
-import { Header, SkipLink, type NavItem } from "@/components/layout/header"
+import { PageShell } from "@/components/layout/page-shell"
+import { PageBody } from "@/components/layout/page-body"
+import { SecondaryNav } from "@/components/layout/secondary-nav"
+import { Sidebar } from "@/components/layout/sidebar"
+import { Header, SkipLink } from "@/components/layout/header"
+import { LayoutProvider } from "@/components/layout/layout-provider"
+import type { NavItem, NavLeaf, NavGroup } from "@/components/layout/types"
 ```
 
-Multi-file components (like Header) expose a barrel `index.ts` so
-consumers never need to reach inside the folder.
+Multi-file components (like Header and Sidebar) expose a barrel
+`index.ts` so consumers never need to reach inside the folder.

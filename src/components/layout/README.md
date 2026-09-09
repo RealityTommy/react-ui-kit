@@ -4,9 +4,11 @@ This folder holds components authored in-repo, following the
 conventions below. Reference implementations:
 
 - `container.tsx` — the simplest example (variants + cva)
-- `main.tsx`, `footer.tsx`, `page-body.tsx` — preset components (no variants, no cva)
-- `secondary-nav.tsx` — preset with LayoutProvider integration
-- `sidebar/` — multi-file component with barrel
+- `main.tsx`, `footer.tsx`, `page-body.tsx`, `page-shell.tsx` —
+  preset components (no variants, no cva)
+- `secondary-nav.tsx` — preset with LayoutProvider integration and
+  Nova pill styling on real anchor navigation
+- `sidebar/` — multi-file component with barrel; Nova visual language
 - `header/` — multi-file component with barrel (includes MobileNav, SkipLink)
 - `layout-provider.tsx` — shared config context
 - `types.ts` — shared types
@@ -134,31 +136,47 @@ together) so the page reads with one visual rhythm. Mixing is
 technically allowed but should be a deliberate design choice, not a
 default.
 
+**PageShell has no `size` prop** — its only job is viewport height
+(`min-h-svh flex flex-col` so Footer pins to the bottom on short
+pages). Width behavior belongs to the inner chrome.
+
 ## Composition patterns
+
+Every layout should start with `PageShell` as the outermost wrapper —
+without it, short pages leave the Footer floating mid-viewport instead
+of pinning to the bottom.
 
 ### No sidebar (Home, article, marketing)
 
-Main owns the width cap directly:
+Main owns the width cap directly. Its `flex-1` grows it inside
+PageShell so Footer sits at the viewport bottom.
 
 ```tsx
-<Header />
-<Main size="contained">…</Main>
-<Footer />
+<PageShell>
+  <SkipLink />
+  <Header />
+  <Main size="contained">…</Main>
+  <Footer />
+</PageShell>
 ```
 
 ### With sidebar (docs, dashboard)
 
 `PageBody` owns the width cap so Sidebar + Main together stay aligned
 with Header/Footer above. Main goes `size="full"` inside so it doesn't
-double-cap:
+double-cap. PageBody's `flex-1` grows the Sidebar + Main pair inside
+PageShell.
 
 ```tsx
-<Header />
-<PageBody size="contained">
-  <Sidebar aria-label="Docs" />
-  <Main size="full">…</Main>
-</PageBody>
-<Footer />
+<PageShell>
+  <SkipLink />
+  <Header />
+  <PageBody size="contained">
+    <Sidebar aria-label="Docs" />
+    <Main size="full">…</Main>
+  </PageBody>
+  <Footer />
+</PageShell>
 ```
 
 ### With secondary tabs above main
@@ -169,11 +187,65 @@ too:
 
 ```tsx
 <LayoutProvider secondaryNav={sectionTabs} secondaryNavLabel="Docs">
-  <Header />
-  <SecondaryNav aria-label="Docs" />
-  <Main>…</Main>
+  <PageShell>
+    <Header />
+    <SecondaryNav aria-label="Docs" />
+    <Main>…</Main>
+    <Footer />
+  </PageShell>
 </LayoutProvider>
 ```
+
+### Full docs shell (SecondaryNav + Sidebar)
+
+Combines everything. LayoutProvider sits outside PageShell so its
+context is available to Header (for the mobile drawer) as well as
+SecondaryNav and Sidebar.
+
+```tsx
+<LayoutProvider
+  secondaryNav={sectionTabs}
+  secondaryNavLabel="Documentation"
+  sidebarNav={sidebarEntries}
+  sidebarNavLabel="On this page"
+  activeHref={pathname}
+>
+  <PageShell>
+    <SkipLink />
+    <Header />
+    <SecondaryNav aria-label="Documentation" />
+    <PageBody>
+      <Sidebar aria-label="On this page" />
+      <Main size="full">…</Main>
+    </PageBody>
+    <Footer />
+  </PageShell>
+</LayoutProvider>
+```
+
+## PageShell — sticky footer wrapper
+
+`PageShell` is the outermost element on every page. Its job is a
+single CSS pattern:
+
+```tsx
+<div className="flex flex-col min-h-svh">{children}</div>
+```
+
+Why `min-h-svh` and not `h-svh`:
+- `min-h-` (not `h-`) lets tall pages grow past the viewport instead
+  of capping page height and forcing internal scroll.
+- `svh` (not `vh`) uses the small-viewport-height unit so iOS Safari
+  doesn't overshoot when the URL bar retracts.
+
+For the `flex-1` grow to kick in, one child of PageShell needs to
+claim the remaining space. `Main` already carries `flex-1 min-w-0`;
+`PageBody` carries `flex-1 h-full` for Sidebar layouts. Single-column
+and Sidebar layouts both just work.
+
+PageShell has no `size`, no variants, no other props beyond `children`
+and `className`. If you need to customize width, that belongs on the
+inner components.
 
 ## LayoutProvider — shared config for multi-slot components
 
@@ -190,12 +262,15 @@ don't pass items twice.
   sidebarNavLabel="On this page"      // drawer heading
   activeHref={pathname}
 >
-  <Header />
-  <SecondaryNav aria-label="Documentation" />
-  <PageBody>
-    <Sidebar aria-label="On this page" />
-    <Main size="full">…</Main>
-  </PageBody>
+  <PageShell>
+    <Header />
+    <SecondaryNav aria-label="Documentation" />
+    <PageBody>
+      <Sidebar aria-label="On this page" />
+      <Main size="full">…</Main>
+    </PageBody>
+    <Footer />
+  </PageShell>
 </LayoutProvider>
 ```
 
@@ -207,6 +282,8 @@ don't pass items twice.
 - `aria-label` on the components themselves is still required — it's
   the landmark name for screen readers, independent of the drawer
   heading (usually you'll set both to the same value).
+- Provider sits **outside** PageShell so Header (inside PageShell) can
+  still consume the context.
 
 ## Navigation types (NavLeaf, NavParent, NavGroup)
 
@@ -254,7 +331,47 @@ import { Home, Book } from "lucide-react"
 ```
 
 Any icon-shaped React component (`(props) => JSX`) satisfies
-`LucideIcon` — bring your own SVG if needed.
+`LucideIcon` — bring your own SVG if needed (see CONTRIBUTING for the
+brand-icon inline-SVG pattern).
+
+## SecondaryNav — Nova pill styling on real anchors
+
+SecondaryNav renders a shadcn Nova "pill" tab row inside a muted
+rounded tray, but is built on real `<a>` anchors — not React Aria
+Tabs. The `ui/tabs.tsx` primitive is React Aria under the hood and
+manages selection state internally; it can't drive anchor navigation
+via `asChild` the way vanilla shadcn/Radix Tabs can. Nesting an `<a>`
+inside a `role="tab"` element also produces invalid ARIA.
+
+Rule: use `ui/tabs.tsx` for real tab-panel UIs (settings screens,
+preview/code toggles). For navigate-between-pages scenarios like
+SecondaryNav, hand-roll pill classes on `<nav>` + `<a>` so
+middle-click, Cmd+click, browser tooltips, and crawlability all work.
+
+Structural pattern for a hugged widget that aligns with page content
+(SecondaryNav uses this):
+
+```
+<nav> full-width landmark, py-3 breathing room
+  <Container> page-aligned gutter (matches Header/Footer)
+    <div tray> inline-flex w-fit — hugs its own children flush-left
+      <a>...<a>
+```
+
+You can't put `w-fit` and `max-w-2xl mx-auto` on the same element and
+expect both to work. Three layers keeps concerns separated.
+
+## Sidebar — Nova visual language
+
+Sidebar uses full-row `rounded-md` fill on hover/active (`bg-muted`),
+not left-border accent. Group headings use
+`text-xs font-medium text-muted-foreground/70` — Nova's softer
+treatment. Uses existing `--muted` / `--border` / `--foreground`
+tokens rather than a dedicated `--sidebar-*` set, so any theme swap
+Just Works.
+
+Public API preserved: `aria-label`, `items`, `activeHref`, `variant`.
+LayoutProvider integration preserved.
 
 ## Mobile drawer hierarchy
 
@@ -294,8 +411,8 @@ Layout-provider follows the same "accepted warning" pattern for its
 ## When to use a folder vs. a single file
 
 - **Single file** (`container.tsx`, `main.tsx`, `footer.tsx`,
-  `secondary-nav.tsx`, `page-body.tsx`, `layout-provider.tsx`) — one
-  component, one file. Use this by default.
+  `secondary-nav.tsx`, `page-body.tsx`, `page-shell.tsx`,
+  `layout-provider.tsx`) — one component, one file. Use this by default.
 - **Folder** (`header/`, `sidebar/`) — the component has ~3+ concerns
   worth splitting (Header has SkipLink + MobileNav + main composition;
   Sidebar has room to grow). Include a barrel `index.ts` with the

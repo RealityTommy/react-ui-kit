@@ -41,9 +41,10 @@ into `src/components/ui/`. See
 rules around that folder.
 
 **Shared types** used by two or more layout components live in
-`src/components/layout/types.ts` (currently `NavItem`, used by Header and
-Footer). When a type graduates from "one component uses it" to "two
-components use it," move it there rather than cross-importing.
+`src/components/layout/types.ts` (`NavLeaf`, `NavParent`, `NavItem`,
+`NavGroup` plus the `isNavParent` and `isNavGroup` type guards). When a
+type graduates from "one component uses it" to "two components use it,"
+move it there rather than cross-importing.
 
 ## Component checklist
 
@@ -117,15 +118,23 @@ pnpm lint
 pnpm build
 ```
 
-Both must pass. Two known warnings are accepted and expected:
+Both must pass. **Four known warnings are accepted and expected** — all
+are `react-refresh/only-export-components` on files that legitimately
+co-locate a hook or a variant function with a component:
 
-- `react-refresh/only-export-components` on `button.tsx` — because
-  `buttonVariants` is a legitimately reused function export.
-- `react-refresh/only-export-components` on `container.tsx` — same reason
-  for `containerVariants`.
+- `src/components/ui/button.tsx` — `buttonVariants` (cva export)
+- `src/components/ui/tabs.tsx` — `tabsListVariants` (cva export, shadcn-owned)
+- `src/components/layout/container.tsx` — `containerVariants` (cva export)
+- `src/components/layout/layout-provider.tsx` — `useLayout` hook paired
+  with `LayoutProvider`
 
 Anything else is a real signal. Don't push through unexplained warnings
 or errors.
+
+If `pnpm dlx shadcn@latest add <x>` regenerates `tabs.tsx` (or any
+other ui/ file) and the warning count goes up, check whether the CLI
+introduced a new legitimate variant export — bump the accepted list
+here if so. Never suppress the warning globally.
 
 ## Debugging playbook
 
@@ -133,8 +142,9 @@ or errors.
 
 Before proposing a fix for anything visual or layout-related, **read the
 actual DOM in DevTools.** Mental models of CSS behavior (especially
-`position: sticky`, z-index stacking, and `backdrop-filter`) are easy to
-get wrong. Read the computed styles first, then fix.
+`position: sticky`, z-index stacking, `backdrop-filter`, and
+`inline-flex + w-fit` interactions) are easy to get wrong. Read the
+computed styles first, then fix.
 
 ### Read the whole file, not a filtered view
 
@@ -174,6 +184,16 @@ accessibility, even if it's visually hidden. Wrap with `sr-only` if the
 drawer is short and self-explanatory. Missing this throws a runtime
 warning and breaks screen reader announcement.
 
+### React Aria triggers need Pressable
+
+`MenuTrigger`, `TooltipTrigger`, and `DialogTrigger` from
+`react-aria-components` require their trigger child to be either an
+RAC `Button` or wrapped in `<Pressable>`. A plain `<button>` renders
+visually but silently no-ops as a trigger — no `aria-haspopup`, no
+keyboard wiring, no click handler. Diagnose by checking
+`element.getAttribute('aria-haspopup')` in DevTools — if `null`, the
+trigger isn't wired.
+
 ## Tailwind gotcha: no dynamic class strings
 
 Tailwind's JIT compiler scans source files for **literal** class names.
@@ -188,6 +208,42 @@ Instead, map to a static string:
 ```tsx
 const cls = breakpoint === "md" ? "md:flex" : "lg:flex"
 ```
+
+## Icons — Lucide doesn't ship brand marks
+
+Lucide's policy is UI icons only, no brand marks (GitHub, Twitter/X,
+Facebook, etc.). Importing `Github` from `lucide-react` fails at build.
+
+For a single brand icon (like the GitHub link in the demo Footer),
+inline the SVG as a component matching the `LucideIcon` shape:
+
+```tsx
+const GithubIcon: LucideIcon = (({
+  className,
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+    {...props}
+  >
+    <path d="…" />
+  </svg>
+)) as unknown as LucideIcon
+```
+
+Two gotchas:
+- Any file with inline SVG must be `.tsx`, not `.ts` — JSX needs it.
+- Annotate the destructured params inline (`React.SVGProps<SVGSVGElement>`)
+  — TS can't infer them from the outer `LucideIcon` variable annotation.
+
+For more than one brand icon, add `@icons-pack/react-simple-icons` as
+a dependency instead of a wall of inline SVGs. Source glyphs from
+[primer/octicons](https://github.com/primer/octicons) (GitHub's own,
+MIT) or [simple-icons](https://simpleicons.org/).
 
 ## AI-assisted development
 

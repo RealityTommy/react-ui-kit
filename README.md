@@ -46,12 +46,14 @@ src/
 │   │   ├── dialog.tsx             ← centered modal
 │   │   ├── dropdown-menu.tsx      ← click-to-open menu (used by Header)
 │   │   ├── sheet.tsx              ← side drawer (used by MobileNav)
+│   │   ├── tabs.tsx               ← Nova React Aria Tabs (for panel UIs)
 │   │   └── tooltip.tsx            ← hover/focus tooltip (used by Sidebar)
 │   └── layout/                    ← hand-written layouts
 │       ├── container.tsx          ← max-width + responsive padding
 │       ├── main.tsx               ← <main> landmark with size presets
 │       ├── footer.tsx             ← copyright + secondary links
 │       ├── page-body.tsx          ← Sidebar+Main flex wrapper w/ size cap
+│       ├── page-shell.tsx         ← outer wrapper — pins Footer to bottom
 │       ├── secondary-nav.tsx      ← horizontal sub-nav below Header
 │       ├── layout-provider.tsx    ← shared config for multi-slot components
 │       ├── types.ts               ← NavLeaf, NavParent, NavGroup, guards
@@ -64,7 +66,7 @@ src/
 │           ├── index.ts
 │           └── sidebar.tsx
 ├── pages/                         ← demo pages (not part of the library)
-│   ├── index.ts                   ← routes table + primary nav
+│   ├── index.tsx                  ← routes table + shared demo config
 │   ├── home.tsx
 │   ├── layouts-secondary.tsx
 │   ├── layouts-sidebar.tsx
@@ -93,34 +95,41 @@ verification steps, and debugging playbook.
 - Dialog (centered modal)
 - DropdownMenu (click-to-open, React Aria)
 - Sheet (side drawer)
+- Tabs (Nova React Aria — for switching between panels, not for page navigation)
 - Tooltip (hover/focus, React Aria)
 
 **Layouts (`layout/`):**
 
 - **Container** — max-width + responsive padding, 6 size variants
+- **PageShell** — outer viewport wrapper that pins Footer to the bottom
+  on short pages (`min-h-svh flex flex-col`); no props beyond
+  `children` / `className`
 - **Header** — sticky nav with scroll-triggered blur, mobile hamburger
   drawer, prop-configurable breakpoint, `contained` / `full` size,
   supports NavItem dropdowns via `NavParent`
+- **SkipLink** — WCAG 2.4.1 keyboard bypass to `#main-content`
 - **Main** — `<main id="main-content">` landmark with `contained` /
-  `full` size presets
+  `full` size presets, `flex-1` for sticky-footer growth
 - **Footer** — copyright + optional links with `contained` / `full`
-  size, semantic `<footer>` landmark
+  size, semantic `<footer>` landmark; links accept optional icons
 - **PageBody** — flex wrapper for `Sidebar + Main`, owns the size
-  cap so the pair aligns with Header/Footer above
-- **SecondaryNav** — horizontal sub-nav that sits under Header,
-  hidden on mobile (drawer takes over)
+  cap so the pair aligns with Header/Footer above, `flex-1` for
+  sticky-footer growth
+- **SecondaryNav** — horizontal sub-nav under Header, shadcn Nova
+  "pill" tab styling on real anchor navigation, hidden on mobile
+  (drawer takes over)
 - **Sidebar** — left rail with `labeled` (240px, icon + label) and
   `icon-only` (56px, tooltip on hover) variants; supports flat items
-  or `NavGroup`s
+  or `NavGroup`s; shadcn Nova visual language
 - **LayoutProvider** — shared config context so `SecondaryNav` and
   `Sidebar` items also appear in Header's mobile drawer without
   duplication
-- **SkipLink** — WCAG 2.4.1 keyboard bypass to `#main-content`
 
 Header, Main, Footer, PageBody, and SecondaryNav share a single
 `size` prop (`"contained"` default = Container 2xl ~1536px, or
-`"full"` = edge-to-edge with padding). Keep all chrome components
-in sync for a consistent page rhythm.
+`"full"` = edge-to-edge with padding). PageShell has no `size` — it
+only owns viewport height. Keep all chrome components in sync for a
+consistent page rhythm.
 
 **Navigation types (`layout/types.ts`):**
 
@@ -139,15 +148,17 @@ import { Home, Book, Palette } from "lucide-react"
 import { Header, SkipLink } from "@/components/layout/header"
 import { Main } from "@/components/layout/main"
 import { Footer } from "@/components/layout/footer"
+import { PageShell } from "@/components/layout/page-shell"
 import { LinkButton } from "@/components/ui/button"
 
 function App() {
   return (
-    <>
+    <PageShell>
       <SkipLink />
       {/* All chrome components default to size="contained"
           (Container 2xl ~1536px). Switch all to size="full"
-          for edge-to-edge dashboards. */}
+          for edge-to-edge dashboards. PageShell has no size —
+          it only owns viewport height. */}
       <Header
         logo={{ href: "/", label: "My Site" }}
         nav={[
@@ -180,22 +191,30 @@ function App() {
           { href: "/terms", label: "Terms" },
         ]}
       />
-    </>
+    </PageShell>
   )
 }
 ```
+
+`PageShell` wraps the whole tree in `min-h-svh flex flex-col`. Without
+it, short pages leave the Footer floating mid-viewport instead of
+sitting at the bottom. Every page in this kit should be wrapped in
+PageShell unless you explicitly don't want sticky-footer behavior.
 
 ## Docs-site shell (with SecondaryNav + Sidebar)
 
 `LayoutProvider` shares config across chrome components so the mobile
 drawer stays unified. `PageBody` wraps `Sidebar + Main` so the pair
-caps at the same width as `Header` / `Footer` above.
+caps at the same width as `Header` / `Footer` above, and its `flex-1`
+grows the pair to fill space between Header and Footer inside
+PageShell.
 
 ```tsx
 import { Header, SkipLink } from "@/components/layout/header"
 import { Main } from "@/components/layout/main"
 import { Footer } from "@/components/layout/footer"
 import { PageBody } from "@/components/layout/page-body"
+import { PageShell } from "@/components/layout/page-shell"
 import { LayoutProvider } from "@/components/layout/layout-provider"
 import { SecondaryNav } from "@/components/layout/secondary-nav"
 import { Sidebar } from "@/components/layout/sidebar"
@@ -209,14 +228,16 @@ function DocsShell({ children, pathname }) {
       sidebarNavLabel="On this page"
       activeHref={pathname}
     >
-      <SkipLink />
-      <Header logo={{ href: "/", label: "My Docs" }} nav={primaryNav} />
-      <SecondaryNav aria-label="Documentation" />
-      <PageBody>
-        <Sidebar aria-label="On this page" />
-        <Main size="full">{children}</Main>
-      </PageBody>
-      <Footer copyright={<>© 2026 Your Name</>} />
+      <PageShell>
+        <SkipLink />
+        <Header logo={{ href: "/", label: "My Docs" }} nav={primaryNav} />
+        <SecondaryNav aria-label="Documentation" />
+        <PageBody>
+          <Sidebar aria-label="On this page" />
+          <Main size="full">{children}</Main>
+        </PageBody>
+        <Footer copyright={<>© 2026 Your Name</>} />
+      </PageShell>
     </LayoutProvider>
   )
 }
