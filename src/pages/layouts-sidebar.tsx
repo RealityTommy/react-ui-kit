@@ -1,6 +1,6 @@
 /**
  * LayoutsSidebarPage — demos Header + Sidebar + Main + Footer with
- * a conservative grid inside Main.
+ * a conservative card grid inside Main.
  *
  * Sidebar sits left of Main inside a PageBody, so the sidebar+
  * content pair respects the same width cap as Header/Footer above.
@@ -13,10 +13,11 @@
  * bottom. PageBody carries `flex-1` so the Sidebar + Main pair
  * grows to fill the space between Header and Footer.
  *
- * Columns config here is deliberately conservative (base=1 md=2
- * lg=2 xl=3): Sidebar eats 240px of width, so Main has less room
- * than the standalone pages. Bumping to 3 columns waits until xl
- * (1280px) instead of lg (1024px) to keep cards readable.
+ * Columns config here is deliberately conservative (base=1 sm=2
+ * md=2 lg=3): Sidebar eats 240px of width, so Main has less room
+ * than the standalone pages. Capping at 3 columns (vs Home/Secondary's
+ * 4) keeps cards readable. Uses the shared DemoCard scaffold so
+ * every layout demo speaks the same visual language.
  */
 
 import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
@@ -29,6 +30,7 @@ import { LayoutProvider } from '@/components/layout/layout-provider'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
 // Sample sidebar entries — mix of grouped and one flat item to
@@ -48,25 +50,6 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
   },
 ]
 
-// ---------------------------------------------------------------
-// Demo card
-// ---------------------------------------------------------------
-
-/**
- * Placeholder card sized for a narrower Main (sidebar eats 240px).
- */
-function DemoCard({ n }: { n: number }) {
-  return (
-    <div className="flex h-32 items-center justify-center rounded-lg border border-border bg-card text-sm font-medium">
-      Card {n}
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------
-
 function LayoutsSidebarPage() {
   return (
     <LayoutProvider
@@ -85,12 +68,12 @@ function LayoutsSidebarPage() {
               Header + Sidebar + Main + Footer. Sidebar and Main sit inside a PageBody so the pair
               caps at the same width as Header/Footer above. On mobile the entries appear inside the
               hamburger drawer under a &quot;Documentation&quot; heading. Grid below uses{' '}
-              <code>Columns base=1 md=2 lg=2 xl=3</code> — more conservative than the standalone
+              <code>Columns base=1 sm=2 md=2 lg=3</code> — more conservative than the standalone
               pages because Sidebar eats 240px of width.
             </p>
-            <Columns base={1} md={2} lg={2} xl={3}>
+            <Columns base={1} sm={2} md={2} lg={3}>
               {Array.from({ length: 6 }, (_, i) => (
-                <DemoCard key={i} n={i + 1} />
+                <DemoCard key={i} title={`Card ${i + 1}`} />
               ))}
             </Columns>
           </Main>

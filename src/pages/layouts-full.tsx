@@ -1,6 +1,6 @@
 /**
  * LayoutsFullPage — demos Header + SecondaryNav + Sidebar + Main +
- * Footer with a dense tile grid inside Main.
+ * Footer with a card grid inside Main.
  *
  * All four chrome components together. Uses PageBody to wrap the
  * Sidebar + Main pair inside a shared width cap; Main goes full
@@ -12,11 +12,10 @@
  * bottom. PageBody's `flex-1` grows the Sidebar + Main pair to
  * fill space between SecondaryNav and Footer.
  *
- * Columns config is the densest of the demo pages (base=2 sm=3
- * md=3 lg=4 gap="sm") with 12 items — a tile-grid pattern.
- * Stress-tests Columns inside the tightest available space
- * (viewport minus Sidebar, below Header + SecondaryNav) with the
- * most complex responsive escalation.
+ * Columns config matches Sidebar (base=1 sm=2 md=2 lg=3, 6 cards):
+ * Sidebar eats 240px AND SecondaryNav sits above, so the same
+ * conservative cap applies. Uses the shared DemoCard scaffold so
+ * every layout demo speaks the same visual language.
  */
 
 import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
@@ -30,6 +29,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
+import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
 const sectionNav: NavLeaf[] = [
@@ -53,26 +53,6 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
   },
 ]
 
-// ---------------------------------------------------------------
-// Demo tile
-// ---------------------------------------------------------------
-
-/**
- * Dense tile — small square, muted background, centered index.
- * Sized for the tightest layout on the site.
- */
-function DemoTile({ n }: { n: number }) {
-  return (
-    <div className="flex aspect-square items-center justify-center rounded-md bg-muted text-sm font-medium text-muted-foreground">
-      {n}
-    </div>
-  )
-}
-
-// ---------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------
-
 function LayoutsFullPage() {
   return (
     <LayoutProvider
@@ -94,12 +74,13 @@ function LayoutsFullPage() {
               Header + SecondaryNav + Sidebar + Main + Footer. Sidebar + Main are wrapped in
               PageBody so the pair aligns with Header/Footer width. On mobile the hamburger drawer
               stacks Primary + Documentation + On this page sections with dividers between them.
-              Grid below uses <code>Columns base=2 sm=3 md=3 lg=4 gap=&quot;sm&quot;</code> — the
-              densest layout, stress-testing reflow in the tightest available space.
+              Grid below uses <code>Columns base=1 sm=2 md=2 lg=3</code> — same conservative cap as
+              the Sidebar demo since Main has the least room here (Sidebar + SecondaryNav both
+              competing for space).
             </p>
-            <Columns base={2} sm={3} md={3} lg={4} gap="sm">
-              {Array.from({ length: 12 }, (_, i) => (
-                <DemoTile key={i} n={i + 1} />
+            <Columns base={1} sm={2} md={2} lg={3}>
+              {Array.from({ length: 6 }, (_, i) => (
+                <DemoCard key={i} title={`Card ${i + 1}`} />
               ))}
             </Columns>
           </Main>
