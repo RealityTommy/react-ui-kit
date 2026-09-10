@@ -145,19 +145,16 @@ function InlineParent({ item }: { item: NavParent }) {
       </Pressable>
       <DropdownMenu>
         {item.children.map((child) => (
-          <DropdownMenuItem key={child.href} textValue={child.label}>
-            {/* React Aria's MenuItem swallows onAction, but a plain
-                anchor still handles href navigation and preserves
-                right-click / open-in-new-tab. */}
-            <a
-              href={child.href}
-              {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="inline-flex w-full items-center gap-2"
-            >
-              {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
-              {child.label}
-              {child.external && <span className="sr-only"> (opens in new window)</span>}
-            </a>
+          <DropdownMenuItem
+            key={child.href}
+            href={child.href}
+            textValue={child.label}
+            {...(child.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            className="w-full items-center gap-2"
+          >
+            {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
+            {child.label}
+            {child.external && <span className="sr-only"> (opens in new window)</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenu>
