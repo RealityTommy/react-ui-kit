@@ -19,6 +19,8 @@ consuming project and edit freely.** No npm install, no lock-in.
 
 ## Getting started
 
+For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
+
 ```powershell
 # Install dependencies
 pnpm install
