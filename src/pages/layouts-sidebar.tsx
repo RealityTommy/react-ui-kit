@@ -163,23 +163,24 @@ function LayoutsSidebarPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="sidebar-example-heading">
+              <section className="space-y-5" aria-labelledby="sidebar-available-columns-heading">
                 <div className="space-y-2">
                   <h2
-                    id="sidebar-example-heading"
+                    id="sidebar-available-columns-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
-                    Example columns
+                    Available columns
                   </h2>
-                  <p className="text-muted-foreground">
-                    This example uses <code>base=1 sm=2 md=2 lg=3</code>. The sidebar takes up room,
-                    so the main content starts with fewer columns than the simple layout.
+                  <p className="leading-7 text-muted-foreground">
+                    The available configuration is{' '}
+                    <code className="ml-1">base=1 sm=2 md=2 lg=3</code>. This layout makes up to
+                    three columns available at larger widths, but it starts with one column on
+                    narrow screens.
                   </p>
-                  <p className="text-muted-foreground">
-                    Do not pick three columns just because the screen can fit them. Look at the card
-                    content and keep enough width for reading, labels, and actions. Check that the
-                    grid becomes one column cleanly and that the sidebar does not make the main
-                    content too narrow.
+                  <p className="leading-7 text-muted-foreground">
+                    The Sidebar takes up room, so this layout makes up to three columns available in
+                    the main content. Stop at three when the cards still have enough width for their
+                    content.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -189,17 +190,25 @@ function LayoutsSidebarPage() {
                 </Columns>
               </section>
             </div>
-            <section className="space-y-5" aria-labelledby="sidebar-split-heading">
+            <section className="space-y-5" aria-labelledby="sidebar-available-splits-heading">
               <div className="space-y-2">
-                <h2 id="sidebar-split-heading" className="text-2xl font-semibold tracking-tight">
-                  Split view
+                <h2
+                  id="sidebar-available-splits-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Available split views
                 </h2>
                 <p className="text-muted-foreground">
-                  The Sidebar already uses part of the page width, so the remaining main area splits
-                  evenly.
+                  The Sidebar already uses part of the page width, so this layout makes only the
+                  half split available.
                 </p>
               </div>
-              <SplitPaneDemo secondarySize="half" />
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+                  <SplitPaneDemo secondarySize="half" />
+                </div>
+              </div>
             </section>
           </Main>
         </PageBody>

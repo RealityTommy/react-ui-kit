@@ -144,24 +144,23 @@ function LayoutsSecondaryPage() {
               </div>
             </section>
 
-            <section className="space-y-5" aria-labelledby="secondary-example-heading">
+            <section className="space-y-5" aria-labelledby="secondary-available-columns-heading">
               <div className="space-y-2">
                 <h2
-                  id="secondary-example-heading"
+                  id="secondary-available-columns-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Example columns
+                  Available columns
                 </h2>
-                <p className="text-muted-foreground">
-                  This example uses <code>base=1 sm=2 md=3 lg=4</code>. Start with one column on a
-                  small screen, then add columns as there is room. Add another column only when the
-                  cards are still easy to scan and use.
+                <p className="leading-7 text-muted-foreground">
+                  The available configuration is <code className="ml-1">base=1 sm=2 md=3 lg=4</code>
+                  . This layout makes up to four columns available at larger widths, but it starts
+                  with one column on narrow screens.
                 </p>
-                <p className="text-muted-foreground">
-                  The right number depends on the content. Short cards can support more columns;
-                  cards with longer titles, descriptions, or actions may need fewer. Check the
-                  reflow at narrow widths and make sure the order still makes sense when the grid
-                  becomes one column.
+                <p className="leading-7 text-muted-foreground">
+                  The SecondaryNav sits above the page, so this layout still makes up to four
+                  columns available in the main content. Add columns only when the cards remain easy
+                  to scan and use.
                 </p>
               </div>
               <Columns base={1} sm={2} md={3} lg={4}>
@@ -171,17 +170,29 @@ function LayoutsSecondaryPage() {
               </Columns>
             </section>
           </div>
-          <section className="space-y-5" aria-labelledby="secondary-split-heading">
+          <section className="space-y-5" aria-labelledby="secondary-available-splits-heading">
             <div className="space-y-2">
-              <h2 id="secondary-split-heading" className="text-2xl font-semibold tracking-tight">
-                Split view
+              <h2
+                id="secondary-available-splits-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
+                Available split views
               </h2>
               <p className="text-muted-foreground">
-                The SecondaryNav sits above the page, so the content area can give the main and
-                secondary areas equal width.
+                The SecondaryNav sits above the page, so both split sizes remain available in the
+                content area.
               </p>
             </div>
-            <SplitPaneDemo secondarySize="half" />
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold">Main 2/3 + Secondary 1/3</h3>
+                <SplitPaneDemo secondarySize="third" />
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+                <SplitPaneDemo secondarySize="half" />
+              </div>
+            </div>
           </section>
         </Main>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />

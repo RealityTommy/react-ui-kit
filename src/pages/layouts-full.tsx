@@ -166,20 +166,24 @@ function LayoutsFullPage() {
                 </div>
               </section>
 
-              <section className="space-y-5" aria-labelledby="full-example-heading">
+              <section className="space-y-5" aria-labelledby="full-available-columns-heading">
                 <div className="space-y-2">
-                  <h2 id="full-example-heading" className="text-2xl font-semibold tracking-tight">
-                    Example columns
+                  <h2
+                    id="full-available-columns-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
+                    Available columns
                   </h2>
-                  <p className="text-muted-foreground">
-                    This example uses <code>base=1 sm=2 md=2 lg=3</code>. Both navigation areas take
-                    up room, so the main content starts with fewer columns.
+                  <p className="leading-7 text-muted-foreground">
+                    The available configuration is{' '}
+                    <code className="ml-1">base=1 sm=2 md=2 lg=3</code>. This layout makes up to
+                    three columns available at larger widths, but it starts with one column on
+                    narrow screens.
                   </p>
-                  <p className="text-muted-foreground">
-                    Treat the column count as a content decision, not a way to fill the screen. Keep
-                    cards wide enough for their text and actions. Check the one-column version too:
-                    people should be able to follow the order without losing the relationship
-                    between the cards.
+                  <p className="leading-7 text-muted-foreground">
+                    The SecondaryNav and Sidebar both take up room, so this layout makes up to three
+                    columns available in the main content. Keep the maximum lower when navigation
+                    leaves less room for cards.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -189,17 +193,25 @@ function LayoutsFullPage() {
                 </Columns>
               </section>
             </div>
-            <section className="space-y-5" aria-labelledby="full-split-heading">
+            <section className="space-y-5" aria-labelledby="full-available-splits-heading">
               <div className="space-y-2">
-                <h2 id="full-split-heading" className="text-2xl font-semibold tracking-tight">
-                  Split view
+                <h2
+                  id="full-available-splits-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Available split views
                 </h2>
                 <p className="text-muted-foreground">
-                  The SecondaryNav and Sidebar already add navigation layers, so the remaining main
-                  area splits evenly.
+                  The SecondaryNav and Sidebar already add navigation layers, so this layout makes
+                  only the half split available.
                 </p>
               </div>
-              <SplitPaneDemo secondarySize="half" />
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+                  <SplitPaneDemo secondarySize="half" />
+                </div>
+              </div>
             </section>
           </Main>
         </PageBody>

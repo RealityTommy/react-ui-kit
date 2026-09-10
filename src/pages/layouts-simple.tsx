@@ -112,21 +112,22 @@ function LayoutsSimplePage() {
             </div>
           </section>
 
-          <section className="space-y-5" aria-labelledby="simple-columns-heading">
+          <section className="space-y-5" aria-labelledby="simple-available-columns-heading">
             <div className="space-y-3">
-              <h2 id="simple-columns-heading" className="text-2xl font-semibold tracking-tight">
-                Example columns
+              <h2
+                id="simple-available-columns-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
+                Available columns
               </h2>
               <p className="leading-7 text-muted-foreground">
-                The example starts with one column, then adds columns as the screen gets wider:
-                <code className="ml-1">base=1 sm=2 md=3 lg=4</code>. That gives each card room to
-                stay readable instead of trying to fit four small cards on every screen.
+                The available configuration is <code className="ml-1">base=1 sm=2 md=3 lg=4</code>.
+                This layout makes up to four columns available at larger widths, but it starts with
+                one column on narrow screens.
               </p>
               <p className="leading-7 text-muted-foreground">
-                There is no magic number. Look at the content in each card, the length of the
-                labels, and how much space people need to scan or interact. At narrow widths, one
-                column is often the kindest choice. At wider widths, add columns only when the cards
-                still have enough room and the reading order remains obvious.
+                The simple layout makes up to four columns available at large widths. Keep the
+                maximum at four only when the cards remain readable and easy to scan.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">
@@ -136,17 +137,29 @@ function LayoutsSimplePage() {
             </Columns>
           </section>
         </div>
-        <section className="space-y-5" aria-labelledby="simple-split-heading">
+        <section className="space-y-5" aria-labelledby="simple-available-splits-heading">
           <div className="space-y-2">
-            <h2 id="simple-split-heading" className="text-2xl font-semibold tracking-tight">
-              Split view
+            <h2
+              id="simple-available-splits-heading"
+              className="text-2xl font-semibold tracking-tight"
+            >
+              Available split views
             </h2>
             <p className="text-muted-foreground">
-              The simple layout has enough room for a two-thirds main area and a one-third secondary
+              The simple layout makes both split sizes available when the content needs a secondary
               area.
             </p>
           </div>
-          <SplitPaneDemo secondarySize="third" />
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">Main 2/3 + Secondary 1/3</h3>
+              <SplitPaneDemo secondarySize="third" />
+            </div>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+              <SplitPaneDemo secondarySize="half" />
+            </div>
+          </div>
         </section>
       </Main>
       <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
