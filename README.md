@@ -20,6 +20,7 @@ consuming project and edit freely.** No npm install, no lock-in.
 ## Getting started
 
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
+For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
 
 ```powershell
 # Install dependencies

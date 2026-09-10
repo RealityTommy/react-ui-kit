@@ -209,6 +209,8 @@ Do not copy these unless you are intentionally studying the demo:
 
 The demo is a reference application, not the consumer API.
 
+Machine-readable component, pattern, role, and update metadata lives in [`kit-catalog.json`](./kit-catalog.json). Use it when building tooling or asking an AI agent to select and compose the kit.
+
 ## Router integration
 
 The layout components use ordinary links so they remain router-neutral.
