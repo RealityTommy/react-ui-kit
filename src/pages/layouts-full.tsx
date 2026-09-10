@@ -72,7 +72,7 @@ function LayoutsFullPage() {
           <Sidebar aria-label="On this page" />
           <Main size="full">
             <div className="space-y-14 pb-12">
-              <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="full-heading">
+              <section className="space-y-5 pt-6" aria-labelledby="full-heading">
                 <h1 id="full-heading" className="text-4xl font-semibold tracking-tight">
                   Use the full layout only when people need it.
                 </h1>
@@ -87,7 +87,7 @@ function LayoutsFullPage() {
                 </p>
               </section>
 
-              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="full-anatomy-heading">
+              <section className="space-y-5" aria-labelledby="full-anatomy-heading">
                 <div className="space-y-5">
                   <h2 id="full-anatomy-heading" className="text-2xl font-semibold tracking-tight">
                     What is this layout?
@@ -98,21 +98,31 @@ function LayoutsFullPage() {
                     <li>The Sidebar holds deeper groups of pages.</li>
                     <li>Main stays focused on the task, article, or workflow.</li>
                   </ul>
-                  <h2 className="mt-8 text-2xl font-semibold tracking-tight">When to use this layout</h2>
+                </div>
+              </section>
+
+              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="full-use-heading">
+                <div className="space-y-5">
+                  <h2 id="full-use-heading" className="text-2xl font-semibold tracking-tight">
+                    When to use this layout
+                  </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
                     Use it when people need both a short list of section pages and a deeper list of
                     pages within that section. Large documentation areas and complex products may
                     need this much help getting around.
                   </p>
                 </div>
-                <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="full-recommendation-heading">
+                <aside
+                  className="rounded-xl border bg-muted/40 p-6"
+                  aria-labelledby="full-recommendation-heading"
+                >
                   <h2 id="full-recommendation-heading" className="text-lg font-semibold">
                     When not to use this layout
                   </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
-                  Do not use this layout to make a page feel more complete. If one row of links or a
-                  sidebar is enough, stop there. More navigation can make it harder to know where to
-                  start.
+                    Do not use this layout to make a page feel more complete. If one row of links or
+                    a sidebar is enough, stop there. More navigation can make it harder to know
+                    where to start.
                   </p>
                 </aside>
               </section>
@@ -125,10 +135,10 @@ function LayoutsFullPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Design decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Give each layer a clear job so the page does not feel repetitive.</li>
-                    <li>Keep labels and current-page styles consistent.</li>
-                    <li>Leave enough room for the main content to be comfortable to read.</li>
-                    <li>Try it with real content. The page can feel busy quickly.</li>
+                      <li>Give each layer a clear job so the page does not feel repetitive.</li>
+                      <li>Keep labels and current-page styles consistent.</li>
+                      <li>Leave enough room for the main content to be comfortable to read.</li>
+                      <li>Try it with real content. The page can feel busy quickly.</li>
                     </ul>
                   </div>
                   <div>
@@ -137,14 +147,16 @@ function LayoutsFullPage() {
                       <li>Give each navigation area its own clear name.</li>
                       <li>Keep the page heading in Main and keep the reading order sensible.</li>
                       <li>Make the skip link move directly to the main content.</li>
-                      <li>Check that the menu keeps the same hierarchy without feeling repetitive.</li>
+                      <li>
+                        Check that the menu keeps the same hierarchy without feeling repetitive.
+                      </li>
                     </ul>
                   </div>
                 </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="full-example-heading">
-                <div className="max-w-2xl space-y-2">
+                <div className="space-y-2">
                   <h2 id="full-example-heading" className="text-2xl font-semibold tracking-tight">
                     Example columns
                   </h2>
@@ -155,8 +167,8 @@ function LayoutsFullPage() {
                   <p className="text-muted-foreground">
                     Treat the column count as a content decision, not a way to fill the screen. Keep
                     cards wide enough for their text and actions. Check the one-column version too:
-                    people should be able to follow the order without losing the relationship between
-                    the cards.
+                    people should be able to follow the order without losing the relationship
+                    between the cards.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>

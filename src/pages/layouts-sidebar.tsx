@@ -62,69 +62,92 @@ function LayoutsSidebarPage() {
           <Sidebar aria-label="Documentation" />
           <Main size="full">
             <div className="space-y-14 pb-12">
-              <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="sidebar-heading">
-              <h1 id="sidebar-heading" className="text-4xl font-semibold tracking-tight">
-                Give larger sections a clear map without taking over the page.
-              </h1>
-              <p className="text-xl leading-8 text-muted-foreground">
-                A sidebar helps when people need to move between several related pages while keeping
-                the section's organization visible next to the content.
-              </p>
-              <p className="leading-7 text-muted-foreground">
-                This works well for documentation, settings, account areas, and other parts of a
-                product with several pages. It should not hold every possible link. It should help
-                people find their way around the section they are in.
+              <section className="space-y-5 pt-6" aria-labelledby="sidebar-heading">
+                <h1 id="sidebar-heading" className="text-4xl font-semibold tracking-tight">
+                  Give larger sections a clear map without taking over the page.
+                </h1>
+                <p className="text-xl leading-8 text-muted-foreground">
+                  A sidebar helps when people need to move between several related pages while
+                  keeping the section's organization visible next to the content.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  This works well for documentation, settings, account areas, and other parts of a
+                  product with several pages. It should not hold every possible link. It should help
+                  people find their way around the section they are in.
                 </p>
               </section>
 
-              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="sidebar-anatomy-heading">
+              <section className="space-y-5" aria-labelledby="sidebar-anatomy-heading">
                 <div className="space-y-5">
-                  <h2 id="sidebar-anatomy-heading" className="text-2xl font-semibold tracking-tight">
+                  <h2
+                    id="sidebar-anatomy-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     What is this layout?
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>The page keeps the sidebar and content lined up with the Header and Footer.</li>
-                  <li>The sidebar groups related pages and shows where someone is now.</li>
-                  <li>Main gets the rest of the space for reading or getting work done.</li>
-                  <li>On smaller screens, the sidebar becomes a section in the menu.</li>
-                </ul>
-                <h2 className="mt-8 text-2xl font-semibold tracking-tight">When to use this layout</h2>
-                <p className="mt-3 leading-7 text-muted-foreground">
-                  Use it when a section has enough pages that people need help finding their way
-                  around. It works well for documentation, settings, and account areas.
-                </p>
-              </div>
-                <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="sidebar-recommendation-heading">
+                    <li>
+                      The page keeps the sidebar and content lined up with the Header and Footer.
+                    </li>
+                    <li>The sidebar groups related pages and shows where someone is now.</li>
+                    <li>Main gets the rest of the space for reading or getting work done.</li>
+                    <li>On smaller screens, the sidebar becomes a section in the menu.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="sidebar-use-heading">
+                <div className="space-y-5">
+                  <h2 id="sidebar-use-heading" className="text-2xl font-semibold tracking-tight">
+                    When to use this layout
+                  </h2>
+                  <p className="mt-3 leading-7 text-muted-foreground">
+                    Use it when a section has enough pages that people need help finding their way
+                    around. It works well for documentation, settings, and account areas.
+                  </p>
+                </div>
+                <aside
+                  className="rounded-xl border bg-muted/40 p-6"
+                  aria-labelledby="sidebar-recommendation-heading"
+                >
                   <h2 id="sidebar-recommendation-heading" className="text-lg font-semibold">
                     When not to use this layout
                   </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
-                  Do not add a sidebar just because there is room for one. It can make a simple page
-                  feel heavier. It is also a poor fit when the links are few, temporary, or unrelated
-                  to the content someone is viewing.
+                    Do not add a sidebar just because there is room for one. It can make a simple
+                    page feel heavier. It is also a poor fit when the links are few, temporary, or
+                    unrelated to the content someone is viewing.
                   </p>
                 </aside>
               </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-decisions-heading">
-                <h2 id="sidebar-decisions-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="sidebar-decisions-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Design/accessibility considerations
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
                     <h3 className="text-lg font-semibold">Design decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Group links around how people think about the work, not how the team built it.</li>
-                    <li>Use short labels that still make sense when someone scans the list.</li>
-                    <li>Leave enough room for the main content to breathe.</li>
-                    <li>Make the current page and the groups easy to tell apart.</li>
+                      <li>
+                        Group links around how people think about the work, not how the team built
+                        it.
+                      </li>
+                      <li>Use short labels that still make sense when someone scans the list.</li>
+                      <li>Leave enough room for the main content to breathe.</li>
+                      <li>Make the current page and the groups easy to tell apart.</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                       <li>Give the sidebar a name that separates it from the other navigation.</li>
-                      <li>Use headings and group labels that still make sense without the styling.</li>
+                      <li>
+                        Use headings and group labels that still make sense without the styling.
+                      </li>
                       <li>Make sure assistive technology can tell which page is current.</li>
                       <li>Make the menu version easy to find and use with a keyboard.</li>
                     </ul>
@@ -133,8 +156,11 @@ function LayoutsSidebarPage() {
               </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-example-heading">
-                <div className="max-w-2xl space-y-2">
-                  <h2 id="sidebar-example-heading" className="text-2xl font-semibold tracking-tight">
+                <div className="space-y-2">
+                  <h2
+                    id="sidebar-example-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     Example columns
                   </h2>
                   <p className="text-muted-foreground">
@@ -142,9 +168,9 @@ function LayoutsSidebarPage() {
                     so the main content starts with fewer columns than the simple layout.
                   </p>
                   <p className="text-muted-foreground">
-                    Do not pick three columns just because the screen can fit them. Look at the
-                    card content and keep enough width for reading, labels, and actions. Check that
-                    the grid becomes one column cleanly and that the sidebar does not make the main
+                    Do not pick three columns just because the screen can fit them. Look at the card
+                    content and keep enough width for reading, labels, and actions. Check that the
+                    grid becomes one column cleanly and that the sidebar does not make the main
                     content too narrow.
                   </p>
                 </div>

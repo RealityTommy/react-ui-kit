@@ -51,7 +51,7 @@ function LayoutsSecondaryPage() {
         <SecondaryNav aria-label="Documentation" />
         <Main>
           <div className="space-y-14 pb-12">
-            <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="secondary-heading">
+            <section className="space-y-5 pt-6" aria-labelledby="secondary-heading">
               <h1 id="secondary-heading" className="text-4xl font-semibold tracking-tight">
                 Keep related pages together without making them the whole page.
               </h1>
@@ -65,9 +65,12 @@ function LayoutsSecondaryPage() {
               </p>
             </section>
 
-            <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="secondary-anatomy-heading">
+            <section className="space-y-5" aria-labelledby="secondary-anatomy-heading">
               <div className="space-y-5">
-                <h2 id="secondary-anatomy-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="secondary-anatomy-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   What is this layout?
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -76,13 +79,24 @@ function LayoutsSecondaryPage() {
                   <li>Main stays focused on the page someone came to read or use.</li>
                   <li>On smaller screens, the same links move into the menu.</li>
                 </ul>
-                <h2 className="mt-8 text-2xl font-semibold tracking-tight">When to use this layout</h2>
+              </div>
+            </section>
+
+            <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="secondary-use-heading">
+              <div className="space-y-5">
+                <h2 id="secondary-use-heading" className="text-2xl font-semibold tracking-tight">
+                  When to use this layout
+                </h2>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Use it when the pages are siblings and people may move between them often. It works
-                  well for a small documentation section, a product area, or a group of related steps.
+                  Use it when the pages are siblings and people may move between them often. It
+                  works well for a small documentation section, a product area, or a group of
+                  related steps.
                 </p>
               </div>
-              <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="secondary-recommendation-heading">
+              <aside
+                className="rounded-xl border bg-muted/40 p-6"
+                aria-labelledby="secondary-recommendation-heading"
+              >
                 <h2 id="secondary-recommendation-heading" className="text-lg font-semibold">
                   When not to use this layout
                 </h2>
@@ -94,9 +108,12 @@ function LayoutsSecondaryPage() {
               </aside>
             </section>
 
-            <section className="space-y-5" aria-labelledby="secondary-use-heading">
-                <h2 id="secondary-use-heading" className="text-2xl font-semibold tracking-tight">
-                  Design/accessibility considerations
+            <section className="space-y-5" aria-labelledby="secondary-decisions-heading">
+              <h2
+                id="secondary-decisions-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
+                Design/accessibility considerations
               </h2>
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
@@ -112,7 +129,10 @@ function LayoutsSecondaryPage() {
                   <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                   <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                     <li>Give this navigation its own clear name.</li>
-                    <li>Use real links and mark the current page with <code>aria-current="page"</code>.</li>
+                    <li>
+                      Use real links and mark the current page with <code>aria-current="page"</code>
+                      .
+                    </li>
                     <li>Keep a visible focus indicator for keyboard users.</li>
                     <li>Make sure the menu shows the same links in a sensible order.</li>
                   </ul>
@@ -121,8 +141,11 @@ function LayoutsSecondaryPage() {
             </section>
 
             <section className="space-y-5" aria-labelledby="secondary-example-heading">
-              <div className="max-w-2xl space-y-2">
-                <h2 id="secondary-example-heading" className="text-2xl font-semibold tracking-tight">
+              <div className="space-y-2">
+                <h2
+                  id="secondary-example-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   Example columns
                 </h2>
                 <p className="text-muted-foreground">

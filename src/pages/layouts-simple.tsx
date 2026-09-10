@@ -11,8 +11,6 @@ import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Check, TriangleAlert } from 'lucide-react'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
@@ -33,7 +31,7 @@ function LayoutsSimplePage() {
       <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-14 pb-12">
-          <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="simple-heading">
+          <section className="space-y-5 pt-6" aria-labelledby="simple-heading">
             <h1 id="simple-heading" className="text-4xl font-semibold tracking-tight">
               Simple layout
             </h1>
@@ -47,44 +45,48 @@ function LayoutsSimplePage() {
             <h2 id="simple-what-heading" className="text-2xl font-semibold tracking-tight">
               What is this layout?
             </h2>
-            <p className="max-w-3xl leading-7 text-muted-foreground">
+            <p className="leading-7 text-muted-foreground">
               This is the basic page layout in the kit. The Header handles the main navigation. Main
               holds one clear page heading and the work of the page. The Footer provides the small
               amount of supporting information that belongs at the bottom.
             </p>
           </section>
 
-          <section className="grid gap-6 lg:grid-cols-2" aria-label="When to use this layout">
-            <Alert>
-              <Check className="text-emerald-600" aria-hidden="true" />
-              <AlertTitle>When to use this layout</AlertTitle>
-              <AlertDescription>
-                <ul className="mt-2 list-disc space-y-2 pl-4">
-                  <li>When the page has one main job.</li>
-                  <li>When the main navigation is enough to help people move around.</li>
-                  <li>For landing pages, simple dashboards, articles, and focused workflows.</li>
-                  <li>When adding more navigation would distract from the content.</li>
-                </ul>
-              </AlertDescription>
-            </Alert>
-            <Alert variant="destructive">
-              <TriangleAlert aria-hidden="true" />
-              <AlertTitle>When not to use this layout</AlertTitle>
-              <AlertDescription>
-                <ul className="mt-2 list-disc space-y-2 pl-4">
-                  <li>When people need to move between many pages in the same section.</li>
-                  <li>When the page needs a visible map of a deeper set of content.</li>
-                  <li>When people need section links and a sidebar at the same time.</li>
-                  <li>When hiding important navigation in the Header would make it hard to find.</li>
-                </ul>
-              </AlertDescription>
-            </Alert>
+          <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="simple-use-heading">
+            <div className="space-y-5">
+              <h2 id="simple-use-heading" className="text-2xl font-semibold tracking-tight">
+                When to use this layout
+              </h2>
+              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                <li>When the page has one main job.</li>
+                <li>When the main navigation is enough to help people move around.</li>
+                <li>For landing pages, simple dashboards, articles, and focused workflows.</li>
+                <li>When adding more navigation would distract from the content.</li>
+              </ul>
+            </div>
+            <aside
+              className="rounded-xl border bg-muted/40 p-6"
+              aria-labelledby="simple-recommendation-heading"
+            >
+              <h2 id="simple-recommendation-heading" className="text-lg font-semibold">
+                When not to use this layout
+              </h2>
+              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <li>When people need to move between many pages in the same section.</li>
+                <li>When the page needs a visible map of a deeper set of content.</li>
+                <li>When people need section links and a sidebar at the same time.</li>
+                <li>When hiding important navigation in the Header would make it hard to find.</li>
+              </ul>
+            </aside>
           </section>
 
           <section className="space-y-5" aria-labelledby="simple-considerations-heading">
-              <h2 id="simple-considerations-heading" className="text-2xl font-semibold tracking-tight">
-                Design/accessibility considerations
-              </h2>
+            <h2
+              id="simple-considerations-heading"
+              className="text-2xl font-semibold tracking-tight"
+            >
+              Design/accessibility considerations
+            </h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div>
                 <h3 className="text-lg font-semibold">Design</h3>
@@ -92,7 +94,9 @@ function LayoutsSimplePage() {
                   <li>Give the page one clear heading and one clear next step.</li>
                   <li>Use the extra space for content, not for extra controls.</li>
                   <li>Keep the Header and Main lined up so the page feels steady.</li>
-                  <li>Let the content determine the page height instead of forcing a fixed screen.</li>
+                  <li>
+                    Let the content determine the page height instead of forcing a fixed screen.
+                  </li>
                 </ul>
               </div>
               <div>
@@ -108,7 +112,7 @@ function LayoutsSimplePage() {
           </section>
 
           <section className="space-y-5" aria-labelledby="simple-columns-heading">
-            <div className="max-w-3xl space-y-3">
+            <div className="space-y-3">
               <h2 id="simple-columns-heading" className="text-2xl font-semibold tracking-tight">
                 Example columns
               </h2>
@@ -118,10 +122,10 @@ function LayoutsSimplePage() {
                 stay readable instead of trying to fit four small cards on every screen.
               </p>
               <p className="leading-7 text-muted-foreground">
-                There is no magic number. Look at the content in each card, the length of the labels,
-                and how much space people need to scan or interact. At narrow widths, one column is
-                often the kindest choice. At wider widths, add columns only when the cards still
-                have enough room and the reading order remains obvious.
+                There is no magic number. Look at the content in each card, the length of the
+                labels, and how much space people need to scan or interact. At narrow widths, one
+                column is often the kindest choice. At wider widths, add columns only when the cards
+                still have enough room and the reading order remains obvious.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">
