@@ -28,6 +28,9 @@ import type { LucideIcon } from 'lucide-react'
  *                      of any Lucide export (e.g., `Home`, `Book`).
  *                      Any icon-shaped component satisfies this
  *                      type if you need a custom SVG later.
+ *
+ * @example
+ * const home: NavLeaf = { href: '/', label: 'Home' }
  */
 export type NavLeaf = {
   href: string
@@ -55,6 +58,12 @@ export type NavLeaf = {
  * @property label    - Visible text for the trigger.
  * @property icon     - Optional Lucide icon rendered before the label.
  * @property children - Menu items. One level deep (NavLeaf, not NavItem).
+ *
+ * @example
+ * const layouts: NavParent = {
+ *   label: 'Layouts',
+ *   children: [{ href: '/layouts/simple', label: 'Simple' }],
+ * }
  */
 export type NavParent = {
   label: string
@@ -69,6 +78,12 @@ export type NavParent = {
  * `NavItem[]`. Consumers that don't (Footer, SecondaryNav, Sidebar
  * items) accept `NavLeaf[]` directly — dropdowns don't make
  * semantic sense in those places.
+ *
+ * @example
+ * const primaryNav: NavItem[] = [
+ *   { href: '/', label: 'Home' },
+ *   { label: 'Layouts', children: [{ href: '/layouts/simple', label: 'Simple' }] },
+ * ]
  */
 export type NavItem = NavLeaf | NavParent
 
@@ -106,6 +121,12 @@ export function isNavParent(x: NavItem): x is NavParent {
  *
  * @property label - Group heading text.
  * @property items - Leaf items within the group.
+ *
+ * @example
+ * const group: NavGroup = {
+ *   label: 'Getting started',
+ *   items: [{ href: '/install', label: 'Install' }],
+ * }
  */
 export type NavGroup = {
   label: string

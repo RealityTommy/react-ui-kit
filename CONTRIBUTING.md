@@ -169,13 +169,12 @@ pnpm build
 Byte-identical hashes on the clean build vs. incremental confirms the
 reported size is honest.
 
-### The shadcn overwrite trap
+### shadcn-managed files
 
-Every time you run `pnpm dlx shadcn@latest add <component>`, the CLI
-prompts to overwrite existing files — most commonly `button.tsx`.
-**Always answer "no"** unless you've verified you want to lose your
-customizations. Our Button has custom comments and would be blasted
-over.
+Files under `src/components/ui/` are disposable shadcn output. When the CLI
+regenerates a primitive, allow it to overwrite the existing file. Keep
+project-specific behavior in a wrapper or hand-written layout component so
+regeneration does not erase required work.
 
 ### React Aria dialog title requirement
 

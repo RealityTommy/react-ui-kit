@@ -1,11 +1,33 @@
+/**
+ * SplitPaneDemo — shared reference content for the layout guide pages.
+ *
+ * Shows the supported Main + Secondary arrangements with the actual
+ * container-responsive column settings used inside each pane. Keep this
+ * demo private to the pages folder; consumers should use SplitPane directly.
+ */
+
 import { Columns } from '@/components/layout/columns'
 import { SecondaryPane, SplitPane, type SecondarySize } from '@/components/layout/split-pane'
 import { DemoCard } from './_demo-card'
+
+// ---------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------
 
 type SplitPaneDemoProps = {
   secondarySize: SecondarySize
 }
 
+// ---------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------
+
+/**
+ * Renders one supported split-pane example for a layout reference page.
+ *
+ * @example
+ * <SplitPaneDemo secondarySize="half" />
+ */
 function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
   const mainColumns = secondarySize === 'third' ? 'base=1 md=2 lg=3' : 'base=1 md=2'
   const secondaryColumns = 'base=1 md=2'

@@ -1,21 +1,3 @@
-/**
- * Button + LinkButton — pressable UI primitives.
- *
- * `Button` renders a real <button> (via React Aria) for actions
- * that happen on the current page: submit forms, open dialogs,
- * trigger commands.
- *
- * `LinkButton` renders a real <a> (via React Aria) styled to look
- * like a button. Use it for navigation — anything with an href.
- * Splitting the two keeps semantics and keyboard behavior correct:
- * buttons get Space/Enter, links get Enter + right-click "open in
- * new tab", and screen readers announce each correctly.
- *
- * `buttonVariants` is exported so other components (button groups,
- * icon buttons in menus, etc.) can reuse the exact same styling
- * without wrapping a Button.
- */
-
 import type * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
@@ -26,13 +8,7 @@ import {
   type LinkProps as LinkPrimitiveProps,
 } from 'react-aria-components'
 
-// ---------------------------------------------------------------
-// Variants
-// ---------------------------------------------------------------
 
-// Base classes cover: layout, focus ring, disabled state, invalid
-// state (aria-invalid), and icon sizing. Variant + size classes
-// stack on top via cva.
 const buttonVariants = cva(
   "group/button inline-flex cursor-pointer shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -70,17 +46,7 @@ const buttonVariants = cva(
   },
 )
 
-// ---------------------------------------------------------------
-// Components
-// ---------------------------------------------------------------
 
-/**
- * Renders a <button> for on-page actions.
- *
- * @example
- * <Button variant="default" onPress={() => save()}>Save</Button>
- * <Button variant="destructive" size="sm">Delete</Button>
- */
 function Button({
   className,
   variant = 'default',
@@ -93,8 +59,6 @@ function Button({
   }) {
   return (
     <ButtonPrimitive
-      // `data-slot="button"` also lets parent groupings (like a
-      // ButtonGroup wrapper) target children via `[data-slot=button]`.
       data-slot="button"
       data-variant={variant}
       data-size={size}
@@ -104,12 +68,6 @@ function Button({
   )
 }
 
-/**
- * Renders an <a> styled like a button. Use for navigation.
- *
- * @example
- * <LinkButton href="/docs" variant="outline">Read the docs</LinkButton>
- */
 function LinkButton({
   className,
   variant = 'default',

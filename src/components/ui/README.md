@@ -19,29 +19,16 @@ The CLI reads `components.json` at the repo root, which is locked to:
 - Base color: **Neutral**
 - CSS variables: Yes
 
-## The overwrite trap
+## Overwrite policy
 
-When you add a new component, the CLI will often prompt to overwrite
-existing files it thinks are stale — most commonly `button.tsx`.
+These files are intentionally disposable. When the shadcn CLI offers to
+overwrite an existing primitive, allow it. Do not rely on comments or local
+edits in this folder surviving regeneration.
 
-**Always answer "no" unless you've verified you want to lose your
-customizations.** Any file in this folder that we've added comments
-to, tweaked, or extended will be blasted over otherwise.
-
-## Hand-editing (with caution)
-
-You *can* hand-edit files here — but every edit is a debt you pay next
-time you run the CLI. Only hand-edit when:
-
-- Fixing a bug in the generated code that shadcn hasn't addressed
-- Adding project-specific comments (like our JSDoc/section-header
-  standard from `CONTRIBUTING.md`)
-- Removing dead imports (e.g., the cargo-culted `"use client"` on
-  files that never run in Next.js)
-
-For anything beyond that — new variants, new sub-components, wildly
-different APIs — **create a wrapper in `layout/` or a sibling
-component folder** that imports the primitive and adds on top.
+Project-specific behavior belongs in a wrapper or a hand-written component
+outside `ui/`. If a generated primitive needs a local fix before upstream
+support exists, keep the change small and expect to reapply or replace it
+when the primitive is regenerated.
 
 ## What NOT to do
 
