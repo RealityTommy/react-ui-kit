@@ -5,8 +5,7 @@
  * an opinionated footer that handles responsive wrap, semantic
  * landmarks, and consistent alignment with the rest of the kit.
  *
- * Inspired by the State of Michigan Digital Guidelines Footer
- * pattern — minimal, legal-first, one horizontal bar.
+ * A minimal, legal-first footer pattern with one horizontal bar.
  *
  * Renders semantic <footer> (implicit `role="contentinfo"`) with
  * a nav landmark for the link list.
