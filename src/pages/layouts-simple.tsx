@@ -11,6 +11,8 @@ import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Check, TriangleAlert } from 'lucide-react'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
@@ -52,27 +54,31 @@ function LayoutsSimplePage() {
             </p>
           </section>
 
-          <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="simple-use-heading">
-            <div className="space-y-5">
-              <h2 id="simple-use-heading" className="text-2xl font-semibold tracking-tight">
-                When to use this layout
-              </h2>
-              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                <li>When the page has one main job.</li>
-                <li>When the main navigation is enough to help people move around.</li>
-                <li>For landing pages, simple dashboards, articles, and focused workflows.</li>
-                <li>When adding more navigation would distract from the content.</li>
-              </ul>
-            </div>
-            <div className="space-y-5">
-              <h2 className="text-2xl font-semibold tracking-tight">When not to use this layout</h2>
-              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                <li>When people need to move between many pages in the same section.</li>
-                <li>When the page needs a visible map of a deeper set of content.</li>
-                <li>When people need section links and a sidebar at the same time.</li>
-                <li>When hiding important navigation in the Header would make it hard to find.</li>
-              </ul>
-            </div>
+          <section className="grid gap-6 lg:grid-cols-2" aria-label="When to use this layout">
+            <Alert>
+              <Check className="text-emerald-600" aria-hidden="true" />
+              <AlertTitle>When to use this layout</AlertTitle>
+              <AlertDescription>
+                <ul className="mt-2 list-disc space-y-2 pl-4">
+                  <li>When the page has one main job.</li>
+                  <li>When the main navigation is enough to help people move around.</li>
+                  <li>For landing pages, simple dashboards, articles, and focused workflows.</li>
+                  <li>When adding more navigation would distract from the content.</li>
+                </ul>
+              </AlertDescription>
+            </Alert>
+            <Alert variant="destructive">
+              <TriangleAlert aria-hidden="true" />
+              <AlertTitle>When not to use this layout</AlertTitle>
+              <AlertDescription>
+                <ul className="mt-2 list-disc space-y-2 pl-4">
+                  <li>When people need to move between many pages in the same section.</li>
+                  <li>When the page needs a visible map of a deeper set of content.</li>
+                  <li>When people need section links and a sidebar at the same time.</li>
+                  <li>When hiding important navigation in the Header would make it hard to find.</li>
+                </ul>
+              </AlertDescription>
+            </Alert>
           </section>
 
           <section className="space-y-5" aria-labelledby="simple-considerations-heading">
