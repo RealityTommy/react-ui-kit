@@ -252,7 +252,7 @@ function Header({ logo, nav, actions, mobileBreakpoint = 'md', size = 'contained
         'bg-background/0 transition-[background-color,border-color,backdrop-filter] duration-150',
         // Scrolled state — background blur + subtle border.
         // We target our own data attribute for clarity.
-        'data-[scrolled=true]:bg-background/80 data-[scrolled=true]:border-b data-[scrolled=true]:border-border data-[scrolled=true]:backdrop-blur-md',
+        'data-[scrolled=true]:bg-background/80 data-[scrolled=true]:border-b data-[scrolled=true]:border-border data-[scrolled=true]:backdrop-blur-sm',
       )}
     >
       <Container
