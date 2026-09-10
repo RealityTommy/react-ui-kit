@@ -23,17 +23,17 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const sidebarEntries: (NavLeaf | NavGroup)[] = [
-  { href: '#/layouts/sidebar', label: 'Overview', icon: Home },
+  { href: '#/layouts/sidebar', label: 'Page one', icon: Home },
   {
-    label: 'Getting Started',
+    label: 'Group one',
     items: [
-      { href: '#/layouts/sidebar/install', label: 'Installation', icon: Rocket },
-      { href: '#/layouts/sidebar/theming', label: 'Theming', icon: Palette },
+      { href: '#/layouts/sidebar/install', label: 'Page two', icon: Rocket },
+      { href: '#/layouts/sidebar/theming', label: 'Page three', icon: Palette },
     ],
   },
   {
-    label: 'Components',
-    items: [{ href: '#/layouts/sidebar/parts', label: 'Parts', icon: Puzzle }],
+    label: 'Group two',
+    items: [{ href: '#/layouts/sidebar/parts', label: 'Page four', icon: Puzzle }],
   },
 ]
 
@@ -80,29 +80,35 @@ function LayoutsSidebarPage() {
               <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="sidebar-anatomy-heading">
                 <div className="space-y-5">
                   <h2 id="sidebar-anatomy-heading" className="text-2xl font-semibold tracking-tight">
-                    What this layout is doing
+                    What is this layout?
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>The page keeps the sidebar and content lined up with the Header and Footer.</li>
                   <li>The sidebar groups related pages and shows where someone is now.</li>
                   <li>Main gets the rest of the space for reading or getting work done.</li>
                   <li>On smaller screens, the sidebar becomes a section in the menu.</li>
-                  </ul>
-                </div>
+                </ul>
+                <h2 className="mt-8 text-2xl font-semibold tracking-tight">When to use this layout</h2>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Use it when a section has enough pages that people need help finding their way
+                  around. It works well for documentation, settings, and account areas.
+                </p>
+              </div>
                 <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="sidebar-recommendation-heading">
                   <h2 id="sidebar-recommendation-heading" className="text-lg font-semibold">
-                    Recommendation
+                    When not to use this layout
                   </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
-                  Choose a sidebar because people need it, not because there is empty space on the
-                  left.
+                  Do not add a sidebar just because there is room for one. It can make a simple page
+                  feel heavier. It is also a poor fit when the links are few, temporary, or unrelated
+                  to the content someone is viewing.
                   </p>
                 </aside>
               </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-decisions-heading">
                 <h2 id="sidebar-decisions-heading" className="text-2xl font-semibold tracking-tight">
-                  Design and accessibility considerations
+                  Design/accessibility considerations
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
@@ -129,11 +135,17 @@ function LayoutsSidebarPage() {
               <section className="space-y-5" aria-labelledby="sidebar-example-heading">
                 <div className="max-w-2xl space-y-2">
                   <h2 id="sidebar-example-heading" className="text-2xl font-semibold tracking-tight">
-                    Example content area
+                    Example columns
                   </h2>
                   <p className="text-muted-foreground">
-                    The sidebar is most useful when the content beside it needs some orientation.
-                    These cards stand in for that content so the layout is easy to see.
+                    This example uses <code>base=1 sm=2 md=2 lg=3</code>. The sidebar takes up room,
+                    so the main content starts with fewer columns than the simple layout.
+                  </p>
+                  <p className="text-muted-foreground">
+                    Do not pick three columns just because the screen can fit them. Look at the
+                    card content and keep enough width for reading, labels, and actions. Check that
+                    the grid becomes one column cleanly and that the sidebar does not make the main
+                    content too narrow.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>

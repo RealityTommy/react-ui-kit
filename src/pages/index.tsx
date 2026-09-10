@@ -62,10 +62,10 @@ const routes: Route[] = [
  * <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
-  { href: '#/', label: 'Home' },
   {
     label: 'Layouts',
     children: [
+      { href: '#/', label: 'Simple' },
       { href: '#/layouts/secondary', label: 'Secondary' },
       { href: '#/layouts/sidebar', label: 'Sidebar' },
       { href: '#/layouts/full', label: 'Full' },

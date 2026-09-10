@@ -1,9 +1,9 @@
 /**
- * HomePage — the narrative introduction to the react-ui-kit.
+ * HomePage — simple Header + Main + Footer layout reference.
  *
- * The home page explains the project's purpose, design posture, and
- * accessibility baseline before inviting visitors into the layout reference
- * pages. It is intentionally an introduction, not another layout stress test.
+ * This page is the baseline example: one main content area, no secondary
+ * navigation, and no sidebar. It also shows how to choose a sensible number
+ * of columns as the screen gets wider.
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
@@ -11,7 +11,6 @@ import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
@@ -20,10 +19,9 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 /**
- * Introduction page for the kit. Mounted by the demo router at `#/`.
+ * Simple layout reference page. Mounted by the demo router at `#/`.
  *
  * @example
- * // Registered in the routes table (src/pages/index.tsx):
  * { path: '/', component: HomePage }
  */
 function HomePage() {
@@ -32,126 +30,98 @@ function HomePage() {
       <SkipLink />
       <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
       <Main>
-        <div className="space-y-16 pb-12">
-          <section className="max-w-3xl space-y-6 pt-8" aria-labelledby="intro-heading">
-            <h1 id="intro-heading" className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              Build pages that give people a clear place to begin.
+        <div className="space-y-14 pb-12">
+          <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="simple-heading">
+            <h1 id="simple-heading" className="text-4xl font-semibold tracking-tight">
+              Simple layout
             </h1>
-              <p className="text-xl leading-8 text-muted-foreground">
-                react-ui-kit is a small collection of layout, navigation, and display pieces for
-                building my own projects. The goal is simple: make it easier to understand a page
-                before it gets crowded with features.
-              </p>
-            <p className="max-w-2xl leading-7 text-muted-foreground">
-                These examples are not finished product screens. They are starting points for
-                thinking about what belongs on a page, how people move through it, and what changes
-                when the screen gets smaller.
+            <p className="text-xl leading-8 text-muted-foreground">
+              A Header, a Main area, and a Footer. There is no second row of links and no sidebar.
+              The page gives the content most of the attention.
             </p>
           </section>
 
-          <section className="space-y-6" aria-labelledby="principles-heading">
-            <div className="max-w-2xl space-y-2">
-              <h2 id="principles-heading" className="text-2xl font-semibold tracking-tight">
-                The principles behind the kit
-              </h2>
-              <p className="text-muted-foreground">
-                A good layout helps people know where they are, what they can do next, and what
-                belongs together.
-              </p>
-            </div>
-            <Columns base={1} md={3} gap="lg">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Clarity before decoration</CardTitle>
-                  <CardDescription>Let the page structure do some of the explaining.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Use headings, spacing, and grouping to show how things relate before reaching for
-                    color, borders, or visual effects.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Responsive by default</CardTitle>
-                  <CardDescription>Design for the smaller screen too.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Navigation and content should rearrange without making people hunt for controls
-                    or squeeze a desktop page into a narrow screen.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Accessibility is structural</CardTitle>
-                  <CardDescription>Plan for it from the start.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Landmarks, heading order, keyboard access, visible focus, and useful names are
-                    part of the page. They are not a final polish step.
-                  </p>
-                </CardContent>
-              </Card>
-            </Columns>
+          <section className="space-y-5" aria-labelledby="simple-what-heading">
+            <h2 id="simple-what-heading" className="text-2xl font-semibold tracking-tight">
+              What is this layout?
+            </h2>
+            <p className="max-w-3xl leading-7 text-muted-foreground">
+              This is the basic page layout in the kit. The Header handles the main navigation. Main
+              holds one clear page heading and the work of the page. The Footer provides the small
+              amount of supporting information that belongs at the bottom.
+            </p>
           </section>
 
-          <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)]" aria-labelledby="approach-heading">
+          <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="simple-use-heading">
             <div className="space-y-5">
-              <h2 id="approach-heading" className="text-2xl font-semibold tracking-tight">
-                How to use these examples
+              <h2 id="simple-use-heading" className="text-2xl font-semibold tracking-tight">
+                When to use this layout
+              </h2>
+              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                <li>When the page has one main job.</li>
+                <li>When the main navigation is enough to help people move around.</li>
+                <li>For landing pages, simple dashboards, articles, and focused workflows.</li>
+                <li>When adding more navigation would distract from the content.</li>
+              </ul>
+            </div>
+            <div className="space-y-5">
+              <h2 className="text-2xl font-semibold tracking-tight">When not to use this layout</h2>
+              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                <li>When people need to move between many pages in the same section.</li>
+                <li>When the page needs a visible map of a deeper set of content.</li>
+                <li>When people need section links and a sidebar at the same time.</li>
+                <li>When hiding important navigation in the Header would make it hard to find.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section className="space-y-5" aria-labelledby="simple-considerations-heading">
+              <h2 id="simple-considerations-heading" className="text-2xl font-semibold tracking-tight">
+                Design/accessibility considerations
+              </h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div>
+                <h3 className="text-lg font-semibold">Design</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Give the page one clear heading and one clear next step.</li>
+                  <li>Use the extra space for content, not for extra controls.</li>
+                  <li>Keep the Header and Main lined up so the page feels steady.</li>
+                  <li>Let the content determine the page height instead of forcing a fixed screen.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Accessibility</h3>
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>Keep the page heading as the first meaningful heading in Main.</li>
+                  <li>Keep the skip link so keyboard users can reach the content quickly.</li>
+                  <li>Make sure Header navigation has a clear name and visible focus styles.</li>
+                  <li>Check the reading order at small widths and with a keyboard.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-5" aria-labelledby="simple-columns-heading">
+            <div className="max-w-3xl space-y-3">
+              <h2 id="simple-columns-heading" className="text-2xl font-semibold tracking-tight">
+                Example columns
               </h2>
               <p className="leading-7 text-muted-foreground">
-                Start with what the page needs to help people do. Then choose the simplest layout
-                that supports it. Add more only when it solves a real problem.
+                The example starts with one column, then adds columns as the screen gets wider:
+                <code className="ml-1">base=1 sm=2 md=3 lg=4</code>. That gives each card room to
+                stay readable instead of trying to fit four small cards on every screen.
               </p>
-              <ol className="list-decimal space-y-3 pl-5 leading-7 text-muted-foreground marker:font-medium marker:text-foreground">
-                <li>Decide what people need to do and what they need to see first.</li>
-                <li>Choose a layout that keeps that task easy to find.</li>
-                <li>Check the reading order, keyboard path, small-screen behavior, and focus states.</li>
-                <li>Add extra actions and navigation only when they help.</li>
-              </ol>
-            </div>
-            <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="recommendation-heading">
-              <h2 id="recommendation-heading" className="text-lg font-semibold">
-                A useful default
-              </h2>
-              <p className="mt-3 leading-7 text-muted-foreground">
-                If you are unsure, start with a Header, Main, and Footer. A focused page is easier to
-                use and easier to change than a page full of navigation no one needs yet.
-              </p>
-            </aside>
-          </section>
-
-          <section className="space-y-6" aria-labelledby="explore-heading">
-            <div className="max-w-2xl space-y-2">
-              <h2 id="explore-heading" className="text-2xl font-semibold tracking-tight">
-                Explore the layout references
-              </h2>
-              <p className="text-muted-foreground">
-                Each page explains what the layout is for, what to watch out for, and what I would
-                keep in mind when building a real page.
+              <p className="leading-7 text-muted-foreground">
+                There is no magic number. Look at the content in each card, the length of the labels,
+                and how much space people need to scan or interact. At narrow widths, one column is
+                often the kindest choice. At wider widths, add columns only when the cards still
+                have enough room and the reading order remains obvious.
               </p>
             </div>
-            <Columns base={1} sm={2} lg={3} gap="lg">
-              <DemoCard
-                title="Secondary navigation"
-                description="For a small group of related pages."
-                body="See when a second row of links helps and when it starts to get in the way."
-              />
-              <DemoCard
-                title="Sidebar navigation"
-                description="For sections with more pages to move between."
-                body="See how grouping, page width, and the menu work together."
-              />
-              <DemoCard
-                title="Full layout"
-                description="For pages that need both kinds of navigation."
-                body="See what happens when a second row of links and a sidebar share the page."
-              />
+            <Columns base={1} sm={2} md={3} lg={4} gap="lg">
+              {Array.from({ length: 8 }, (_, i) => (
+                <DemoCard key={i} title={`Card ${i + 1}`} />
+              ))}
             </Columns>
           </section>
         </div>

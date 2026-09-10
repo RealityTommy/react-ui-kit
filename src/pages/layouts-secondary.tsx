@@ -21,10 +21,10 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const sectionNav: NavLeaf[] = [
-  { href: '#/layouts/secondary', label: 'Overview' },
-  { href: '#/layouts/secondary/install', label: 'Installation' },
-  { href: '#/layouts/secondary/theming', label: 'Theming' },
-  { href: '#/layouts/secondary/tokens', label: 'Tokens' },
+  { href: '#/layouts/secondary', label: 'Section one' },
+  { href: '#/layouts/secondary/install', label: 'Section two' },
+  { href: '#/layouts/secondary/theming', label: 'Section three' },
+  { href: '#/layouts/secondary/tokens', label: 'Section four' },
 ]
 
 // ---------------------------------------------------------------
@@ -56,8 +56,7 @@ function LayoutsSecondaryPage() {
                 Keep related pages together without making them the whole page.
               </h1>
               <p className="text-xl leading-8 text-muted-foreground">
-                A second row of links can help when a section has a small set of related pages, such
-                as Overview, Installation, Theming, and Tokens.
+                A second row of links can help when a section has a small set of related pages.
               </p>
               <p className="leading-7 text-muted-foreground">
                 It gives people a little more context without asking the Header to carry every link.
@@ -69,7 +68,7 @@ function LayoutsSecondaryPage() {
             <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="secondary-anatomy-heading">
               <div className="space-y-5">
                 <h2 id="secondary-anatomy-heading" className="text-2xl font-semibold tracking-tight">
-                  What this layout is doing
+                  What is this layout?
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>The Header handles the main site or product navigation.</li>
@@ -77,21 +76,27 @@ function LayoutsSecondaryPage() {
                   <li>Main stays focused on the page someone came to read or use.</li>
                   <li>On smaller screens, the same links move into the menu.</li>
                 </ul>
+                <h2 className="mt-8 text-2xl font-semibold tracking-tight">When to use this layout</h2>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  Use it when the pages are siblings and people may move between them often. It works
+                  well for a small documentation section, a product area, or a group of related steps.
+                </p>
               </div>
               <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="secondary-recommendation-heading">
                 <h2 id="secondary-recommendation-heading" className="text-lg font-semibold">
-                  Recommendation
+                  When not to use this layout
                 </h2>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Keep this row short. If people need several levels of grouping, a sidebar is
-                  probably easier to understand.
+                  Do not use this row for a long list of links or several levels of grouping. A
+                  sidebar is probably easier to understand. If the page has only one or two related
+                  pages, the extra row may not be needed at all.
                 </p>
               </aside>
             </section>
 
             <section className="space-y-5" aria-labelledby="secondary-use-heading">
-              <h2 id="secondary-use-heading" className="text-2xl font-semibold tracking-tight">
-                Design and accessibility considerations
+                <h2 id="secondary-use-heading" className="text-2xl font-semibold tracking-tight">
+                  Design/accessibility considerations
               </h2>
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
@@ -118,11 +123,18 @@ function LayoutsSecondaryPage() {
             <section className="space-y-5" aria-labelledby="secondary-example-heading">
               <div className="max-w-2xl space-y-2">
                 <h2 id="secondary-example-heading" className="text-2xl font-semibold tracking-tight">
-                  Example content area
+                  Example columns
                 </h2>
                 <p className="text-muted-foreground">
-                  The cards below stand in for the content below the section links. On a real page,
-                  this is where the main task, article, or workflow would go.
+                  This example uses <code>base=1 sm=2 md=3 lg=4</code>. Start with one column on a
+                  small screen, then add columns as there is room. Add another column only when the
+                  cards are still easy to scan and use.
+                </p>
+                <p className="text-muted-foreground">
+                  The right number depends on the content. Short cards can support more columns;
+                  cards with longer titles, descriptions, or actions may need fewer. Check the
+                  reflow at narrow widths and make sure the order still makes sense when the grid
+                  becomes one column.
                 </p>
               </div>
               <Columns base={1} sm={2} md={3} lg={4}>
