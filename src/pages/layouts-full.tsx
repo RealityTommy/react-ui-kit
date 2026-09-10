@@ -73,19 +73,17 @@ function LayoutsFullPage() {
           <Main size="full">
             <div className="space-y-14 pb-12">
               <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="full-heading">
-                <p className="text-sm font-medium text-muted-foreground">Layout reference · Combined navigation</p>
                 <h1 id="full-heading" className="text-4xl font-semibold tracking-tight">
-                  Use the full shell when the information architecture earns it.
+                  Use the full layout only when people need it.
                 </h1>
                 <p className="text-xl leading-8 text-muted-foreground">
-                  This composition combines a global Header, section-level navigation, a Sidebar,
-                  and a Main area. It can support complex products, but it also creates the most
-                  navigation to understand and maintain.
+                  This layout combines a Header, a second row of links, a Sidebar, and the main
+                  content. It can work well for a large product, but it gives people more to
+                  understand and gives the team more to maintain.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  The goal is not to display every available navigation pattern. The goal is to
-                  give people two useful kinds of context: where they are within the larger product
-                  and where they are within the current section.
+                  The point is not to show every kind of navigation at once. Use this when people
+                  need both the bigger picture and a detailed map of the section they are in.
                 </p>
               </section>
 
@@ -95,10 +93,10 @@ function LayoutsFullPage() {
                     What this layout is doing
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>Header provides global identity and primary navigation.</li>
-                    <li>SecondaryNav provides a short list of section-level destinations.</li>
-                    <li>Sidebar provides deeper grouping and persistent orientation.</li>
-                    <li>Main stays responsible for the task, article, or workflow at hand.</li>
+                    <li>The Header handles the main site or product navigation.</li>
+                    <li>The second row holds a short list of pages in this section.</li>
+                    <li>The Sidebar holds deeper groups of pages.</li>
+                    <li>Main stays focused on the task, article, or workflow.</li>
                   </ul>
                 </div>
                 <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="full-recommendation-heading">
@@ -106,8 +104,8 @@ function LayoutsFullPage() {
                     Recommendation
                   </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
-                    Start with the simplest shell that works. Adopt this composition only when users
-                    genuinely need both a section switcher and deeper persistent navigation.
+                  Start with the simplest layout that works. Use this one only when people really
+                  need both kinds of navigation.
                   </p>
                 </aside>
               </section>
@@ -120,19 +118,19 @@ function LayoutsFullPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Design decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give each navigation layer a distinct job and a distinct visual role.</li>
-                      <li>Keep labels and active states consistent across the layers.</li>
-                      <li>Protect a readable Main width; more chrome should not mean less clarity.</li>
-                      <li>Test whether the combined shell still feels calm at realistic content lengths.</li>
+                    <li>Give each layer a clear job so the page does not feel repetitive.</li>
+                    <li>Keep labels and current-page styles consistent.</li>
+                    <li>Leave enough room for the main content to be comfortable to read.</li>
+                    <li>Try it with real content. The page can feel busy quickly.</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give every navigation landmark a unique, meaningful name.</li>
-                      <li>Keep the page heading in Main and preserve a logical reading order.</li>
-                      <li>Make the skip link useful by moving directly to the primary content.</li>
-                      <li>Confirm the mobile drawer presents the same hierarchy without duplication or confusion.</li>
+                      <li>Give each navigation area its own clear name.</li>
+                      <li>Keep the page heading in Main and keep the reading order sensible.</li>
+                      <li>Make the skip link move directly to the main content.</li>
+                      <li>Check that the menu keeps the same hierarchy without feeling repetitive.</li>
                     </ul>
                   </div>
                 </div>
@@ -144,9 +142,8 @@ function LayoutsFullPage() {
                     Example content area
                   </h2>
                   <p className="text-muted-foreground">
-                    This deliberately dense shell uses a conservative grid because both navigation
-                    layers consume horizontal space. In production, content density should follow
-                    the task—not the desire to fill every available column.
+                    This example uses fewer columns because both navigation areas take up room. In a
+                    real page, let the content decide how dense the layout should be.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>

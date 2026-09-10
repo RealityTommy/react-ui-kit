@@ -52,19 +52,17 @@ function LayoutsSecondaryPage() {
         <Main>
           <div className="space-y-14 pb-12">
             <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="secondary-heading">
-              <p className="text-sm font-medium text-muted-foreground">Layout reference · Section navigation</p>
               <h1 id="secondary-heading" className="text-4xl font-semibold tracking-tight">
-                Keep related destinations together without making them the whole page.
+                Keep related pages together without making them the whole page.
               </h1>
               <p className="text-xl leading-8 text-muted-foreground">
-                Secondary navigation is useful when a section has a small, stable set of sibling
-                destinations—such as Overview, Installation, Theming, and Tokens.
+                A second row of links can help when a section has a small set of related pages, such
+                as Overview, Installation, Theming, and Tokens.
               </p>
               <p className="leading-7 text-muted-foreground">
-                It gives the section a visible local context while leaving the Header responsible
-                for the product or site-wide structure. This example uses real links, so each item
-                remains a destination that can be opened, shared, bookmarked, or visited with the
-                browser's normal link commands.
+                It gives people a little more context without asking the Header to carry every link.
+                These are regular links, so people can open, share, bookmark, or use them with the
+                browser as usual.
               </p>
             </section>
 
@@ -74,10 +72,10 @@ function LayoutsSecondaryPage() {
                   What this layout is doing
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>The Header carries global identity and primary destinations.</li>
-                  <li>The secondary bar names the current section and its sibling pages.</li>
-                  <li>Main remains a focused reading area with one clear page heading.</li>
-                  <li>On small screens, the same items move into the shared mobile drawer.</li>
+                  <li>The Header handles the main site or product navigation.</li>
+                  <li>The second row holds the pages that belong to this section.</li>
+                  <li>Main stays focused on the page someone came to read or use.</li>
+                  <li>On smaller screens, the same links move into the menu.</li>
                 </ul>
               </div>
               <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="secondary-recommendation-heading">
@@ -85,8 +83,8 @@ function LayoutsSecondaryPage() {
                   Recommendation
                 </h2>
                 <p className="mt-3 leading-7 text-muted-foreground">
-                  Keep this row short. If people need multiple levels of grouping, a sidebar or a
-                  dedicated contents navigation is usually clearer than adding more pills.
+                  Keep this row short. If people need several levels of grouping, a sidebar is
+                  probably easier to understand.
                 </p>
               </aside>
             </section>
@@ -99,19 +97,19 @@ function LayoutsSecondaryPage() {
                 <div>
                   <h3 className="text-lg font-semibold">Design decisions</h3>
                   <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Use sibling destinations with similar importance and comparable labels.</li>
-                    <li>Keep the active state obvious without relying on color alone.</li>
-                    <li>Do not use the row as a replacement for a page heading or breadcrumb.</li>
-                    <li>Let the row scroll away naturally unless persistent access is essential.</li>
+                    <li>Use pages that belong together and have a similar level of importance.</li>
+                    <li>Make the current page clear without relying on color alone.</li>
+                    <li>Keep the page heading separate from this row of links.</li>
+                    <li>Let the row scroll away unless people truly need it to stay visible.</li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                   <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Give the navigation landmark a specific accessible name.</li>
-                    <li>Use real anchors and mark the current destination with <code>aria-current="page"</code>.</li>
-                    <li>Preserve a visible keyboard focus indicator for every link.</li>
-                    <li>Ensure the mobile drawer exposes the same destinations in reading order.</li>
+                    <li>Give this navigation its own clear name.</li>
+                    <li>Use real links and mark the current page with <code>aria-current="page"</code>.</li>
+                    <li>Keep a visible focus indicator for keyboard users.</li>
+                    <li>Make sure the menu shows the same links in a sensible order.</li>
                   </ul>
                 </div>
               </div>
@@ -123,9 +121,8 @@ function LayoutsSecondaryPage() {
                   Example content area
                 </h2>
                 <p className="text-muted-foreground">
-                  The cards below represent the page content that sits beneath the section context.
-                  In a real page, replace them with the primary task, article, or workflow for the
-                  selected destination.
+                  The cards below stand in for the content below the section links. On a real page,
+                  this is where the main task, article, or workflow would go.
                 </p>
               </div>
               <Columns base={1} sm={2} md={3} lg={4}>

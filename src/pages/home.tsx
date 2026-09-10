@@ -34,19 +34,18 @@ function HomePage() {
       <Main>
         <div className="space-y-16 pb-12">
           <section className="max-w-3xl space-y-6 pt-8" aria-labelledby="intro-heading">
-            <p className="text-sm font-medium text-muted-foreground">A practical starting point</p>
             <h1 id="intro-heading" className="text-4xl font-semibold tracking-tight sm:text-5xl">
               Build pages that give people a clear place to begin.
             </h1>
-            <p className="text-xl leading-8 text-muted-foreground">
-              react-ui-kit is a personal, opinionated collection of React layout, navigation, and
-              display primitives. It is designed to make the page structure understandable before
-              the details become complicated.
-            </p>
+              <p className="text-xl leading-8 text-muted-foreground">
+                react-ui-kit is a small collection of layout, navigation, and display pieces for
+                building my own projects. The goal is simple: make it easier to understand a page
+                before it gets crowded with features.
+              </p>
             <p className="max-w-2xl leading-7 text-muted-foreground">
-              The examples are not finished product screens. They are reference compositions: a
-              way to study how content hierarchy, navigation, responsive behavior, and accessibility
-              fit together before choosing colors, features, and application-specific components.
+                These examples are not finished product screens. They are starting points for
+                thinking about what belongs on a page, how people move through it, and what changes
+                when the screen gets smaller.
             </p>
           </section>
 
@@ -56,44 +55,44 @@ function HomePage() {
                 The principles behind the kit
               </h2>
               <p className="text-muted-foreground">
-                A layout is successful when it helps people understand where they are, what they
-                can do next, and how the page is organized.
+                A good layout helps people know where they are, what they can do next, and what
+                belongs together.
               </p>
             </div>
             <Columns base={1} md={3} gap="lg">
               <Card>
                 <CardHeader>
                   <CardTitle>Clarity before decoration</CardTitle>
-                  <CardDescription>Structure should carry meaning.</CardDescription>
+                  <CardDescription>Let the page structure do some of the explaining.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Use headings, spacing, landmarks, and grouping to establish relationships before
-                    relying on color, borders, or visual effects.
+                    Use headings, spacing, and grouping to show how things relate before reaching for
+                    color, borders, or visual effects.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
                   <CardTitle>Responsive by default</CardTitle>
-                  <CardDescription>Small screens are a design constraint.</CardDescription>
+                  <CardDescription>Design for the smaller screen too.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Navigation and content should reflow without making people hunt for controls or
-                    forcing a desktop information architecture onto a narrow viewport.
+                    Navigation and content should rearrange without making people hunt for controls
+                    or squeeze a desktop page into a narrow screen.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader>
                   <CardTitle>Accessibility is structural</CardTitle>
-                  <CardDescription>It belongs in the composition.</CardDescription>
+                  <CardDescription>Plan for it from the start.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Semantic landmarks, heading order, keyboard access, visible focus, and useful
-                    names are part of the layout decision—not a final polish step.
+                    Landmarks, heading order, keyboard access, visible focus, and useful names are
+                    part of the page. They are not a final polish step.
                   </p>
                 </CardContent>
               </Card>
@@ -106,15 +105,14 @@ function HomePage() {
                 How to use these examples
               </h2>
               <p className="leading-7 text-muted-foreground">
-                Start with the content and navigation your page actually needs. Then choose the
-                simplest composition that supports it. Add complexity only when it improves the
-                experience for a real audience.
+                Start with what the page needs to help people do. Then choose the simplest layout
+                that supports it. Add more only when it solves a real problem.
               </p>
               <ol className="list-decimal space-y-3 pl-5 leading-7 text-muted-foreground marker:font-medium marker:text-foreground">
-                <li>Identify the page's primary task and the information people need first.</li>
-                <li>Choose the layout that makes that task and its surrounding context visible.</li>
-                <li>Check the reading order, keyboard path, responsive behavior, and focus states.</li>
-                <li>Only then add visual emphasis, secondary actions, and optional navigation.</li>
+                <li>Decide what people need to do and what they need to see first.</li>
+                <li>Choose a layout that keeps that task easy to find.</li>
+                <li>Check the reading order, keyboard path, small-screen behavior, and focus states.</li>
+                <li>Add extra actions and navigation only when they help.</li>
               </ol>
             </div>
             <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="recommendation-heading">
@@ -122,9 +120,8 @@ function HomePage() {
                 A useful default
               </h2>
               <p className="mt-3 leading-7 text-muted-foreground">
-                If you are unsure, begin with a simple Header, Main, and Footer. A focused page is
-                easier to navigate, easier to test, and easier to expand than a shell filled with
-                navigation that no one needs yet.
+                If you are unsure, start with a Header, Main, and Footer. A focused page is easier to
+                use and easier to change than a page full of navigation no one needs yet.
               </p>
             </aside>
           </section>
@@ -135,25 +132,25 @@ function HomePage() {
                 Explore the layout references
               </h2>
               <p className="text-muted-foreground">
-                Each page explains the problem the composition solves, the tradeoffs it introduces,
-                and the accessibility decisions worth carrying into a real project.
+                Each page explains what the layout is for, what to watch out for, and what I would
+                keep in mind when building a real page.
               </p>
             </div>
             <Columns base={1} sm={2} lg={3} gap="lg">
               <DemoCard
                 title="Secondary navigation"
-                description="For sections with a small set of sibling destinations."
-                body="Study when a horizontal section nav helps—and when it becomes too much competing navigation."
+                description="For a small group of related pages."
+                body="See when a second row of links helps and when it starts to get in the way."
               />
               <DemoCard
                 title="Sidebar navigation"
-                description="For deeper information architecture and documentation."
-                body="Study persistent context, grouping, content width, and the mobile drawer equivalent."
+                description="For sections with more pages to move between."
+                body="See how grouping, page width, and the menu work together."
               />
               <DemoCard
-                title="Full composition"
-                description="For complex shells that need both navigation layers."
-                body="Study the cost of combining section navigation, a sidebar, and the main reading area."
+                title="Full layout"
+                description="For pages that need both kinds of navigation."
+                body="See what happens when a second row of links and a sidebar share the page."
               />
             </Columns>
           </section>

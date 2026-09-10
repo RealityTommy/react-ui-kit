@@ -63,18 +63,17 @@ function LayoutsSidebarPage() {
           <Main size="full">
             <div className="space-y-14 pb-12">
               <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="sidebar-heading">
-                <p className="text-sm font-medium text-muted-foreground">Layout reference · Persistent navigation</p>
-                <h1 id="sidebar-heading" className="text-4xl font-semibold tracking-tight">
-                  Give complex sections a stable map without taking over the reading area.
-                </h1>
-                <p className="text-xl leading-8 text-muted-foreground">
-                  A sidebar works when people need to move among several related destinations while
-                  keeping the section's organization visible beside the current content.
-                </p>
-                <p className="leading-7 text-muted-foreground">
-                  This pattern is especially useful for documentation, settings, account areas, and
-                  applications with a durable information architecture. The sidebar is not a place
-                  to put every possible destination; it is a map for the current section.
+              <h1 id="sidebar-heading" className="text-4xl font-semibold tracking-tight">
+                Give larger sections a clear map without taking over the page.
+              </h1>
+              <p className="text-xl leading-8 text-muted-foreground">
+                A sidebar helps when people need to move between several related pages while keeping
+                the section's organization visible next to the content.
+              </p>
+              <p className="leading-7 text-muted-foreground">
+                This works well for documentation, settings, account areas, and other parts of a
+                product with several pages. It should not hold every possible link. It should help
+                people find their way around the section they are in.
                 </p>
               </section>
 
@@ -84,10 +83,10 @@ function LayoutsSidebarPage() {
                     What this layout is doing
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>PageBody owns the shared width so the rail and content align with the chrome.</li>
-                    <li>The sidebar groups related destinations and identifies the current page.</li>
-                    <li>Main receives the remaining width and can stay focused on reading or work.</li>
-                    <li>On small screens, the rail becomes a labeled section in the mobile drawer.</li>
+                  <li>The page keeps the sidebar and content lined up with the Header and Footer.</li>
+                  <li>The sidebar groups related pages and shows where someone is now.</li>
+                  <li>Main gets the rest of the space for reading or getting work done.</li>
+                  <li>On smaller screens, the sidebar becomes a section in the menu.</li>
                   </ul>
                 </div>
                 <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="sidebar-recommendation-heading">
@@ -95,8 +94,8 @@ function LayoutsSidebarPage() {
                     Recommendation
                   </h2>
                   <p className="mt-3 leading-7 text-muted-foreground">
-                    Choose a sidebar because the section has meaningful navigational depth—not simply
-                    because the page has empty space on the left.
+                  Choose a sidebar because people need it, not because there is empty space on the
+                  left.
                   </p>
                 </aside>
               </section>
@@ -109,19 +108,19 @@ function LayoutsSidebarPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Design decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Group links by a user's mental model, not by the order they were built.</li>
-                      <li>Use concise labels that remain understandable when scanned quickly.</li>
-                      <li>Protect Main's reading width; a rail should not make content feel cramped.</li>
-                      <li>Keep the active state and group hierarchy visually distinct.</li>
+                    <li>Group links around how people think about the work, not how the team built it.</li>
+                    <li>Use short labels that still make sense when someone scans the list.</li>
+                    <li>Leave enough room for the main content to breathe.</li>
+                    <li>Make the current page and the groups easy to tell apart.</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Name the sidebar landmark so it is distinguishable from other navigation.</li>
-                      <li>Use heading order and group labels that communicate hierarchy beyond styling.</li>
-                      <li>Keep the current-page state available to assistive technology.</li>
-                      <li>Make the mobile replacement discoverable and keyboard operable.</li>
+                      <li>Give the sidebar a name that separates it from the other navigation.</li>
+                      <li>Use headings and group labels that still make sense without the styling.</li>
+                      <li>Make sure assistive technology can tell which page is current.</li>
+                      <li>Make the menu version easy to find and use with a keyboard.</li>
                     </ul>
                   </div>
                 </div>
@@ -133,9 +132,8 @@ function LayoutsSidebarPage() {
                     Example content area
                   </h2>
                   <p className="text-muted-foreground">
-                    The sidebar is most valuable when the content beside it has enough depth to need
-                    orientation. These cards stand in for that content while keeping the layout easy
-                    to inspect.
+                    The sidebar is most useful when the content beside it needs some orientation.
+                    These cards stand in for that content so the layout is easy to see.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
