@@ -64,6 +64,28 @@ function useHashRoute(): string {
   return path
 }
 
+/**
+ * Resolve a pathname to the most specific known route.
+ *
+ * Demo navigation includes child paths to show how a layout handles
+ * sibling pages. Until those child pages have their own content, keep
+ * them inside their parent layout instead of sending people to Home.
+ *
+ * @example
+ * findRoute('/layouts/sidebar/theming') // → Sidebar layout route
+ * findRoute('/not-a-route')              // → Home route
+ */
+function findRoute(path: string) {
+  return (
+    routes.find((route) => route.path === path) ??
+    routes
+      .filter((route) => route.path !== '/')
+      .filter((route) => path.startsWith(`${route.path}/`))
+      .sort((a, b) => b.path.length - a.path.length)[0] ??
+    routes[0]
+  )
+}
+
 // ---------------------------------------------------------------
 // App
 // ---------------------------------------------------------------
@@ -80,9 +102,9 @@ function useHashRoute(): string {
 function App() {
   const path = useHashRoute()
 
-  // Exact-match lookup; fall back to Home if the hash doesn't
-  // match anything known (e.g., typo, stale bookmark).
-  const route = routes.find((r) => r.path === path) ?? routes[0]
+  // Resolve exact routes first, then keep known layout children inside
+  // their parent layout until those child pages have real content.
+  const route = findRoute(path)
   const Page = route.component
 
   return <Page />
