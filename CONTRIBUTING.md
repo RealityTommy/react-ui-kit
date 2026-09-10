@@ -11,7 +11,7 @@ below apply to anyone (including future-me) touching the code.
 - **Own the components.** shadcn-style — every component is meant to be
   copied into a consuming project and edited freely. Avoid clever
   abstractions that only make sense inside this repo.
-- **Narrow v1.** Layout and navigation only. New component types wait for v2.
+- **Narrow v1.** Layout, navigation, and display primitives (Card). Forms and feedback wait for v2.
 - **Plain, calm language.** Applies to component names, prop names, docs,
   and commit messages.
 - **Small commits.** One concern per commit — see below.

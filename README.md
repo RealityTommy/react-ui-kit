@@ -1,7 +1,8 @@
 # react-ui-kit
 
-A personal, opinionated React component library. Layouts and navigation for
-now — forms and feedback in v2. Built for reuse across my own projects.
+A personal, opinionated React component library. Layouts, navigation, and
+display primitives for now — forms and feedback in v2. Built for reuse across
+my own projects.
 
 Distribution model is shadcn-style: **copy the components you want into your
 consuming project and edit freely.** No npm install, no lock-in.
@@ -43,6 +44,7 @@ src/
 ├── components/
 │   ├── ui/                        ← shadcn-managed primitives
 │   │   ├── button.tsx             ← Button + LinkButton (React Aria)
+│   │   ├── card.tsx               ← Card (compound: Header/Title/Content/Footer/Action)
 │   │   ├── dialog.tsx             ← centered modal
 │   │   ├── dropdown-menu.tsx      ← click-to-open menu (used by Header)
 │   │   ├── sheet.tsx              ← side drawer (used by MobileNav)
@@ -92,6 +94,7 @@ verification steps, and debugging playbook.
 **Primitives (`ui/`):**
 
 - Button + LinkButton (React Aria)
+- Card (compound: `Card` + `CardHeader` + `CardTitle` + `CardDescription` + `CardContent` + `CardFooter` + `CardAction`)
 - Dialog (centered modal)
 - DropdownMenu (click-to-open, React Aria)
 - Sheet (side drawer)

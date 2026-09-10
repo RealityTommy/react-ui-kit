@@ -6,7 +6,7 @@ authorship model.
 ## Folder layout
 
 - **`ui/`** — Managed by the [shadcn CLI](https://ui.shadcn.com). These
-  are primitives (Button, Dialog, Sheet, Tabs, Tooltip, DropdownMenu)
+  are primitives (Button, Card, Dialog, Sheet, Tabs, Tooltip, DropdownMenu)
   generated from the `aria-nova` style preset with React Aria under the
   hood. See [`ui/README.md`](./ui/README.md) for the "don't hand-edit"
   rules.
