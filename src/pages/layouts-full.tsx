@@ -17,6 +17,7 @@ import { Sidebar } from '@/components/layout/sidebar'
 import { Columns } from '@/components/layout/columns'
 import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { DemoCard } from './_demo-card'
+import { SplitPaneDemo } from './_split-pane-demo'
 import { primaryNav, footerLinks } from './index'
 
 // ---------------------------------------------------------------
@@ -188,6 +189,18 @@ function LayoutsFullPage() {
                 </Columns>
               </section>
             </div>
+            <section className="space-y-5" aria-labelledby="full-split-heading">
+              <div className="space-y-2">
+                <h2 id="full-split-heading" className="text-2xl font-semibold tracking-tight">
+                  Split view
+                </h2>
+                <p className="text-muted-foreground">
+                  The SecondaryNav and Sidebar already add navigation layers, so the remaining main
+                  area splits evenly.
+                </p>
+              </div>
+              <SplitPaneDemo secondarySize="half" />
+            </section>
           </Main>
         </PageBody>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />

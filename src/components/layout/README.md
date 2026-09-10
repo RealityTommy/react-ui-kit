@@ -11,6 +11,7 @@ conventions below. Reference implementations:
 - `sidebar/` — multi-file component with barrel; Nova visual language
 - `header/` — multi-file component with barrel (includes MobileNav, SkipLink)
 - `layout-provider.tsx` — shared config context
+- `split-pane.tsx` — responsive main + secondary content layout
 - `types.ts` — shared types
 
 ## The authoring pattern

@@ -12,6 +12,7 @@ import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
 import { Columns } from '@/components/layout/columns'
 import { DemoCard } from './_demo-card'
+import { SplitPaneDemo } from './_split-pane-demo'
 import { primaryNav, footerLinks } from './index'
 
 // ---------------------------------------------------------------
@@ -135,6 +136,18 @@ function LayoutsSimplePage() {
             </Columns>
           </section>
         </div>
+        <section className="space-y-5" aria-labelledby="simple-split-heading">
+          <div className="space-y-2">
+            <h2 id="simple-split-heading" className="text-2xl font-semibold tracking-tight">
+              Split view
+            </h2>
+            <p className="text-muted-foreground">
+              The simple layout has enough room for a two-thirds main area and a one-third secondary
+              area.
+            </p>
+          </div>
+          <SplitPaneDemo secondarySize="third" />
+        </section>
       </Main>
       <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
     </PageShell>

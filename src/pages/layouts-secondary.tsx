@@ -14,6 +14,7 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import { Columns } from '@/components/layout/columns'
 import type { NavLeaf } from '@/components/layout/types'
 import { DemoCard } from './_demo-card'
+import { SplitPaneDemo } from './_split-pane-demo'
 import { primaryNav, footerLinks } from './index'
 
 // ---------------------------------------------------------------
@@ -170,6 +171,18 @@ function LayoutsSecondaryPage() {
               </Columns>
             </section>
           </div>
+          <section className="space-y-5" aria-labelledby="secondary-split-heading">
+            <div className="space-y-2">
+              <h2 id="secondary-split-heading" className="text-2xl font-semibold tracking-tight">
+                Split view
+              </h2>
+              <p className="text-muted-foreground">
+                The SecondaryNav sits above the page, so the content area can give the main and
+                secondary areas equal width.
+              </p>
+            </div>
+            <SplitPaneDemo secondarySize="half" />
+          </section>
         </Main>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
       </PageShell>
