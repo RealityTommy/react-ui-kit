@@ -1,21 +1,8 @@
 /**
- * LayoutsFullPage — demos Header + SecondaryNav + Sidebar + Main +
- * Footer with a card grid inside Main.
+ * LayoutsFullPage — reference guide for the most information-dense shell.
  *
- * All four chrome components together. Uses PageBody to wrap the
- * Sidebar + Main pair inside a shared width cap; Main goes full
- * so it doesn't double-cap. Stress-tests LayoutProvider's
- * multi-section drawer: mobile menu shows Primary + Documentation
- * (secondary) + On this page (sidebar).
- *
- * PageShell wraps the whole tree so Footer pins to the viewport
- * bottom. PageBody's `flex-1` grows the Sidebar + Main pair to
- * fill space between SecondaryNav and Footer.
- *
- * Columns config matches Sidebar (base=1 sm=2 md=2 lg=3, 6 cards):
- * Sidebar eats 240px AND SecondaryNav sits above, so the same
- * conservative cap applies. Uses the shared DemoCard scaffold so
- * every layout demo speaks the same visual language.
+ * Explains the cost and responsibility of combining section navigation, a
+ * sidebar, and a main reading area in one page composition.
  */
 
 import { Home, Palette, Puzzle, Rocket } from 'lucide-react'
@@ -62,12 +49,10 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
 // ---------------------------------------------------------------
 
 /**
- * Full-layout demo — Header + SecondaryNav + Sidebar + Main +
- * Footer with a 6-card grid. Mounted by the demo router at
+ * Full-layout reference page. Mounted by the demo router at
  * `#/layouts/full`.
  *
  * @example
- * // Registered in the routes table (src/pages/index.tsx):
  * { path: '/layouts/full', component: LayoutsFullPage }
  */
 function LayoutsFullPage() {
@@ -86,20 +71,91 @@ function LayoutsFullPage() {
         <PageBody>
           <Sidebar aria-label="On this page" />
           <Main size="full">
-            <h1 className="text-3xl font-semibold mb-4">Layouts / Full</h1>
-            <p className="text-muted-foreground mb-8">
-              Header + SecondaryNav + Sidebar + Main + Footer. Sidebar + Main are wrapped in
-              PageBody so the pair aligns with Header/Footer width. On mobile the hamburger drawer
-              stacks Primary + Documentation + On this page sections with dividers between them.
-              Grid below uses <code>Columns base=1 sm=2 md=2 lg=3</code> — same conservative cap as
-              the Sidebar demo since Main has the least room here (Sidebar + SecondaryNav both
-              competing for space).
-            </p>
-            <Columns base={1} sm={2} md={2} lg={3}>
-              {Array.from({ length: 6 }, (_, i) => (
-                <DemoCard key={i} title={`Card ${i + 1}`} />
-              ))}
-            </Columns>
+            <div className="space-y-14 pb-12">
+              <section className="max-w-3xl space-y-5 pt-6" aria-labelledby="full-heading">
+                <p className="text-sm font-medium text-muted-foreground">Layout reference · Combined navigation</p>
+                <h1 id="full-heading" className="text-4xl font-semibold tracking-tight">
+                  Use the full shell when the information architecture earns it.
+                </h1>
+                <p className="text-xl leading-8 text-muted-foreground">
+                  This composition combines a global Header, section-level navigation, a Sidebar,
+                  and a Main area. It can support complex products, but it also creates the most
+                  navigation to understand and maintain.
+                </p>
+                <p className="leading-7 text-muted-foreground">
+                  The goal is not to display every available navigation pattern. The goal is to
+                  give people two useful kinds of context: where they are within the larger product
+                  and where they are within the current section.
+                </p>
+              </section>
+
+              <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="full-anatomy-heading">
+                <div className="space-y-5">
+                  <h2 id="full-anatomy-heading" className="text-2xl font-semibold tracking-tight">
+                    What this layout is doing
+                  </h2>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>Header provides global identity and primary navigation.</li>
+                    <li>SecondaryNav provides a short list of section-level destinations.</li>
+                    <li>Sidebar provides deeper grouping and persistent orientation.</li>
+                    <li>Main stays responsible for the task, article, or workflow at hand.</li>
+                  </ul>
+                </div>
+                <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="full-recommendation-heading">
+                  <h2 id="full-recommendation-heading" className="text-lg font-semibold">
+                    Recommendation
+                  </h2>
+                  <p className="mt-3 leading-7 text-muted-foreground">
+                    Start with the simplest shell that works. Adopt this composition only when users
+                    genuinely need both a section switcher and deeper persistent navigation.
+                  </p>
+                </aside>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="full-decisions-heading">
+                <h2 id="full-decisions-heading" className="text-2xl font-semibold tracking-tight">
+                  Design and accessibility considerations
+                </h2>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div>
+                    <h3 className="text-lg font-semibold">Design decisions</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                      <li>Give each navigation layer a distinct job and a distinct visual role.</li>
+                      <li>Keep labels and active states consistent across the layers.</li>
+                      <li>Protect a readable Main width; more chrome should not mean less clarity.</li>
+                      <li>Test whether the combined shell still feels calm at realistic content lengths.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold">Accessibility decisions</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                      <li>Give every navigation landmark a unique, meaningful name.</li>
+                      <li>Keep the page heading in Main and preserve a logical reading order.</li>
+                      <li>Make the skip link useful by moving directly to the primary content.</li>
+                      <li>Confirm the mobile drawer presents the same hierarchy without duplication or confusion.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section className="space-y-5" aria-labelledby="full-example-heading">
+                <div className="max-w-2xl space-y-2">
+                  <h2 id="full-example-heading" className="text-2xl font-semibold tracking-tight">
+                    Example content area
+                  </h2>
+                  <p className="text-muted-foreground">
+                    This deliberately dense shell uses a conservative grid because both navigation
+                    layers consume horizontal space. In production, content density should follow
+                    the task—not the desire to fill every available column.
+                  </p>
+                </div>
+                <Columns base={1} sm={2} md={2} lg={3}>
+                  {Array.from({ length: 6 }, (_, i) => (
+                    <DemoCard key={i} title={`Card ${i + 1}`} />
+                  ))}
+                </Columns>
+              </section>
+            </div>
           </Main>
         </PageBody>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
