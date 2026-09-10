@@ -11,6 +11,8 @@
  * column count per breakpoint. `base` is required (mobile-first
  * default); larger breakpoints inherit from the next smaller one if
  * unspecified, matching Tailwind's natural mobile-first cascade.
+ * Set `responsive="container"` when the grid lives inside a split
+ * pane or another region whose width can differ from the viewport.
  *
  * Range: 1–6 columns per breakpoint. Covers the vast majority of
  * real-world grid designs; extend later if a specific consumer
@@ -44,6 +46,7 @@ type ColCount = 1 | 2 | 3 | 4 | 5 | 6
  * (e.g., `className="gap-10"`) for the rare custom gap.
  */
 type ColGap = 'sm' | 'md' | 'lg'
+type ColumnsResponsive = 'viewport' | 'container'
 
 type ColumnsProps = React.ComponentProps<'div'> & {
   /**
@@ -70,6 +73,12 @@ type ColumnsProps = React.ComponentProps<'div'> & {
    * @default "md"
    */
   gap?: ColGap
+  /**
+   * Breakpoint reference: the viewport by default, or the component's
+   * containing block when set to "container".
+   * @default "viewport"
+   */
+  responsive?: ColumnsResponsive
 }
 
 // ---------------------------------------------------------------
@@ -140,6 +149,51 @@ const twoXlColsClass: Record<ColCount, string> = {
   6: '2xl:grid-cols-6',
 }
 
+const containerSmColsClass: Record<ColCount, string> = {
+  1: '@sm:grid-cols-1',
+  2: '@sm:grid-cols-2',
+  3: '@sm:grid-cols-3',
+  4: '@sm:grid-cols-4',
+  5: '@sm:grid-cols-5',
+  6: '@sm:grid-cols-6',
+}
+
+const containerMdColsClass: Record<ColCount, string> = {
+  1: '@md:grid-cols-1',
+  2: '@md:grid-cols-2',
+  3: '@md:grid-cols-3',
+  4: '@md:grid-cols-4',
+  5: '@md:grid-cols-5',
+  6: '@md:grid-cols-6',
+}
+
+const containerLgColsClass: Record<ColCount, string> = {
+  1: '@lg:grid-cols-1',
+  2: '@lg:grid-cols-2',
+  3: '@lg:grid-cols-3',
+  4: '@lg:grid-cols-4',
+  5: '@lg:grid-cols-5',
+  6: '@lg:grid-cols-6',
+}
+
+const containerXlColsClass: Record<ColCount, string> = {
+  1: '@xl:grid-cols-1',
+  2: '@xl:grid-cols-2',
+  3: '@xl:grid-cols-3',
+  4: '@xl:grid-cols-4',
+  5: '@xl:grid-cols-5',
+  6: '@xl:grid-cols-6',
+}
+
+const containerTwoXlColsClass: Record<ColCount, string> = {
+  1: '@2xl:grid-cols-1',
+  2: '@2xl:grid-cols-2',
+  3: '@2xl:grid-cols-3',
+  4: '@2xl:grid-cols-4',
+  5: '@2xl:grid-cols-5',
+  6: '@2xl:grid-cols-6',
+}
+
 const gapClass: Record<ColGap, string> = {
   sm: 'gap-2',
   md: 'gap-4',
@@ -188,17 +242,56 @@ function Columns({
   xl,
   '2xl': twoXl,
   gap = 'md',
+  responsive = 'viewport',
   className,
   children,
   ...props
 }: ColumnsProps) {
+  const isContainerResponsive = responsive === 'container'
+  const gridClasses = [
+    'grid',
+    baseColsClass[base],
+    isContainerResponsive ? sm && containerSmColsClass[sm] : sm && smColsClass[sm],
+    isContainerResponsive ? md && containerMdColsClass[md] : md && mdColsClass[md],
+    isContainerResponsive ? lg && containerLgColsClass[lg] : lg && lgColsClass[lg],
+    isContainerResponsive ? xl && containerXlColsClass[xl] : xl && xlColsClass[xl],
+    isContainerResponsive
+      ? twoXl && containerTwoXlColsClass[twoXl]
+      : twoXl && twoXlColsClass[twoXl],
+    gapClass[gap],
+    className,
+  ]
+
+  const grid = (
+    <div data-slot="columns-grid" className={cn(...gridClasses)}>
+      {children}
+    </div>
+  )
+
+  if (isContainerResponsive) {
+    return (
+      <div
+        data-slot="columns"
+        data-responsive={responsive}
+        data-cols-base={base}
+        data-cols-sm={sm}
+        data-cols-md={md}
+        data-cols-lg={lg}
+        data-cols-xl={xl}
+        data-cols-2xl={twoXl}
+        data-gap={gap}
+        className="@container"
+        {...props}
+      >
+        {grid}
+      </div>
+    )
+  }
+
   return (
     <div
       data-slot="columns"
-      // Echo the resolved column counts to data attributes so
-      // consumers can style child overrides based on state (e.g.,
-      // a card that spans two columns at lg but one at base can
-      // read the current mode from an ancestor selector).
+      data-responsive={responsive}
       data-cols-base={base}
       data-cols-sm={sm}
       data-cols-md={md}
@@ -206,26 +299,7 @@ function Columns({
       data-cols-xl={xl}
       data-cols-2xl={twoXl}
       data-gap={gap}
-      className={cn(
-        // grid + base column count are always present.
-        'grid',
-        baseColsClass[base],
-        // Larger breakpoints only render a class when the prop is
-        // set — Tailwind's mobile-first cascade means an unset
-        // breakpoint keeps the smaller breakpoint's count, which
-        // is exactly what consumers expect.
-        sm && smColsClass[sm],
-        md && mdColsClass[md],
-        lg && lgColsClass[lg],
-        xl && xlColsClass[xl],
-        twoXl && twoXlColsClass[twoXl],
-        // Single gap applies to both rows and columns — CSS `gap`
-        // shorthand. If a consumer wants asymmetric gaps
-        // (`gap-x-4 gap-y-8`), they pass it via className and it
-        // overrides via cn()'s Tailwind conflict resolution.
-        gapClass[gap],
-        className,
-      )}
+      className={cn(...gridClasses)}
       {...props}
     >
       {children}
@@ -233,4 +307,4 @@ function Columns({
   )
 }
 
-export { Columns, type ColumnsProps, type ColCount, type ColGap }
+export { Columns, type ColumnsProps, type ColCount, type ColGap, type ColumnsResponsive }

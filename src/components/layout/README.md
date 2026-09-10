@@ -12,6 +12,9 @@ conventions below. Reference implementations:
 - `header/` — multi-file component with barrel (includes MobileNav, SkipLink)
 - `layout-provider.tsx` — shared config context
 - `split-pane.tsx` — responsive main + secondary content layout
+- `columns.tsx` — responsive equal-width grid; use
+  `responsive="container"` when its breakpoints should follow the
+  containing region instead of the viewport
 - `types.ts` — shared types
 
 ## The authoring pattern
