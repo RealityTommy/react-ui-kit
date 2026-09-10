@@ -169,7 +169,7 @@ function InlineParent({ item }: { item: NavParent }) {
  * two competing styles.
  */
 const inlineTriggerClass =
-  'inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+  'inline-flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
 // ---------------------------------------------------------------
 // Component
