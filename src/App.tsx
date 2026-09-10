@@ -23,10 +23,15 @@ import { routes } from '@/pages'
 // ---------------------------------------------------------------
 
 /**
- * Extract the pathname from `window.location.hash`.
+ * Extract the pathname from a `window.location.hash` string.
+ *
  * `#/`                    → "/"
  * `#/layouts/secondary`   → "/layouts/secondary"
  * empty / missing         → "/"
+ *
+ * @example
+ * hashToPath("#/layouts/sidebar")  // → "/layouts/sidebar"
+ * hashToPath("")                   // → "/"
  */
 function hashToPath(hash: string): string {
   if (!hash || hash === '#' || hash === '#/') return '/'
@@ -34,6 +39,17 @@ function hashToPath(hash: string): string {
   return hash.replace(/^#/, '') || '/'
 }
 
+/**
+ * Subscribe to `window.location.hash` changes and return the
+ * current pathname. Re-renders the caller on every hashchange.
+ *
+ * @example
+ * function App() {
+ *   const path = useHashRoute()
+ *   const route = routes.find((r) => r.path === path) ?? routes[0]
+ *   return <route.component />
+ * }
+ */
 function useHashRoute(): string {
   const [path, setPath] = React.useState(() => hashToPath(window.location.hash))
 
@@ -52,6 +68,15 @@ function useHashRoute(): string {
 // App
 // ---------------------------------------------------------------
 
+/**
+ * Root demo component. Picks a page from the `routes` table based
+ * on `window.location.hash` and renders it. Unknown hashes fall
+ * back to the first route (Home).
+ *
+ * @example
+ * // Mounted by main.tsx as the app root:
+ * createRoot(document.getElementById('root')!).render(<App />)
+ */
 function App() {
   const path = useHashRoute()
 

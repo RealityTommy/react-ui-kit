@@ -14,11 +14,6 @@
  * component exports with data exports there trips
  * `react-refresh/only-export-components`. Separate file =
  * lint-clean, cleaner separation of concerns.
- *
- * Usage:
- *   <DemoCard title="Card 1" />
- *   <DemoCard title="Card 2" description="Optional subheading" />
- *   <DemoCard title="Card 3" body="Custom body text" />
  */
 
 import {
@@ -29,6 +24,27 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 
+// ---------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------
+
+/**
+ * Placeholder card used across the layout demo pages. Renders a
+ * Nova Card with a title, optional description, and optional body
+ * text (default placeholder body if omitted).
+ *
+ * @example
+ * // Bare — just a title with the default placeholder body
+ * <DemoCard title="Card 1" />
+ *
+ * @example
+ * // With a subheading
+ * <DemoCard title="Card 2" description="Optional subheading" />
+ *
+ * @example
+ * // With custom body text
+ * <DemoCard title="Card 3" body="Custom body text" />
+ */
 export function DemoCard({
   title,
   description,

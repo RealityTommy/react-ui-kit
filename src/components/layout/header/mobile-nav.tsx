@@ -173,7 +173,18 @@ function DrawerParent({
  * Hamburger button that opens a right-side drawer with nav links.
  *
  * Rendered by <Header /> when the viewport is below its
- * `mobileBreakpoint` prop.
+ * `mobileBreakpoint` prop. Not exported from the header barrel —
+ * consumers use <Header />, which decides when to render this.
+ *
+ * @example
+ * // Rendered internally by Header (not called directly):
+ * <MobileNav
+ *   nav={primaryNav}
+ *   secondaryNav={ctx.secondaryNav}
+ *   secondaryNavLabel={ctx.secondaryNavLabel}
+ *   sidebarNav={ctx.sidebarNav}
+ *   sidebarNavLabel={ctx.sidebarNavLabel}
+ * />
  */
 function MobileNav({
   nav,

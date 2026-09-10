@@ -17,6 +17,20 @@ import { cn } from 'cn'
 // Variants
 // ---------------------------------------------------------------
 
+/**
+ * Container variant classes — max-width per `size` value.
+ *
+ * Exported so wrapper components can reuse the exact class output
+ * without re-implementing the size mapping. Header, Footer, Main,
+ * PageBody, and SecondaryNav all delegate width to Container via
+ * this function.
+ *
+ * @example
+ * // Compose Container's width behavior into a custom wrapper:
+ * <div className={cn(containerVariants({ size: "xl" }), "border")}>
+ *   …
+ * </div>
+ */
 const containerVariants = cva(
   // Base: fluid width, centered, with responsive horizontal padding.
   'mx-auto w-full px-4 sm:px-6 lg:px-8',

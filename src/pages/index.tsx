@@ -34,6 +34,12 @@ type Route = {
 /**
  * Route table for the hash router in App.tsx. First entry is the
  * home / fallback route — unknown hashes fall back to it.
+ *
+ * @example
+ * // Consumed by App.tsx's hash router:
+ * const route = routes.find((r) => r.path === path) ?? routes[0]
+ * const Page = route.component
+ * return <Page />
  */
 const routes: Route[] = [
   { path: '/', component: HomePage },
@@ -50,6 +56,10 @@ const routes: Route[] = [
  * Primary nav shown in Header on every demo page. `Home` is a
  * plain leaf; `Layouts` is a parent with children — exercises both
  * NavLeaf and NavParent rendering paths in the header.
+ *
+ * @example
+ * // Passed to Header on every demo page:
+ * <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
   { href: '#/', label: 'Home' },
@@ -101,6 +111,10 @@ const GithubIcon: LucideIcon = (({ className, ...props }: React.SVGProps<SVGSVGE
  * GitHub is marked `external: true` so Footer renders proper
  * target="_blank" + rel + a screen-reader hint that a new tab opens
  * (WCAG G201). The inline GithubIcon renders before the label.
+ *
+ * @example
+ * // Passed to Footer on every demo page:
+ * <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
  */
 const footerLinks: NavLeaf[] = [
   {

@@ -32,6 +32,10 @@ import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
+// ---------------------------------------------------------------
+// Demo config
+// ---------------------------------------------------------------
+
 const sectionNav: NavLeaf[] = [
   { href: '#/layouts/full', label: 'Overview' },
   { href: '#/layouts/full/install', label: 'Installation' },
@@ -53,6 +57,19 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
   },
 ]
 
+// ---------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------
+
+/**
+ * Full-layout demo — Header + SecondaryNav + Sidebar + Main +
+ * Footer with a 6-card grid. Mounted by the demo router at
+ * `#/layouts/full`.
+ *
+ * @example
+ * // Registered in the routes table (src/pages/index.tsx):
+ * { path: '/layouts/full', component: LayoutsFullPage }
+ */
 function LayoutsFullPage() {
   return (
     <LayoutProvider

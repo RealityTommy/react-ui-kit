@@ -33,6 +33,10 @@ import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
+// ---------------------------------------------------------------
+// Demo config
+// ---------------------------------------------------------------
+
 // Sample sidebar entries — mix of grouped and one flat item to
 // exercise both rendering paths.
 const sidebarEntries: (NavLeaf | NavGroup)[] = [
@@ -50,6 +54,18 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
   },
 ]
 
+// ---------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------
+
+/**
+ * Sidebar-layout demo — Header + Sidebar + Main + Footer with a
+ * 6-card grid. Mounted by the demo router at `#/layouts/sidebar`.
+ *
+ * @example
+ * // Registered in the routes table (src/pages/index.tsx):
+ * { path: '/layouts/sidebar', component: LayoutsSidebarPage }
+ */
 function LayoutsSidebarPage() {
   return (
     <LayoutProvider

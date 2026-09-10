@@ -18,6 +18,18 @@ import { Columns } from '@/components/layout/columns'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
+// ---------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------
+
+/**
+ * Home page — Header + Main + Footer with an 8-card feature grid.
+ * Mounted by the demo router at `#/`.
+ *
+ * @example
+ * // Registered in the routes table (src/pages/index.tsx):
+ * { path: '/', component: HomePage }
+ */
 function HomePage() {
   return (
     <PageShell>

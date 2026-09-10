@@ -28,6 +28,10 @@ import type { NavLeaf } from '@/components/layout/types'
 import { DemoCard } from './_demo-card'
 import { primaryNav, footerLinks } from './index'
 
+// ---------------------------------------------------------------
+// Demo config
+// ---------------------------------------------------------------
+
 // Sample section tabs — kept in-page since this is demo content.
 const sectionNav: NavLeaf[] = [
   { href: '#/layouts/secondary', label: 'Overview' },
@@ -36,6 +40,19 @@ const sectionNav: NavLeaf[] = [
   { href: '#/layouts/secondary/tokens', label: 'Tokens' },
 ]
 
+// ---------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------
+
+/**
+ * Secondary-layout demo — Header + SecondaryNav + Main + Footer
+ * with an 8-card grid. Mounted by the demo router at
+ * `#/layouts/secondary`.
+ *
+ * @example
+ * // Registered in the routes table (src/pages/index.tsx):
+ * { path: '/layouts/secondary', component: LayoutsSecondaryPage }
+ */
 function LayoutsSecondaryPage() {
   return (
     <LayoutProvider
