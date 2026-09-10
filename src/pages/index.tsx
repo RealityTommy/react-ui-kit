@@ -18,6 +18,7 @@
 import type { LucideIcon } from 'lucide-react'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 import { HomePage } from './home'
+import { LayoutsSimplePage } from './layouts-simple'
 import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
@@ -43,6 +44,7 @@ type Route = {
  */
 const routes: Route[] = [
   { path: '/', component: HomePage },
+  { path: '/layouts/simple', component: LayoutsSimplePage },
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
@@ -65,7 +67,7 @@ const primaryNav: NavItem[] = [
   {
     label: 'Layouts',
     children: [
-      { href: '#/', label: 'Simple' },
+      { href: '#/layouts/simple', label: 'Simple' },
       { href: '#/layouts/secondary', label: 'Secondary' },
       { href: '#/layouts/sidebar', label: 'Sidebar' },
       { href: '#/layouts/full', label: 'Full' },
