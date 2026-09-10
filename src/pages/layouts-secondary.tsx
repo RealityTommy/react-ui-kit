@@ -73,12 +73,12 @@ function LayoutsSecondaryPage() {
                 >
                   What is this layout?
                 </h2>
-                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                  <li>The Header handles the main site or product navigation.</li>
-                  <li>The second row holds the pages that belong to this section.</li>
-                  <li>Main stays focused on the page someone came to read or use.</li>
-                  <li>On smaller screens, the same links move into the menu.</li>
-                </ul>
+                <p className="leading-7 text-muted-foreground">
+                  This layout adds a short row of section links below the Header. The Header handles
+                  the wider site or product navigation, while the second row keeps a small group of
+                  related pages together. Main stays focused on the page someone came to read or
+                  use, and the links move into the menu on smaller screens.
+                </p>
               </div>
             </section>
 
@@ -87,11 +87,12 @@ function LayoutsSecondaryPage() {
                 <h2 id="secondary-use-heading" className="text-2xl font-semibold tracking-tight">
                   When to use this layout
                 </h2>
-                <p className="mt-3 leading-7 text-muted-foreground">
-                  Use it when the pages are siblings and people may move between them often. It
-                  works well for a small documentation section, a product area, or a group of
-                  related steps.
-                </p>
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                  <li>When the pages are siblings and people may move between them often.</li>
+                  <li>
+                    For a small documentation section, a product area, or a group of related steps.
+                  </li>
+                </ul>
               </div>
               <aside
                 className="rounded-xl border bg-muted/40 p-6"
@@ -100,11 +101,13 @@ function LayoutsSecondaryPage() {
                 <h2 id="secondary-recommendation-heading" className="text-lg font-semibold">
                   When not to use this layout
                 </h2>
-                <p className="mt-3 leading-7 text-muted-foreground">
-                  Do not use this row for a long list of links or several levels of grouping. A
-                  sidebar is probably easier to understand. If the page has only one or two related
-                  pages, the extra row may not be needed at all.
-                </p>
+                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <li>When the section has a long list of links or several levels of grouping.</li>
+                  <li>
+                    When only one or two related pages exist and the extra row would not help.
+                  </li>
+                  <li>When a sidebar would make the deeper page structure easier to understand.</li>
+                </ul>
               </aside>
             </section>
 

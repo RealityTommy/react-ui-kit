@@ -85,14 +85,12 @@ function LayoutsSidebarPage() {
                   >
                     What is this layout?
                   </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>
-                      The page keeps the sidebar and content lined up with the Header and Footer.
-                    </li>
-                    <li>The sidebar groups related pages and shows where someone is now.</li>
-                    <li>Main gets the rest of the space for reading or getting work done.</li>
-                    <li>On smaller screens, the sidebar becomes a section in the menu.</li>
-                  </ul>
+                  <p className="leading-7 text-muted-foreground">
+                    This layout places a section map beside the main content. The sidebar groups
+                    related pages and shows where someone is now, while Main gets the rest of the
+                    space for reading or getting work done. On smaller screens, the sidebar becomes
+                    a section in the menu.
+                  </p>
                 </div>
               </section>
 
@@ -101,10 +99,16 @@ function LayoutsSidebarPage() {
                   <h2 id="sidebar-use-heading" className="text-2xl font-semibold tracking-tight">
                     When to use this layout
                   </h2>
-                  <p className="mt-3 leading-7 text-muted-foreground">
-                    Use it when a section has enough pages that people need help finding their way
-                    around. It works well for documentation, settings, and account areas.
-                  </p>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      When a section has enough pages that people need help finding their way
+                      around.
+                    </li>
+                    <li>
+                      For documentation, settings, account areas, and other sections with several
+                      related pages.
+                    </li>
+                  </ul>
                 </div>
                 <aside
                   className="rounded-xl border bg-muted/40 p-6"
@@ -113,11 +117,14 @@ function LayoutsSidebarPage() {
                   <h2 id="sidebar-recommendation-heading" className="text-lg font-semibold">
                     When not to use this layout
                   </h2>
-                  <p className="mt-3 leading-7 text-muted-foreground">
-                    Do not add a sidebar just because there is room for one. It can make a simple
-                    page feel heavier. It is also a poor fit when the links are few, temporary, or
-                    unrelated to the content someone is viewing.
-                  </p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                    <li>When the page is simple and a sidebar would make it feel heavier.</li>
+                    <li>
+                      When the links are few, temporary, or unrelated to the content someone is
+                      viewing.
+                    </li>
+                    <li>When there is not enough content to justify a persistent section map.</li>
+                  </ul>
                 </aside>
               </section>
 

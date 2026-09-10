@@ -92,12 +92,12 @@ function LayoutsFullPage() {
                   <h2 id="full-anatomy-heading" className="text-2xl font-semibold tracking-tight">
                     What is this layout?
                   </h2>
-                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                    <li>The Header handles the main site or product navigation.</li>
-                    <li>The second row holds a short list of pages in this section.</li>
-                    <li>The Sidebar holds deeper groups of pages.</li>
-                    <li>Main stays focused on the task, article, or workflow.</li>
-                  </ul>
+                  <p className="leading-7 text-muted-foreground">
+                    This layout combines the Header, a second row of section links, a Sidebar, and
+                    the main content. The Header provides the wider navigation, the second row keeps
+                    a short list of section pages visible, and the Sidebar holds deeper groups of
+                    pages. Main stays focused on the task, article, or workflow.
+                  </p>
                 </div>
               </section>
 
@@ -106,11 +106,16 @@ function LayoutsFullPage() {
                   <h2 id="full-use-heading" className="text-2xl font-semibold tracking-tight">
                     When to use this layout
                   </h2>
-                  <p className="mt-3 leading-7 text-muted-foreground">
-                    Use it when people need both a short list of section pages and a deeper list of
-                    pages within that section. Large documentation areas and complex products may
-                    need this much help getting around.
-                  </p>
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      When people need both a short list of section pages and a deeper list of pages
+                      within that section.
+                    </li>
+                    <li>
+                      For large documentation areas and complex products where people need both the
+                      bigger picture and a detailed map.
+                    </li>
+                  </ul>
                 </div>
                 <aside
                   className="rounded-xl border bg-muted/40 p-6"
@@ -119,11 +124,16 @@ function LayoutsFullPage() {
                   <h2 id="full-recommendation-heading" className="text-lg font-semibold">
                     When not to use this layout
                   </h2>
-                  <p className="mt-3 leading-7 text-muted-foreground">
-                    Do not use this layout to make a page feel more complete. If one row of links or
-                    a sidebar is enough, stop there. More navigation can make it harder to know
-                    where to start.
-                  </p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                    <li>
+                      When the page would be using extra navigation just to make it feel more
+                      complete.
+                    </li>
+                    <li>
+                      When one row of links or a sidebar is enough for the people using the page.
+                    </li>
+                    <li>When the additional layers would make it harder to know where to start.</li>
+                  </ul>
                 </aside>
               </section>
 
