@@ -135,7 +135,7 @@ function SecondaryNav({
         // Full-width landmark with vertical padding for row
         // breathing room. Horizontal alignment is delegated to
         // the inner Container so tabs line up with Header/Footer.
-        'w-full py-3',
+        'w-full py-3 mb-2',
       )}
     >
       <Container size={size === 'full' ? 'full' : '2xl'}>

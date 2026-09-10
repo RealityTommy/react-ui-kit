@@ -78,7 +78,7 @@ function Main({ className, size = 'contained', children, ...props }: MainProps) 
         // flex-1 + min-w-0 lets Main fill remaining space when it's
         // a flex child (Sidebar layouts). No-op outside flex context.
         'flex-1 min-w-0',
-        'pt-3 lg:pt-4',
+        'pt-3 pb-12 lg:pt-4',
         className,
       )}
       {...props}
