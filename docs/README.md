@@ -30,6 +30,7 @@ Start with the role guides in [`roles/`](./roles/) and the reusable artifacts in
 
 - [`architecture/`](./architecture/) — system boundaries, repository structure, and ownership.
 - [`patterns/`](./patterns/) — reusable page and workflow patterns.
+- [`workflows/search-results.md`](./workflows/search-results.md) — the first complete workflow proof and its delivery artifacts.
 - [`roles/`](./roles/) — guidance for business stakeholders, business analysts, designers, developers, and testers.
 - [`process/`](./process/) — how an idea becomes a documented, implemented, and verified experience.
 - [`decisions/`](./decisions/) — decisions that shape the project and their tradeoffs.
@@ -59,3 +60,4 @@ Examples and guidance must be generic, original, and safe to publish. Do not add
 - [Understand the system layers](./architecture/system-layers.md)
 - [See the repository map](./architecture/repository-map.md)
 - [Read the consumer guide](./consumer-guide.md)
+- [Study the search-and-results workflow](./workflows/search-results.md)

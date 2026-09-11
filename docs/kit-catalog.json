@@ -189,6 +189,25 @@
         "half": "Main 1/2, Secondary 1/2"
       },
       "constraints": ["Main first in DOM and reading order.", "Stack vertically below the large breakpoint.", "Use container-responsive Columns inside panes."]
+    },
+    {
+      "id": "pattern.search-results",
+      "purpose": "Search a bounded collection and recover clearly from validation, empty, and request-failure states.",
+      "recommendedWhen": ["People know words that may identify a record.", "Results can be inspected as a short list."],
+      "avoidWhen": ["People need complex faceting or bulk data-grid operations.", "A browse-first experience is more useful than search."],
+      "components": ["layout.page-shell", "layout.skip-link", "layout.header", "layout.main", "layout.footer", "ui.button", "ui.card"],
+      "example": "src/pages/search-results.tsx",
+      "documentation": "docs/workflows/search-results.md",
+      "artifacts": [
+        "docs/workflows/artifacts/user-story.md",
+        "docs/workflows/artifacts/acceptance-criteria.md",
+        "docs/workflows/artifacts/implementation-brief.md",
+        "docs/workflows/artifacts/test-scenarios.md",
+        "docs/workflows/artifacts/test-cases.md",
+        "docs/workflows/artifacts/accessibility.md"
+      ],
+      "states": ["initial", "loading", "results", "empty", "error", "validation", "success"],
+      "constraints": ["Keep the form available while showing results.", "Use stable IDs for the form, field, submit button, and live status.", "Preserve keyboard access and narrow-width reflow."]
     }
   ],
   "roles": {

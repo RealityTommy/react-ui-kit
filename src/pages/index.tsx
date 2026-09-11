@@ -22,6 +22,7 @@ import { LayoutsSimplePage } from './layouts-simple'
 import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
+import { SearchResultsPage } from './search-results'
 
 // ---------------------------------------------------------------
 // Routes
@@ -48,6 +49,7 @@ const routes: Route[] = [
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
+  { path: '/workflows/search-results', component: SearchResultsPage },
 ]
 
 // ---------------------------------------------------------------
@@ -64,6 +66,7 @@ const routes: Route[] = [
  * <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
+  { href: '#/workflows/search-results', label: 'Search workflow' },
   {
     label: 'Layouts',
     children: [

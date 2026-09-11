@@ -26,6 +26,7 @@ For a guided tour, see [`docs/README.md`](./docs/README.md).
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
 For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
+For a complete workflow proof, see [`docs/workflows/search-results.md`](./docs/workflows/search-results.md).
 
 ```powershell
 # Install dependencies
@@ -98,6 +99,7 @@ Each meaningful folder has its own README explaining what belongs there, why it 
 - [`docs/README.md`](./docs/README.md) — documentation map and learning paths
 - [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
 - [`templates/README.md`](./templates/README.md) — copyable project artifacts
+- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — complete search-and-results workflow proof
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
 verification steps, and debugging playbook.
