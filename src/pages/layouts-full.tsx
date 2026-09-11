@@ -67,7 +67,7 @@ function LayoutsFullPage() {
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Documentation" />
         <PageBody>
           <Sidebar aria-label="On this page" />

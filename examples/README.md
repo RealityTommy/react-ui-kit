@@ -1,8 +1,8 @@
 # Examples
 
-Examples are complete, realistic demonstrations of the kit in use. They should show a user goal, the selected pattern, important states, responsive behavior, accessibility considerations, and verification expectations.
+The repository does not yet have a separate `examples/` package. The current complete reference demonstrations live in [`src/pages/`](../src/pages/) and are documented through the workflow guides.
 
-Examples are references, not application dependencies. Do not treat demo routes or demo content as a stable consumer API.
+Future examples should show a user goal, the selected pattern, important states, responsive behavior, accessibility considerations, and verification expectations. Examples are references, not application dependencies. Do not treat demo routes or demo content as a stable consumer API.
 
 ## Continue
 

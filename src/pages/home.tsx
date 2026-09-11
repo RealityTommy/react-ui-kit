@@ -1,5 +1,5 @@
 /**
- * HomePage — the ongoing introduction to react-ui-kit.
+ * HomePage — the ongoing introduction to Application Delivery Kit.
  *
  * This page is for the project itself. As the kit grows, use it to explain
  * what has been added, why it exists, and where to start.
@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+      <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-16 pb-12">
           <section className="max-w-3xl space-y-6 pt-8" aria-labelledby="intro-heading">
@@ -35,9 +35,9 @@ function HomePage() {
               A place to start when a page needs to make sense.
             </h1>
             <p className="text-xl leading-8 text-muted-foreground">
-              react-ui-kit is a personal collection of layout, navigation, and display pieces for
-              building my own projects. I am using it to work through the page decisions that are
-              easy to skip when the focus is on getting features out the door.
+              Application Delivery Kit is a personal collection of layout, navigation, and display
+              pieces for building my own projects. I am using it to work through the page decisions
+              that are easy to skip when the focus is on getting features out the door.
             </p>
             <p className="max-w-2xl leading-7 text-muted-foreground">
               This page will grow with the project. As more pieces are added, this is where I will
@@ -95,7 +95,10 @@ function HomePage() {
             </Columns>
           </section>
 
-          <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)]" aria-labelledby="start-heading">
+          <section
+            className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)]"
+            aria-labelledby="start-heading"
+          >
             <div className="space-y-5">
               <h2 id="start-heading" className="text-2xl font-semibold tracking-tight">
                 Where to start
@@ -108,8 +111,13 @@ function HomePage() {
               <ol className="list-decimal space-y-3 pl-5 leading-7 text-muted-foreground marker:font-medium marker:text-foreground">
                 <li>Open Simple and look at how much room the content gets.</li>
                 <li>Compare the column choices at each screen size.</li>
-                <li>Move to Secondary or Sidebar only when the page needs more help getting around.</li>
-                <li>Use Full last. It combines the other navigation patterns and carries the most cost.</li>
+                <li>
+                  Move to Secondary or Sidebar only when the page needs more help getting around.
+                </li>
+                <li>
+                  Use Full last. It combines the other navigation patterns and carries the most
+                  cost.
+                </li>
               </ol>
             </div>
             <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="default-heading">
@@ -134,21 +142,37 @@ function HomePage() {
               </p>
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
-              <a href="#/layouts/simple" className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <a
+                href="#/layouts/simple"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
                 <h3 className="font-semibold">Simple</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Header, Main, and Footer.</p>
               </a>
-              <a href="#/layouts/secondary" className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <a
+                href="#/layouts/secondary"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
                 <h3 className="font-semibold">Secondary</h3>
-                <p className="mt-2 text-sm text-muted-foreground">A small group of related pages.</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  A small group of related pages.
+                </p>
               </a>
-              <a href="#/layouts/sidebar" className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <a
+                href="#/layouts/sidebar"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
                 <h3 className="font-semibold">Sidebar</h3>
                 <p className="mt-2 text-sm text-muted-foreground">A larger section with a map.</p>
               </a>
-              <a href="#/layouts/full" className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <a
+                href="#/layouts/full"
+                className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
                 <h3 className="font-semibold">Full</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Both navigation layers together.</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Both navigation layers together.
+                </p>
               </a>
             </Columns>
           </section>

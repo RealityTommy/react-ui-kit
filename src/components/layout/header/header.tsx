@@ -180,7 +180,7 @@ const inlineTriggerClass =
  *
  * @example
  * <Header
- *   logo={{ href: "/", label: "react-ui-kit" }}
+ *   logo={{ href: "/", label: "Application Delivery Kit" }}
  *   nav={[
  *     { href: "/docs", label: "Docs" },
  *     { href: "/components", label: "Components" },

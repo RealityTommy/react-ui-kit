@@ -16,13 +16,7 @@
  * lint-clean, cleaner separation of concerns.
  */
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 // ---------------------------------------------------------------
 // Component

@@ -20,4 +20,4 @@
  * @example
  * <div className={cn("p-2 text-sm", isActive && "bg-muted", className)} />
  */
-export { cn } from "cn"
+export { cn } from 'cn'

@@ -58,7 +58,7 @@ function LayoutsSidebarPage() {
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <PageBody>
           <Sidebar aria-label="Documentation" />
           <Main size="full">

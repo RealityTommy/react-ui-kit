@@ -1,6 +1,6 @@
 # Tests
 
-Tests prove behavior and structure that should remain reliable as the implementation evolves.
+An automated test suite has not yet been added. This directory records the verification contract so a future test runner can prove behavior and structure that should remain reliable as the implementation evolves.
 
 Prefer checks that reflect user-observable contracts:
 

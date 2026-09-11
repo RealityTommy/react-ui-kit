@@ -48,7 +48,7 @@ function LayoutsSecondaryPage() {
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Documentation" />
         <Main>
           <div className="space-y-14 pb-12">

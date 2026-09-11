@@ -63,7 +63,7 @@ const routes: Route[] = [
  *
  * @example
  * // Passed to Header on every demo page:
- * <Header logo={{ href: '#/', label: 'react-ui-kit' }} nav={primaryNav} />
+ * <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
   { href: '#/workflows/search-results', label: 'Search workflow' },

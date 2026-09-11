@@ -4,11 +4,12 @@ A practical, reusable system for turning product needs into clear, accessible,
 testable applications. The current reference implementation is React, but the
 patterns, delivery artifacts, and guidance are intended to remain portable.
 
-This repository is both a working UI kit and a public guide to the decisions,
-structures, examples, and quality checks behind it.
+This repository is both a working reference application and a public guide to the decisions,
+structures, delivery artifacts, examples, and quality checks behind it.
 
-Distribution model is shadcn-style: **copy the components you want into your
-consuming project and edit freely.** No npm install, no lock-in.
+Distribution model is shadcn-style: **copy the components and guidance you need into your
+consuming project and edit freely.** The kit is not currently published as an npm package;
+the repository itself uses pnpm for development.
 
 ## Stack
 
@@ -43,9 +44,10 @@ pnpm build
 
 Node 24 + pnpm 12 (via corepack) recommended.
 
-The demo app is a hash-routed showcase of the layout components — visit
-`#/`, `#/layouts/secondary`, `#/layouts/sidebar`, `#/layouts/full` (or use
-the Layouts dropdown in the header nav) to see each composition pattern.
+The demo app is a hash-routed reference application — visit `#/`,
+`#/layouts/simple`, `#/layouts/secondary`, `#/layouts/sidebar`, `#/layouts/full`,
+or `#/workflows/search-results` (or use the header navigation) to see the
+current layout and workflow proofs.
 
 ## Repo structure
 
@@ -79,12 +81,15 @@ src/
 │       └── sidebar/               ← multi-file: Sidebar (labeled + icon-only)
 │           ├── index.ts
 │           └── sidebar.tsx
-├── pages/                         ← demo pages (not part of the library)
+├── pages/                         ← reference pages (not consumer API)
 │   ├── index.tsx                  ← routes table + shared demo config
 │   ├── home.tsx
+│   ├── layouts-simple.tsx
 │   ├── layouts-secondary.tsx
 │   ├── layouts-sidebar.tsx
-│   └── layouts-full.tsx
+│   ├── layouts-full.tsx
+│   ├── search-results.tsx
+│   └── _*.tsx                     ← private demo-only helpers
 ├── lib/
 │   └── utils.ts                   ← cn() helper
 ├── App.tsx                        ← hash router for the demo

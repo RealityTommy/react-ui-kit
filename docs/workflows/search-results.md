@@ -51,12 +51,12 @@ It may customize record fields, wording, routing, and visual tokens. It must not
 
 ## Delivery artifacts
 
-- [User story](./artifacts/user-story.md)
-- [Acceptance criteria](./artifacts/acceptance-criteria.md)
-- [Developer implementation brief](./artifacts/implementation-brief.md)
-- [Tester scenarios](./artifacts/test-scenarios.md)
-- [Test cases](./artifacts/test-cases.md)
-- [Accessibility guidance](./artifacts/accessibility.md)
+- [User story](../../templates/user-story.md)
+- [Acceptance criteria](../../templates/acceptance-criteria.md)
+- [Developer implementation brief](../../templates/implementation-brief.md)
+- [Tester scenarios](../../templates/test-scenarios.md)
+- [Test cases](../../templates/test-cases.md)
+- [Accessibility guidance](../../templates/accessibility.md)
 
 ## Verification
 

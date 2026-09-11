@@ -8,7 +8,11 @@ The kit has four cooperating layers. Each layer has a different audience and res
 
 ## Layer 1: Foundations
 
-Foundations are the reusable visual and behavioral building blocks:
+Foundations are the reusable visual and behavioral building blocks. The current
+reference implementation includes layout, navigation, display, and selected interaction
+primitives; other foundation areas are documented as future scope.
+
+Current and intended foundation areas:
 
 - typography;
 - color and semantic tokens;
@@ -18,7 +22,10 @@ Foundations are the reusable visual and behavioral building blocks:
 - status and feedback;
 - tables, dialogs, menus, and navigation.
 
-Foundations should have stable, understandable APIs and accessible default behavior.
+The current repository does not yet provide every area in this list. Forms, tables,
+and additional feedback patterns remain planned until they have an implementation,
+documentation, and verification proof. Foundations should have stable, understandable
+APIs and accessible default behavior.
 
 ## Layer 2: Application patterns
 

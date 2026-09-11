@@ -1,16 +1,14 @@
 # Templates
 
-This directory contains copyable project artifacts. Templates should work as starting points for real projects while preserving the important behavior and quality expectations of the selected pattern.
+This directory contains the copyable project artifacts used by the Application Delivery Kit. Each artifact includes a short explanation, an example, and a reusable version with replacement fields.
 
-Future artifact groups include:
+Available artifacts:
 
-- user stories;
-- acceptance criteria;
-- business rules;
-- implementation briefs;
-- test scenarios;
-- test cases;
-- accessibility reviews;
-- release-readiness checks.
+- [User story](./user-story.md)
+- [Acceptance criteria](./acceptance-criteria.md)
+- [Implementation brief](./implementation-brief.md)
+- [Tester scenarios](./test-scenarios.md)
+- [Test cases](./test-cases.md)
+- [Accessibility guidance](./accessibility.md)
 
-Use the [work process](../docs/process/README.md) to understand when each artifact is useful.
+Use the [work process](../docs/process/README.md) to understand when each artifact is useful. Pattern-specific examples link back here when they use these artifacts.

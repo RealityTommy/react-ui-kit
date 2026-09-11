@@ -1,5 +1,5 @@
 /**
- * Vite configuration for the React UI kit demo application.
+ * Vite configuration for the Application Delivery Kit reference application.
  *
  * Registers the React and Tailwind plugins and resolves the `@` alias to
  * `src` so application imports stay stable as the demo grows.
