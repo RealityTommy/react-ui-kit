@@ -1,8 +1,10 @@
 # Definition-of-done record
 
-## Learn it
+## What this is
 
-A definition-of-done record is the team’s short completion summary. It connects the request, decisions, implementation, verification, and remaining limits. It prevents “the build passed” from being mistaken for “the experience is complete.”
+This is the team’s short answer to: “What did we build, how did we check it, and what still needs to be known?”
+
+It keeps “the build passed” from being confused with “the experience is ready.”
 
 ## Example
 
@@ -12,19 +14,19 @@ A definition-of-done record is the team’s short completion summary. It connect
 Name: Search and Results workflow
 User goal: Find a record by words the person knows.
 
-## Evidence
+## What we checked
 
-- User story and acceptance criteria reviewed.
-- Normal, loading, empty, validation, error, recovery, and success states demonstrated.
-- Keyboard and 320px behavior checked.
-- Accessibility guidance and stable hooks documented.
-- `pnpm lint` passed with accepted baseline warnings.
+- The user story and acceptance criteria were reviewed.
+- Normal search, loading, empty, validation, error, recovery, and success states were demonstrated.
+- Keyboard use and 320px behavior were checked.
+- Accessibility guidance and test hooks were documented.
+- `pnpm lint` passed with the accepted baseline warnings.
 - `pnpm build` passed.
 
-## Limitations
+## What is still limited
 
-- The lookup is deterministic demo behavior, not a real service integration.
-- Browser automation has not yet been added.
+- The search uses deterministic demo data, not a real service.
+- Browser automation has not been added yet.
 
 ## Decision
 
@@ -40,18 +42,18 @@ Date: [YYYY-MM-DD]
 ## Work
 
 Name: [feature, workflow, or pattern]
-User goal: [person's goal]
+User goal: [what the person needs to accomplish]
 
-## Evidence
+## What we checked
 
-- [Need, story, and acceptance criteria]
-- [Design/workflow decisions]
-- [Implementation and state coverage]
-- [Test scenarios/cases and results]
-- [Accessibility and responsive checks]
-- [Build, lint, or other required checks]
+- [User story and acceptance criteria]
+- [Design or workflow decisions]
+- [Main and alternate behavior]
+- [Test scenarios and cases]
+- [Accessibility and responsive behavior]
+- [Required project checks]
 
-## Limitations
+## What is still limited
 
 - [Known limitation, unknown, or intentional deferral]
 
@@ -63,9 +65,9 @@ Reviewed by: [name]
 Date: [YYYY-MM-DD]
 ```
 
-Keep true:
+## Keep true
 
-- Evidence should point to actual artifacts or recorded checks.
+- Point to real evidence or recorded checks.
 - Name limitations instead of hiding them.
-- A “yes” means the agreed definition of done is satisfied, not that every future improvement is complete.
-- Keep follow-up work separate from the completion decision.
+- “Done” means the agreed work is complete, not that the product will never change.
+- Keep future improvements separate from the completion decision.

@@ -1,15 +1,15 @@
 # Acceptance criteria
 
-## Learn it
+## What this is
 
-Acceptance criteria are small stories about behavior. The most useful format is:
+Acceptance criteria are short examples of how the feature should behave. They help the team agree on what “working” means before anyone starts building.
 
-- **Given** — the starting situation
-- **When** — the person’s action
-- **Then** — the result they should observe
-- **And** — another result that must also be true
+Use this format:
 
-This gives the team one shared sentence for building and checking the experience. The example below is from Search and Results.
+- **Given** — where we start
+- **When** — what the person does
+- **Then** — what should happen
+- **And** — what else must be true
 
 ## Example
 
@@ -17,14 +17,14 @@ This gives the team one shared sentence for building and checking the experience
 
 - **Given** the person is on the Search and Results page
 - **When** they enter `accessibility` and submit the form
-- **Then** the page shows that the search is loading and then shows matching records
+- **Then** the page shows loading and then matching records
 - **And** the result count and each record’s action are understandable
 
 ### Blank search
 
 - **Given** the search field is empty or contains only spaces
 - **When** the person submits the form
-- **Then** the page shows a useful validation message
+- **Then** the page shows a useful message
 - **And** no search request is made
 
 ### No matches
@@ -32,37 +32,36 @@ This gives the team one shared sentence for building and checking the experience
 - **Given** the person submits a valid query with no matches
 - **When** the search finishes
 - **Then** the page explains that nothing was found
-- **And** the person can change the query without starting over
+- **And** the person can change the query and try again
 
 ### Failed search
 
-- **Given** the search service cannot answer
+- **Given** the search cannot finish
 - **When** the request fails
-- **Then** the page explains that the search did not finish
+- **Then** the page explains the problem
 - **And** the person can retry or edit the query
 
-### Accessibility and responsive behavior
+### Keyboard and small screen
 
 - **Given** the person uses a keyboard or a 320px-wide viewport
-- **When** they complete the search and choose a result
-- **Then** every action remains reachable, readable, and usable
-- **And** status and validation messages are available without relying on color alone
+- **When** they search and choose a result
+- **Then** every action remains reachable and readable
+- **And** status messages do not depend on color alone
 
 ## Use it
 
 ```text
-### [Scenario name]
+### [A short name for this situation]
 
-- Given [starting situation]
-- When [person's action]
-- Then [observable result]
-- And [another result that must also be true]
+- Given [where we start]
+- When [what the person does]
+- Then [what should happen]
+- And [what else must be true]
 ```
 
-Keep true:
+## Keep true
 
-- Given, When, Then, and And should describe observable behavior.
-- Use more than one And when several results belong to the same action.
-- Add a scenario for the main path, meaningful alternate states, and recovery.
-- Do not prescribe a component, CSS class, or internal function.
-- If a scenario becomes too large, split it into a second scenario.
+- Write what a person can see, hear, read, or do.
+- Include the normal path, important alternate states, and recovery from problems.
+- Keep one main situation per scenario.
+- Do not prescribe a component or code implementation.

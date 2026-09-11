@@ -1,8 +1,8 @@
 # User story
 
-## Learn it
+## What this is
 
-A user story names who needs something, what they need to do, and why it matters. Keep it about the outcome, not the screen or component. The example below is from the Search and Results workflow.
+A user story says who needs something, what they want to do, and why it matters. It keeps the team focused on the person’s goal instead of jumping straight to a screen or component.
 
 ## Example
 
@@ -10,7 +10,7 @@ As a person looking through a collection,
 I want to search by words I know,
 so that I can open the record that helps me complete my task.
 
-The experience should tell me what happened after I submit, including when there are no matches or the service cannot answer.
+The experience should also tell me what happened when there are no matches or the search cannot finish.
 
 ## Use it
 
@@ -19,12 +19,12 @@ As a [person or role],
 I want to [action or goal],
 so that [reason or value].
 
-The experience must also account for [important alternate state, rule, or constraint].
+The experience should also [important alternate state, rule, or boundary].
 ```
 
-Keep true:
+## Keep true
 
-- Name the person or role, not a solution or department.
-- Describe one meaningful goal.
-- State why the goal matters.
-- Put important boundaries in the final sentence or in linked acceptance criteria.
+- Name the person or role, not a team or technical solution.
+- Describe one useful goal.
+- Say why the goal matters.
+- Leave the detailed behavior for the acceptance criteria.

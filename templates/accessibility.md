@@ -1,32 +1,34 @@
 # Accessibility guidance
 
-## Learn it
+## What this is
 
-Accessibility guidance identifies the conditions that must remain true for people using different input methods, devices, and settings. Treat it as part of the behavior contract, not a final visual inspection.
+Accessibility guidance calls out what must remain usable for people who use keyboards, screen readers, zoom, different colors, or smaller screens. It belongs beside the behavior, not only at the end of testing.
 
 ## Example
 
-- Keep the search field's visible `label` and `aria-describedby` relationship intact.
-- Put validation text next to the field and expose it with `role="alert"`; do not communicate the problem only with a color.
-- Use `aria-live="polite"` for loading, result counts, empty, error, and success updates. Avoid replacing the form while a person is typing.
-- Keep results as a meaningful list with a heading. Use real buttons or links for result actions.
-- Test keyboard focus, 200% zoom, 320px width, and light/dark themes. Check that text remains readable and no status is conveyed by color alone.
+For Search and Results:
+
+- The search field has a visible label.
+- The validation message is connected to the field and is not shown by color alone.
+- Loading, result counts, empty states, errors, and success messages can be understood by a screen reader.
+- Results use real links or buttons.
+- Every action works with a keyboard and has visible focus.
+- At 320px wide and 200% zoom, content remains readable and usable.
 
 ## Use it
 
 ```text
-- [Visible label and accessible name] remain connected.
-- [Validation, error, and status messages] are available to assistive technology
-  and are not communicated by color alone.
-- [Keyboard path] reaches every action with visible focus.
-- [Reading order and landmarks] remain meaningful.
-- [320px width and 200% zoom] do not hide content or create unnecessary scrolling.
-- [Contrast and theme behavior] keep text, controls, and states understandable.
+- The [field or control] has a visible, understandable name.
+- [Validation, error, and status messages] are announced and are not shown by color alone.
+- Every action can be reached and used with a keyboard.
+- Focus is visible and the reading order still makes sense.
+- The page remains usable at [small viewport and zoom level].
+- Text, controls, and states remain understandable in [supported themes or contrast conditions].
 ```
 
-Keep true:
+## Keep true
 
-- Check the actual rendered experience, not only source attributes.
-- Test keyboard and narrow-width behavior in addition to automated checks.
-- Keep status, validation, and recovery messages understandable without sight or sound alone.
-- Link any pattern-specific accessibility rules back to the pattern contract.
+- Check the experience people actually use, not only the source code.
+- Test keyboard and small-screen behavior as well as automated checks.
+- Do not make color, sound, or position the only way to understand an important message.
+- Link special rules back to the pattern’s acceptance criteria.
