@@ -9,19 +9,13 @@ import { Header, SkipLink } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Footer } from '@/components/layout/footer'
 import { PageShell } from '@/components/layout/page-shell'
-import type { NavItem } from '@/components/layout/types'
-import { footerLinks } from './index'
-
-const exampleNav: NavItem[] = [
-  { href: '/navigation/header', label: 'Header' },
-  { label: 'Navigation', children: [{ href: '/navigation/secondary', label: 'Secondary' }] },
-]
+import { primaryNav, footerLinks } from './index'
 
 function NavigationHeaderPage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={exampleNav} />
+      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-12 pb-12 pt-6">
           <section className="space-y-5" aria-labelledby="navigation-header-heading">
