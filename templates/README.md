@@ -10,5 +10,6 @@ Available artifacts:
 - [Tester scenarios](./test-scenarios.md)
 - [Test cases](./test-cases.md)
 - [Accessibility guidance](./accessibility.md)
+- [Definition-of-done record](./definition-of-done.md)
 
 Use the [work process](../docs/process/README.md) to understand when each artifact is useful. Pattern-specific examples link back here when they use these artifacts.

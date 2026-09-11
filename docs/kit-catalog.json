@@ -354,7 +354,8 @@
         "templates/implementation-brief.md",
         "templates/test-scenarios.md",
         "templates/test-cases.md",
-        "templates/accessibility.md"
+        "templates/accessibility.md",
+        "templates/definition-of-done.md"
       ],
       "states": ["initial", "loading", "results", "empty", "error", "validation", "success"],
       "constraints": [
