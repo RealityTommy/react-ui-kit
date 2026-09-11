@@ -24,17 +24,17 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const sidebarEntries: (NavLeaf | NavGroup)[] = [
-  { href: '#/layouts/sidebar', label: 'Page one', icon: Home },
+  { href: '/layouts/sidebar', label: 'Page one', icon: Home },
   {
     label: 'Group one',
     items: [
-      { href: '#/layouts/sidebar/install', label: 'Page two', icon: Rocket },
-      { href: '#/layouts/sidebar/theming', label: 'Page three', icon: Palette },
+      { href: '/layouts/sidebar/install', label: 'Page two', icon: Rocket },
+      { href: '/layouts/sidebar/theming', label: 'Page three', icon: Palette },
     ],
   },
   {
     label: 'Group two',
-    items: [{ href: '#/layouts/sidebar/parts', label: 'Page four', icon: Puzzle }],
+    items: [{ href: '/layouts/sidebar/parts', label: 'Page four', icon: Puzzle }],
   },
 ]
 
@@ -44,7 +44,7 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
 
 /**
  * Sidebar-layout reference page. Mounted by the demo router at
- * `#/layouts/sidebar`.
+ * `/layouts/sidebar`.
  *
  * @example
  * { path: '/layouts/sidebar', component: LayoutsSidebarPage }
@@ -54,11 +54,11 @@ function LayoutsSidebarPage() {
     <LayoutProvider
       sidebarNav={sidebarEntries}
       sidebarNavLabel="Documentation"
-      activeHref="#/layouts/sidebar"
+      activeHref="/layouts/sidebar"
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <PageBody>
           <Sidebar aria-label="Documentation" />
           <Main size="full">

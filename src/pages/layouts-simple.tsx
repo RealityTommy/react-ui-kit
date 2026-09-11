@@ -20,7 +20,7 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 /**
- * Simple layout reference page. Mounted by the demo router at `#/layouts/simple`.
+ * Simple layout reference page. Mounted by the demo router at `/layouts/simple`.
  *
  * @example
  * { path: '/layouts/simple', component: LayoutsSimplePage }
@@ -29,7 +29,7 @@ function LayoutsSimplePage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-14 pb-12">
           <section className="space-y-5 pt-6" aria-labelledby="simple-heading">

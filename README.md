@@ -46,9 +46,9 @@ pnpm build
 
 Node 24 + pnpm 12 (via corepack) recommended.
 
-The demo app is a hash-routed reference application — visit `#/`,
-`#/layouts/simple`, `#/layouts/secondary`, `#/layouts/sidebar`, `#/layouts/full`,
-or `#/workflows/search-results` (or use the header navigation) to see the
+The demo app is a history-routed reference application — visit `/`,
+`/layouts/simple`, `/layouts/secondary`, `/layouts/sidebar`, `/layouts/full`,
+or `/workflows/search-results` (or use the header navigation) to see the
 current layout and workflow proofs.
 
 ## Repo structure
@@ -94,7 +94,7 @@ src/
 │   └── _*.tsx                     ← private demo-only helpers
 ├── lib/
 │   └── utils.ts                   ← cn() helper
-├── App.tsx                        ← hash router for the demo
+├── App.tsx                        ← history router for the demo
 ├── main.tsx                       ← Vite entry
 └── index.css                      ← Tailwind entry + global tokens
 ```

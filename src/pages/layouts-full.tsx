@@ -25,23 +25,23 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const sectionNav: NavLeaf[] = [
-  { href: '#/layouts/full', label: 'Section one' },
-  { href: '#/layouts/full/install', label: 'Section two' },
-  { href: '#/layouts/full/theming', label: 'Section three' },
+  { href: '/layouts/full', label: 'Section one' },
+  { href: '/layouts/full/install', label: 'Section two' },
+  { href: '/layouts/full/theming', label: 'Section three' },
 ]
 
 const sidebarEntries: (NavLeaf | NavGroup)[] = [
-  { href: '#/layouts/full', label: 'Page one', icon: Home },
+  { href: '/layouts/full', label: 'Page one', icon: Home },
   {
     label: 'Group one',
     items: [
-      { href: '#/layouts/full/install', label: 'Page two', icon: Rocket },
-      { href: '#/layouts/full/theming', label: 'Page three', icon: Palette },
+      { href: '/layouts/full/install', label: 'Page two', icon: Rocket },
+      { href: '/layouts/full/theming', label: 'Page three', icon: Palette },
     ],
   },
   {
     label: 'Group two',
-    items: [{ href: '#/layouts/full/parts', label: 'Page four', icon: Puzzle }],
+    items: [{ href: '/layouts/full/parts', label: 'Page four', icon: Puzzle }],
   },
 ]
 
@@ -51,7 +51,7 @@ const sidebarEntries: (NavLeaf | NavGroup)[] = [
 
 /**
  * Full-layout reference page. Mounted by the demo router at
- * `#/layouts/full`.
+ * `/layouts/full`.
  *
  * @example
  * { path: '/layouts/full', component: LayoutsFullPage }
@@ -63,11 +63,11 @@ function LayoutsFullPage() {
       secondaryNavLabel="Documentation"
       sidebarNav={sidebarEntries}
       sidebarNavLabel="On this page"
-      activeHref="#/layouts/full"
+      activeHref="/layouts/full"
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Documentation" />
         <PageBody>
           <Sidebar aria-label="On this page" />

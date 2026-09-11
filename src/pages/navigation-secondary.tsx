@@ -15,9 +15,9 @@ import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
 const sectionNav: NavLeaf[] = [
-  { href: '#/workflows/navigation/secondary', label: 'Overview' },
-  { href: '#/workflows/navigation/secondary/one', label: 'Section one' },
-  { href: '#/workflows/navigation/secondary/two', label: 'Section two' },
+  { href: '/workflows/navigation/secondary', label: 'Overview' },
+  { href: '/workflows/navigation/secondary/one', label: 'Section one' },
+  { href: '/workflows/navigation/secondary/two', label: 'Section two' },
 ]
 
 function NavigationSecondaryPage() {
@@ -25,11 +25,11 @@ function NavigationSecondaryPage() {
     <LayoutProvider
       secondaryNav={sectionNav}
       secondaryNavLabel="Section navigation"
-      activeHref="#/workflows/navigation/secondary"
+      activeHref="/workflows/navigation/secondary"
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Section navigation" />
         <Main>
           <div className="space-y-12 pb-12 pt-6">

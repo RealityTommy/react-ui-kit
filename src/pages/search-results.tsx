@@ -94,7 +94,7 @@ function SearchResultsPage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="max-w-3xl space-y-10 pb-12 pt-8">
           <section className="space-y-4" aria-labelledby="search-heading">

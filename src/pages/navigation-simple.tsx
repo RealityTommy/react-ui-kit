@@ -15,7 +15,7 @@ function NavigationSimplePage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-12 pb-12 pt-6">
           <section className="space-y-5" aria-labelledby="navigation-simple-heading">

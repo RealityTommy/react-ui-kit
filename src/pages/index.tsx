@@ -69,25 +69,25 @@ const routes: Route[] = [
  *
  * @example
  * // Passed to Header on every demo page:
- * <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+ * <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
   {
     label: 'Navigation workflows',
     children: [
-      { href: '#/workflows/navigation/simple', label: 'Simple' },
-      { href: '#/workflows/navigation/secondary', label: 'Secondary' },
-      { href: '#/workflows/navigation/sidebar', label: 'Sidebar' },
+      { href: '/workflows/navigation/simple', label: 'Simple' },
+      { href: '/workflows/navigation/secondary', label: 'Secondary' },
+      { href: '/workflows/navigation/sidebar', label: 'Sidebar' },
     ],
   },
-  { href: '#/workflows/search-results', label: 'Search workflow' },
+  { href: '/workflows/search-results', label: 'Search workflow' },
   {
     label: 'Layouts',
     children: [
-      { href: '#/layouts/simple', label: 'Simple' },
-      { href: '#/layouts/secondary', label: 'Secondary' },
-      { href: '#/layouts/sidebar', label: 'Sidebar' },
-      { href: '#/layouts/full', label: 'Full' },
+      { href: '/layouts/simple', label: 'Simple' },
+      { href: '/layouts/secondary', label: 'Secondary' },
+      { href: '/layouts/sidebar', label: 'Sidebar' },
+      { href: '/layouts/full', label: 'Full' },
     ],
   },
 ]

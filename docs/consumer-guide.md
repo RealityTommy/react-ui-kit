@@ -205,7 +205,7 @@ Do not copy these unless you are intentionally studying the demo:
 - `src/main.tsx`;
 - `src/App.css`;
 - demo assets;
-- the hash router.
+- the demo history router.
 
 The demo is a reference application, not the consumer API.
 
@@ -221,7 +221,7 @@ application boundary or create a small wrapper that preserves the same
 navigation data model. Do not change the layout components merely to make the
 kit know about one router.
 
-The demo's hash router exists only to navigate the showcase. It does not
+The demo's history router exists only to navigate the showcase. It does not
 provide routing behavior to copied components.
 
 ## Roles in an application project

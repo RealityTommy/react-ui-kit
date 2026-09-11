@@ -1,14 +1,13 @@
 /**
  * App — demo router.
  *
- * Tiny hash router: reads `window.location.hash`, maps it to one
- * of the demo pages in `src/pages/`, and re-renders on hashchange.
+ * Tiny history router: reads `window.location.pathname`, maps it to one
+ * of the demo pages in `src/pages/`, and re-renders on navigation.
  *
- * Why hash routing (not React Router) for the demo:
+ * Why history routing (not React Router) for the demo:
  * - Zero dependency footprint — the library shouldn't endorse a
  *   specific router; consumers bring their own.
- * - No server config needed — works under `pnpm dev` and
- *   `pnpm build` identically.
+ * - Clean, shareable URLs without a hash fragment.
  * - Tiny code; matches the demo's throwaway nature.
  *
  * Each demo page is a self-contained shell (its own Header,
@@ -19,46 +18,75 @@ import * as React from 'react'
 import { routes } from '@/pages'
 
 // ---------------------------------------------------------------
-// Hash router
+// History router
 // ---------------------------------------------------------------
 
 /**
- * Extract the pathname from a `window.location.hash` string.
+ * Normalize a browser pathname into the route format used by the demo.
  *
- * `#/`                    → "/"
- * `#/layouts/secondary`   → "/layouts/secondary"
- * empty / missing         → "/"
+ * `/`                         → `/`
+ * `/layouts/secondary/`      → `/layouts/secondary`
+ * empty / missing            → `/`
  *
  * @example
- * hashToPath("#/layouts/sidebar")  // → "/layouts/sidebar"
- * hashToPath("")                   // → "/"
+ * pathnameToPath('/layouts/sidebar/') // → '/layouts/sidebar'
+ * pathnameToPath('/')                 // → '/'
  */
-function hashToPath(hash: string): string {
-  if (!hash || hash === '#' || hash === '#/') return '/'
-  // Strip leading `#` — the remainder is the path.
-  return hash.replace(/^#/, '') || '/'
+function pathnameToPath(pathname: string): string {
+  const path = pathname.replace(/\/+$/, '')
+  return path || '/'
 }
 
 /**
- * Subscribe to `window.location.hash` changes and return the
- * current pathname. Re-renders the caller on every hashchange.
+ * Subscribe to browser history changes and return the current pathname.
+ * Internal anchors are intercepted so navigation stays in the app without
+ * a full reload; browser back/forward remains native through popstate.
  *
  * @example
  * function App() {
- *   const path = useHashRoute()
+ *   const path = useHistoryRoute()
  *   const route = routes.find((r) => r.path === path) ?? routes[0]
  *   return <route.component />
  * }
  */
-function useHashRoute(): string {
-  const [path, setPath] = React.useState(() => hashToPath(window.location.hash))
+function useHistoryRoute(): string {
+  const [path, setPath] = React.useState(() => pathnameToPath(window.location.pathname))
 
   React.useEffect(() => {
-    function onChange() {
-      setPath(hashToPath(window.location.hash))
+    function onPopState() {
+      setPath(pathnameToPath(window.location.pathname))
     }
-    window.addEventListener('hashchange', onChange)
-    return () => window.removeEventListener('hashchange', onChange)
+
+    function onClick(event: MouseEvent) {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return
+      }
+
+      const anchor = (event.target as HTMLElement).closest('a')
+      if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return
+
+      const url = new URL(anchor.href, window.location.href)
+      if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return
+
+      event.preventDefault()
+      window.history.pushState({}, '', `${url.pathname}${url.search}`)
+      setPath(pathnameToPath(url.pathname))
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
+
+    window.addEventListener('popstate', onPopState)
+    document.addEventListener('click', onClick)
+    return () => {
+      window.removeEventListener('popstate', onPopState)
+      document.removeEventListener('click', onClick)
+    }
   }, [])
 
   return path
@@ -92,7 +120,7 @@ function findRoute(path: string) {
 
 /**
  * Root demo component. Picks a page from the `routes` table based
- * on `window.location.hash` and renders it. Unknown hashes fall
+ * on `window.location.pathname` and renders it. Unknown paths fall
  * back to the first route (Home).
  *
  * @example
@@ -100,7 +128,7 @@ function findRoute(path: string) {
  * createRoot(document.getElementById('root')!).render(<App />)
  */
 function App() {
-  const path = useHashRoute()
+  const path = useHistoryRoute()
 
   // Resolve exact routes first, then keep known layout children inside
   // their parent layout until those child pages have real content.

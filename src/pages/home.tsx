@@ -18,7 +18,7 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 /**
- * Project introduction page. Mounted by the demo router at `#/`.
+ * Project introduction page. Mounted by the demo router at `/`.
  *
  * @example
  * { path: '/', component: HomePage }
@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <PageShell>
       <SkipLink />
-      <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+      <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-16 pb-12">
           <section className="max-w-3xl space-y-6 pt-8" aria-labelledby="intro-heading">
@@ -143,14 +143,14 @@ function HomePage() {
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
               <a
-                href="#/layouts/simple"
+                href="/layouts/simple"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Simple</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Header, Main, and Footer.</p>
               </a>
               <a
-                href="#/layouts/secondary"
+                href="/layouts/secondary"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Secondary</h3>
@@ -159,14 +159,14 @@ function HomePage() {
                 </p>
               </a>
               <a
-                href="#/layouts/sidebar"
+                href="/layouts/sidebar"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Sidebar</h3>
                 <p className="mt-2 text-sm text-muted-foreground">A larger section with a map.</p>
               </a>
               <a
-                href="#/layouts/full"
+                href="/layouts/full"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <h3 className="font-semibold">Full</h3>

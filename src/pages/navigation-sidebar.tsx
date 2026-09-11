@@ -17,17 +17,17 @@ import type { NavGroup, NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
 const sidebarEntries: (NavLeaf | NavGroup)[] = [
-  { href: '#/workflows/navigation/sidebar', label: 'Overview', icon: Home },
+  { href: '/workflows/navigation/sidebar', label: 'Overview', icon: Home },
   {
     label: 'Navigation areas',
     items: [
-      { href: '#/workflows/navigation/sidebar/one', label: 'Section one', icon: BookOpen },
-      { href: '#/workflows/navigation/sidebar/two', label: 'Section two', icon: Palette },
+      { href: '/workflows/navigation/sidebar/one', label: 'Section one', icon: BookOpen },
+      { href: '/workflows/navigation/sidebar/two', label: 'Section two', icon: Palette },
     ],
   },
   {
     label: 'More pages',
-    items: [{ href: '#/workflows/navigation/sidebar/three', label: 'Section three', icon: Rocket }],
+    items: [{ href: '/workflows/navigation/sidebar/three', label: 'Section three', icon: Rocket }],
   },
 ]
 
@@ -36,11 +36,11 @@ function NavigationSidebarPage() {
     <LayoutProvider
       sidebarNav={sidebarEntries}
       sidebarNavLabel="Section pages"
-      activeHref="#/workflows/navigation/sidebar"
+      activeHref="/workflows/navigation/sidebar"
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <PageBody>
           <Sidebar aria-label="Section pages" />
           <Main size="full">

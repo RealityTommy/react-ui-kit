@@ -27,5 +27,5 @@ Choose [Simple navigation](./navigation-simple.md) when a persistent page map do
 
 ## Example
 
-- Route: `#/workflows/navigation/sidebar`
+- Route: `/workflows/navigation/sidebar`
 - Source: [`src/pages/navigation-sidebar.tsx`](../../../src/pages/navigation-sidebar.tsx)

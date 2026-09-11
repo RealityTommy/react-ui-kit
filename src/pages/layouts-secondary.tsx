@@ -22,10 +22,10 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 const sectionNav: NavLeaf[] = [
-  { href: '#/layouts/secondary', label: 'Section one' },
-  { href: '#/layouts/secondary/install', label: 'Section two' },
-  { href: '#/layouts/secondary/theming', label: 'Section three' },
-  { href: '#/layouts/secondary/tokens', label: 'Section four' },
+  { href: '/layouts/secondary', label: 'Section one' },
+  { href: '/layouts/secondary/install', label: 'Section two' },
+  { href: '/layouts/secondary/theming', label: 'Section three' },
+  { href: '/layouts/secondary/tokens', label: 'Section four' },
 ]
 
 // ---------------------------------------------------------------
@@ -34,7 +34,7 @@ const sectionNav: NavLeaf[] = [
 
 /**
  * Secondary-layout reference page. Mounted by the demo router at
- * `#/layouts/secondary`.
+ * `/layouts/secondary`.
  *
  * @example
  * { path: '/layouts/secondary', component: LayoutsSecondaryPage }
@@ -44,11 +44,11 @@ function LayoutsSecondaryPage() {
     <LayoutProvider
       secondaryNav={sectionNav}
       secondaryNavLabel="Documentation"
-      activeHref="#/layouts/secondary"
+      activeHref="/layouts/secondary"
     >
       <PageShell>
         <SkipLink />
-        <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
+        <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
         <SecondaryNav aria-label="Documentation" />
         <Main>
           <div className="space-y-14 pb-12">
