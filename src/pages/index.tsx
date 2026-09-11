@@ -123,7 +123,7 @@ const GithubIcon: LucideIcon = (({ className, ...props }: React.SVGProps<SVGSVGE
  */
 const footerLinks: NavLeaf[] = [
   {
-    href: 'https://github.com/RealityTommy/react-ui-kit',
+    href: 'https://github.com/RealityTommy/application-delivery-kit',
     label: 'GitHub',
     icon: GithubIcon,
     external: true,
