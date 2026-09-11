@@ -328,6 +328,7 @@
     },
     {
       "id": "pattern.search-results",
+      "status": "paused",
       "purpose": "Search a bounded collection and recover clearly from validation, empty, and request-failure states.",
       "recommendedWhen": [
         "People know words that may identify a record.",
@@ -348,6 +349,7 @@
       ],
       "example": "src/pages/search-results.tsx",
       "documentation": "docs/workflows/search-results.md",
+      "statusNote": "The contract and example are preserved, but the workflow is not currently part of the active demo route or navigation.",
       "artifacts": [
         "templates/user-story.md",
         "templates/acceptance-criteria.md",

@@ -35,14 +35,43 @@ function HomePage() {
               A place to start when a page needs to make sense.
             </h1>
             <p className="text-xl leading-8 text-muted-foreground">
-              Application Delivery Kit is a personal collection of layout, navigation, and display
-              pieces for building my own projects. I am using it to work through the page decisions
-              that are easy to skip when the focus is on getting features out the door.
+              Application Delivery Kit is a practical way to turn product needs into clear,
+              accessible, testable applications. This React app is the shareable reference: it makes
+              the page, navigation, responsive, and accessibility decisions visible.
             </p>
             <p className="max-w-2xl leading-7 text-muted-foreground">
-              This page will grow with the project. As more pieces are added, this is where I will
-              explain what they are for, what I learned while building them, and where they fit.
+              The GitHub repository contains the wider playbook behind these examples, including the
+              reasoning, reusable delivery artifacts, implementation guidance, and verification
+              expectations.
             </p>
+          </section>
+
+          <section className="grid gap-6 md:grid-cols-2" aria-labelledby="review-heading">
+            <div className="rounded-xl border bg-muted/40 p-6">
+              <h2 id="review-heading" className="text-xl font-semibold tracking-tight">
+                Reviewing the app
+              </h2>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Compare the examples to see how layout choices affect clarity, navigation, mobile
+                reflow, and the space available for content.
+              </p>
+            </div>
+            <div className="rounded-xl border p-6">
+              <h2 className="text-xl font-semibold tracking-tight">Reviewing the repository</h2>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Read the repository when you want to understand how the examples connect to the
+                delivery system and reusable project artifacts.
+              </p>
+              <a
+                href="https://github.com/RealityTommy/application-delivery-kit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex font-medium text-foreground underline decoration-muted-foreground/50 underline-offset-4 hover:decoration-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Review the GitHub repository
+                <span className="sr-only"> (opens in a new window)</span>
+              </a>
+            </div>
           </section>
 
           <section className="space-y-6" aria-labelledby="principles-heading">
@@ -137,8 +166,8 @@ function HomePage() {
                 What is here now
               </h2>
               <p className="text-muted-foreground">
-                The Layouts menu is the first part of the project. More primitives and examples can
-                be added here as they become useful.
+                These pages are the current visual reference. The repository contains the deeper
+                guidance and copyable artifacts behind them.
               </p>
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">

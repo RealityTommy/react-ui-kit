@@ -1,7 +1,7 @@
 # Search and results pattern
 
 - **ID:** `pattern.search-results`
-- **Status:** `stable`
+- **Status:** `paused`
 - **Version:** `1.0.0`
 - **Example:** [`src/pages/search-results.tsx`](../../src/pages/search-results.tsx)
 
@@ -32,7 +32,7 @@ The reference example uses local data so every state is deterministic. A consumi
 5. A request failure shows the error and a retry action. The user can edit the query before retrying.
 6. Selecting a result shows a confirmation in the example. A real application navigates to or opens the selected record.
 
-The example recognizes `empty` as a deterministic no-match query and `error` as a deterministic failure so reviewers can inspect those states without a backend.
+The example recognizes `empty` as a deterministic no-match query and `error` as a deterministic failure so reviewers can inspect those states without a backend. The workflow is not currently linked from the active demo route or navigation; this document preserves the contract for later resumption.
 
 ## Accessibility and responsive behavior
 

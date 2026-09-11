@@ -11,7 +11,7 @@ The kit is built outside in. Establish the concrete page and navigation workflow
 - Human, copyable delivery artifacts for user stories, acceptance criteria, implementation briefs, tester scenarios, test cases, accessibility, and definition of done.
 - Layout examples for the current Header, SecondaryNav, Sidebar, mobile menu, Footer, Columns, and split-view components.
 
-## Next: navigation workflow slice
+## Complete: navigation workflow slice
 
 Use the existing navigation components together as one outside-in workflow:
 
@@ -21,9 +21,9 @@ Use the existing navigation components together as one outside-in workflow:
 - the mobile menu's combined hierarchy and handoff;
 - Footer links and the end of the page.
 
-The slice should explain when each navigation area earns its place, how the areas relate, what the mobile menu preserves, and what keyboard, focus, landmark, active-state, and narrow-screen behavior must remain true.
+The three focused pages explain when each navigation area earns its place, how the areas relate, what the mobile menu preserves, and what keyboard, focus, landmark, active-state, and narrow-screen behavior must remain true.
 
-## Then: layout workflow slice
+## Current focus: layout workflow slice
 
 Use the existing layout examples to make column behavior understandable:
 
@@ -31,6 +31,8 @@ Use the existing layout examples to make column behavior understandable:
 - one-column behavior on narrow screens;
 - how content width and card readability limit the maximum;
 - how the layout changes without breaking reading order or causing overflow.
+
+The four layout reference pages now provide the visual starting point. The next documentation pass should connect their visible guidance to a reusable layout pattern contract and the relevant delivery artifacts without turning the app pages into process documents.
 
 ## Then: split-view workflow slice
 

@@ -24,6 +24,7 @@ the repository itself uses pnpm for development.
 ## Getting started
 
 For a guided tour, see [`docs/README.md`](./docs/README.md).
+For the shortest path through the repository as a reviewer, see [`docs/reviewer-guide.md`](./docs/reviewer-guide.md).
 For the project philosophy, see [`docs/operating-philosophy.md`](./docs/operating-philosophy.md).
 For the role handoffs, see [`docs/roles/role-handoffs.md`](./docs/roles/role-handoffs.md).
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
@@ -31,6 +32,15 @@ For the repository map and system architecture, see [`docs/architecture/`](./doc
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
 For the focused navigation workflow slices, see [`docs/workflows/navigation/`](./docs/workflows/navigation/).
 The search-and-results workflow proof is paused for now; its documentation remains available for later work.
+
+## Choose what you are reviewing
+
+This project has two public review surfaces:
+
+- **React app:** a focused, shareable reference experience for reviewing the visible layouts, navigation, responsive behavior, and accessibility decisions.
+- **GitHub repository:** the broader delivery playbook for reviewing the philosophy, patterns, role handoffs, copyable artifacts, implementation, verification, and project limits.
+
+The app demonstrates the system; the repository explains and supports it. The app is not the consumer API, and the repository does not require every visitor to study the app first. Use the [reviewer guide](./docs/reviewer-guide.md) to choose a path through the repository.
 
 ```powershell
 # Install dependencies
@@ -86,7 +96,7 @@ src/
 ├── pages/                         ← reference pages (not consumer API)
 │   ├── index.tsx                  ← routes table + shared demo config
 │   ├── home.tsx
-│   ├── layouts-simple.tsx
+│   ├── layouts-header-only.tsx
 │   ├── layouts-secondary.tsx
 │   ├── layouts-sidebar.tsx
 │   ├── layouts-full.tsx
@@ -105,9 +115,10 @@ Each meaningful folder has its own README explaining what belongs there, why it 
 - [`src/components/layout/README.md`](./src/components/layout/README.md) — hand-authored component pattern, layout composition, NavItem types
 - [`docs/README.md`](./docs/README.md) — documentation map and learning paths
 - [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
+- [`docs/reviewer-guide.md`](./docs/reviewer-guide.md) — shortest review paths through the repository
 - [`templates/README.md`](./templates/README.md) — copyable project artifacts
 - [`docs/workflows/navigation/`](./docs/workflows/navigation/) — focused navigation workflow slices
-- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — paused search-and-results workflow proof
+- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — paused search-and-results workflow proof and contract
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
 verification steps, and debugging playbook.
