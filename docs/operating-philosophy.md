@@ -85,7 +85,6 @@ Work is not complete because a screen exists or a build passes. The team should 
 - The principles and many artifacts should remain useful outside React where practical.
 - The kit is not intended to remove judgment or force identical solutions.
 - It is not a replacement for product strategy, domain expertise, or human review.
-- Project-manager-specific workflows are intentionally deferred for now.
 
 ## Related resources
 
