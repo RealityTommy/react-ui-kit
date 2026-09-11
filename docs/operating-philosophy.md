@@ -57,7 +57,6 @@ The kit is a strong starting point, not a mandate. Projects may change the piece
 - **Designers** shape the user's workflow and experience using the proven foundation without treating the foundation as a substitute for UX thinking.
 - **Developers** implement the agreed structure and behavior, then test against observable outcomes rather than personal assumptions.
 - **Testers** verify the whole behavior, including failure, recovery, accessibility, responsive, and boundary cases.
-- **Tommy** may wear several hats to connect the work when the team cannot hold the whole picture together.
 
 ## Resource standards
 
