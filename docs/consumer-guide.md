@@ -1,6 +1,6 @@
 # Using the kit in an application
 
-This guide explains how to take the reusable parts of `react-ui-kit` into a
+This guide explains how to take the reusable parts of the Application Delivery Kit into a
 separate React application. The demo pages in this repository show what the
 layouts look like. This guide explains how to choose, copy, adapt, test, and
 maintain them in an application you own.
@@ -343,9 +343,9 @@ Consumers own copied files. To make future updates manageable:
 - read release notes or migration notes before replacing hand-written files;
 - test the consumer recipe after each update.
 
-The project should eventually publish stable component and recipe identifiers,
+The project should continue publishing stable component and recipe identifiers,
 release tags, a changelog, dependency manifests, and machine-readable metadata.
-Until then, Git commits are the most precise reference for what changed.
+The catalog is the current index; Git commits and release notes remain the most precise reference for what changed.
 
 ## Current limitations
 
@@ -356,6 +356,6 @@ This kit does not currently provide:
 - router-specific adapters;
 - automated accessibility or visual regression tests;
 - a formal component stability policy;
-- a machine-readable component catalog.
+- a complete workflow-artifact catalog covering every pattern.
 
 Those are future improvements, not assumptions a consumer should make today.

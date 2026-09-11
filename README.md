@@ -1,8 +1,11 @@
-# react-ui-kit
+# Application Delivery Kit
 
-A personal, opinionated React component library. Layouts, navigation, and
-display primitives for now — forms and feedback in v2. Built for reuse across
-my own projects.
+A practical, reusable system for turning product needs into clear, accessible,
+testable applications. The current reference implementation is React, but the
+patterns, delivery artifacts, and guidance are intended to remain portable.
+
+This repository is both a working UI kit and a public guide to the decisions,
+structures, examples, and quality checks behind it.
 
 Distribution model is shadcn-style: **copy the components you want into your
 consuming project and edit freely.** No npm install, no lock-in.
@@ -19,7 +22,9 @@ consuming project and edit freely.** No npm install, no lock-in.
 
 ## Getting started
 
+For a guided tour, see [`docs/README.md`](./docs/README.md).
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
+For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
 
 ```powershell
@@ -41,6 +46,8 @@ The demo app is a hash-routed showcase of the layout components — visit
 the Layouts dropdown in the header nav) to see each composition pattern.
 
 ## Repo structure
+
+The [documentation map](./docs/README.md) explains how to navigate, learn, use, and contribute to the repository.
 
 ```
 src/
@@ -83,11 +90,14 @@ src/
 └── index.css                      ← Tailwind entry + global tokens
 ```
 
-Each meaningful folder has its own README explaining what belongs there and why:
+Each meaningful folder has its own README explaining what belongs there, why it exists, and what to read next:
 
 - [`src/components/README.md`](./src/components/README.md) — folder layout overview
 - [`src/components/ui/README.md`](./src/components/ui/README.md) — shadcn-managed rules
 - [`src/components/layout/README.md`](./src/components/layout/README.md) — hand-authored component pattern, layout composition, NavItem types
+- [`docs/README.md`](./docs/README.md) — documentation map and learning paths
+- [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
+- [`templates/README.md`](./templates/README.md) — copyable project artifacts
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
 verification steps, and debugging playbook.
