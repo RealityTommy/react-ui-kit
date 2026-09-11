@@ -143,6 +143,8 @@ If the answer is no, the next step is clarification—not more implementation.
 
 ## Related resources
 
+- [Role handoffs](../roles/role-handoffs.md) — what each role receives, produces, and checks.
+
 - [Process guide](./README.md) — the practical checkpoints.
 - [Pattern contract](../patterns/pattern-template.md) — the shape of a reusable pattern.
 - [Search-and-results workflow](../workflows/search-results.md) — the first worked example.

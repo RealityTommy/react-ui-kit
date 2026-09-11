@@ -9,6 +9,8 @@ The kit is built in small proofs rather than as a large component inventory.
 - A realistic search-and-results workflow with a React reference example.
 - Linked delivery artifacts, accessibility guidance, catalog metadata, and verification notes for that workflow.
 
+- Role handoff guide connecting the delivery model to the copyable artifacts.
+
 ## Next, when deliberately chosen
 
 - Add another common workflow only after the first proof has been used and its boundaries are clear.

@@ -10,8 +10,11 @@ The kit serves several roles without assuming that one role already understands 
 
 The guidance should help roles collaborate around the same pattern rather than create disconnected interpretations.
 
+Read the [role handoffs](./role-handoffs.md) to see what each role receives, produces, and checks before work moves forward.
+
 ## Continue
 
+- [Role handoffs](./role-handoffs.md)
 - [System layers](../architecture/system-layers.md)
 - [Work process](../process/README.md)
 - [Consumer guide](../consumer-guide.md)
