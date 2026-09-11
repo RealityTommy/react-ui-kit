@@ -24,6 +24,8 @@ Every slice must preserve:
 
 The three pages use the existing layout components. They do not add new navigation primitives.
 
+For a complete beginner example of how the visible pages are translated into delivery artifacts, see the [worked React reference-page artifacts](../reference-pages/). The package covers the whole current app page family, including these navigation slices.
+
 ## What comes next
 
 The next workflow slice covers layout columns and viewport behavior. Split-view behavior follows that. A larger end-to-end delivery proof comes only after these focused slices are established.

@@ -23,6 +23,10 @@ SkipLink → Header → SecondaryNav → Main → Footer
 
 Choose [Simple navigation](./navigation-simple.md) when peer-page navigation is not needed. Choose [Sidebar navigation](./navigation-sidebar.md) when the section needs grouped, deeper page links.
 
+## Worked artifacts
+
+See the [worked React reference-page artifacts](../reference-pages/) for the user story, acceptance criteria, design brief, implementation brief, accessibility guidance, tester scenarios, test cases, and definition-of-done record covering this page family.
+
 ## Example
 
 - Route: `/navigation/secondary`

@@ -7,7 +7,8 @@
     "publicStatus": "portfolio-ready-in-progress",
     "routerPolicy": "router-neutral",
     "generatedDirectory": "src/components/ui",
-    "handWrittenDirectory": "src/components/layout"
+    "handWrittenDirectory": "src/components/layout",
+    "workedArtifactPackage": "docs/workflows/reference-pages/"
   },
   "foundations": {
     "styling": ["tailwindcss-v4", "css-semantic-tokens", "tw-animate-css"],
@@ -212,6 +213,7 @@
   "patterns": [
     {
       "id": "pattern.simple-shell",
+      "workedArtifacts": "docs/workflows/reference-pages/",
       "purpose": "One primary content area without persistent secondary navigation.",
       "recommendedWhen": [
         "A page has one main task.",
@@ -233,6 +235,7 @@
     },
     {
       "id": "pattern.secondary-navigation-shell",
+      "workedArtifacts": "docs/workflows/reference-pages/",
       "purpose": "Primary shell with navigation between related peer sections.",
       "recommendedWhen": [
         "Sections are peers.",
@@ -256,6 +259,7 @@
     },
     {
       "id": "pattern.sidebar-shell",
+      "workedArtifacts": "docs/workflows/reference-pages/",
       "purpose": "Persistent navigation rail beside the main working or reading area.",
       "recommendedWhen": [
         "People need frequent access to many destinations.",
@@ -281,6 +285,7 @@
     },
     {
       "id": "pattern.full-documentation-shell",
+      "workedArtifacts": "docs/workflows/reference-pages/",
       "purpose": "Section navigation plus page-level navigation for content-heavy applications.",
       "recommendedWhen": [
         "Both navigation levels are meaningful.",

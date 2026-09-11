@@ -49,6 +49,7 @@ Start with the role guides in [`roles/`](./roles/) and the reusable artifacts in
 - [`patterns/`](./patterns/) — reusable page and workflow patterns.
 - [`workflows/navigation/`](./workflows/navigation/) — the focused navigation workflow slices.
 - [`workflows/layout.md`](./workflows/layout.md) — the layout workflow slice and responsive review contract.
+- [`workflows/reference-pages/`](./workflows/reference-pages/) — complete worked artifacts for the current React reference pages.
 - [`workflows/search-results.md`](./workflows/search-results.md) — the later search-and-results workflow proof.
 - [`roles/`](./roles/) — guidance for business stakeholders, business analysts, designers, developers, and testers.
 - [`process/`](./process/) — how an idea becomes a documented, implemented, and verified experience.

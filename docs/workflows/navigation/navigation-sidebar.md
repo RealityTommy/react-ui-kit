@@ -25,6 +25,10 @@ Main remains the first content region in the PageBody reading order. Sidebar is 
 
 Choose [Simple navigation](./navigation-simple.md) when a persistent page map does not earn its width. Choose [Secondary navigation](./navigation-secondary.md) when a short peer-link row is enough.
 
+## Worked artifacts
+
+See the [worked React reference-page artifacts](../reference-pages/) for the user story, acceptance criteria, design brief, implementation brief, accessibility guidance, tester scenarios, test cases, and definition-of-done record covering this page family.
+
 ## Example
 
 - Route: `/navigation/sidebar`

@@ -63,6 +63,10 @@ A layout slice is credible when a reviewer can confirm:
 - the page has no horizontal overflow at 320px;
 - the source page and shared components agree about the responsive behavior.
 
+## Worked artifacts
+
+See the [worked React reference-page artifacts](./reference-pages/) for a complete beginner example covering the user story, acceptance criteria, design brief, implementation brief, accessibility guidance, tester scenarios, test cases, and definition-of-done record for these layout pages.
+
 ## Related repository guidance
 
 - [Pattern contract](../patterns/pattern-template.md) — the contract a reusable layout or workflow should satisfy.
