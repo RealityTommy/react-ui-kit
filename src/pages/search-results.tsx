@@ -29,7 +29,7 @@ function searchRecords(query: string): Promise<Result[]> {
         return
       }
       const matches = records.filter((record) => `${record.title} ${record.description}`.toLowerCase().includes(query.toLowerCase()))
-      resolve(matches.length > 0 ? matches : records)
+      resolve(matches)
     }, 500)
   })
 }
