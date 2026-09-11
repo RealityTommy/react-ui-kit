@@ -48,14 +48,14 @@ function NavigationHeaderPage() {
                 <li>For a logo, primary navigation, and a small set of actions.</li>
               </ul>
             </div>
-            <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="navigation-header-not-heading">
-              <h2 id="navigation-header-not-heading" className="text-lg font-semibold">When not to use it</h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+            <div className="space-y-5" aria-labelledby="navigation-header-not-heading">
+              <h2 id="navigation-header-not-heading" className="text-2xl font-semibold tracking-tight">When not to use it</h2>
+              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                 <li>For every link in a deep section map.</li>
                 <li>For a long list that needs grouping and scanning space.</li>
                 <li>For section-only links that would compete with primary destinations.</li>
               </ul>
-            </aside>
+            </div>
           </section>
           <section className="space-y-5" aria-labelledby="navigation-header-design-heading">
             <h2 id="navigation-header-design-heading" className="text-2xl font-semibold tracking-tight">
@@ -65,14 +65,6 @@ function NavigationHeaderPage() {
               <div><h3 className="text-lg font-semibold">Design</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Keep the primary list short enough to scan.</li><li>Use dropdowns for one level only.</li><li>Keep actions visually separate from navigation.</li></ul></div>
               <div><h3 className="text-lg font-semibold">Accessibility</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Keep the named <code>Primary</code> landmark.</li><li>Use the skip link to reach Main.</li><li>Test keyboard focus, dropdown controls, and the mobile drawer.</li></ul></div>
             </div>
-          </section>
-          <section className="space-y-5" aria-labelledby="navigation-header-example-heading">
-            <h2 id="navigation-header-example-heading" className="text-2xl font-semibold tracking-tight">Example configuration</h2>
-            <pre className="overflow-x-auto rounded-xl border bg-muted/40 p-5 text-sm"><code>{`<Header
-  logo={{ href: "/", label: "Application" }}
-  nav={primaryNav}
-  actions={actions}
-/>`}</code></pre>
           </section>
         </div>
       </Main>

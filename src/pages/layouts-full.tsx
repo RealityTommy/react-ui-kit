@@ -118,14 +118,11 @@ function LayoutsFullPage() {
                     </li>
                   </ul>
                 </div>
-                <aside
-                  className="rounded-xl border bg-muted/40 p-6"
-                  aria-labelledby="full-recommendation-heading"
-                >
-                  <h2 id="full-recommendation-heading" className="text-lg font-semibold">
+                <div className="space-y-5" aria-labelledby="full-recommendation-heading">
+                  <h2 id="full-recommendation-heading" className="text-2xl font-semibold tracking-tight">
                     When not to use this layout
                   </h2>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>
                       When the page would be using extra navigation just to make it feel more
                       complete.
@@ -135,7 +132,7 @@ function LayoutsFullPage() {
                     </li>
                     <li>When the additional layers would make it harder to know where to start.</li>
                   </ul>
-                </aside>
+                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="full-decisions-heading">

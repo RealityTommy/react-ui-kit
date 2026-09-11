@@ -111,14 +111,11 @@ function LayoutsSidebarPage() {
                     </li>
                   </ul>
                 </div>
-                <aside
-                  className="rounded-xl border bg-muted/40 p-6"
-                  aria-labelledby="sidebar-recommendation-heading"
-                >
-                  <h2 id="sidebar-recommendation-heading" className="text-lg font-semibold">
+                <div className="space-y-5" aria-labelledby="sidebar-recommendation-heading">
+                  <h2 id="sidebar-recommendation-heading" className="text-2xl font-semibold tracking-tight">
                     When not to use this layout
                   </h2>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                  <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                     <li>When the page is simple and a sidebar would make it feel heavier.</li>
                     <li>
                       When the links are few, temporary, or unrelated to the content someone is
@@ -126,7 +123,7 @@ function LayoutsSidebarPage() {
                     </li>
                     <li>When there is not enough content to justify a persistent section map.</li>
                   </ul>
-                </aside>
+                </div>
               </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-decisions-heading">

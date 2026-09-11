@@ -95,21 +95,18 @@ function LayoutsSecondaryPage() {
                   </li>
                 </ul>
               </div>
-              <aside
-                className="rounded-xl border bg-muted/40 p-6"
-                aria-labelledby="secondary-recommendation-heading"
-              >
-                <h2 id="secondary-recommendation-heading" className="text-lg font-semibold">
+              <div className="space-y-5" aria-labelledby="secondary-recommendation-heading">
+                <h2 id="secondary-recommendation-heading" className="text-2xl font-semibold tracking-tight">
                   When not to use this layout
                 </h2>
-                <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+                <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                   <li>When the section has a long list of links or several levels of grouping.</li>
                   <li>
                     When only one or two related pages exist and the extra row would not help.
                   </li>
                   <li>When a sidebar would make the deeper page structure easier to understand.</li>
                 </ul>
-              </aside>
+              </div>
             </section>
 
             <section className="space-y-5" aria-labelledby="secondary-decisions-heading">

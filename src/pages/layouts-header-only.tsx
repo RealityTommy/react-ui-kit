@@ -65,20 +65,17 @@ function LayoutsHeaderOnlyPage() {
                 <li>When adding more navigation would distract from the content.</li>
               </ul>
             </div>
-            <aside
-              className="rounded-xl border bg-muted/40 p-6"
-              aria-labelledby="header-only-recommendation-heading"
-            >
-              <h2 id="header-only-recommendation-heading" className="text-lg font-semibold">
+            <div className="space-y-5" aria-labelledby="header-only-recommendation-heading">
+              <h2 id="header-only-recommendation-heading" className="text-2xl font-semibold tracking-tight">
                 When not to use this layout
               </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
+              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
                 <li>When people need to move between many pages in the same section.</li>
                 <li>When the page needs a visible map of a deeper set of content.</li>
                 <li>When people need section links and a sidebar at the same time.</li>
                 <li>When hiding important navigation in the Header would make it hard to find.</li>
               </ul>
-            </aside>
+            </div>
           </section>
 
           <section className="space-y-5" aria-labelledby="header-only-considerations-heading">
