@@ -143,10 +143,10 @@ function HomePage() {
             </div>
             <Columns base={1} sm={2} lg={4} gap="lg">
               <a
-                href="/layouts/simple"
+                href="/layouts/header-only"
                 className="rounded-xl border p-6 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <h3 className="font-semibold">Simple</h3>
+                <h3 className="font-semibold">Header Only</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Header, Main, and Footer.</p>
               </a>
               <a

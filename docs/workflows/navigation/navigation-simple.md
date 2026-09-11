@@ -25,5 +25,5 @@ Choose [Secondary navigation](./navigation-secondary.md) when people need a shor
 
 ## Example
 
-- Route: `/workflows/navigation/simple`
+- Route: `/navigation/header`
 - Source: [`src/pages/navigation-simple.tsx`](../../../src/pages/navigation-simple.tsx)

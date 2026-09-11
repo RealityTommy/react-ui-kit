@@ -62,7 +62,7 @@ export type NavLeaf = {
  * @example
  * const layouts: NavParent = {
  *   label: 'Layouts',
- *   children: [{ href: '/layouts/simple', label: 'Simple' }],
+ *   children: [{ href: '/layouts/header-only', label: 'Simple' }],
  * }
  */
 export type NavParent = {
@@ -82,7 +82,7 @@ export type NavParent = {
  * @example
  * const primaryNav: NavItem[] = [
  *   { href: '/', label: 'Home' },
- *   { label: 'Layouts', children: [{ href: '/layouts/simple', label: 'Simple' }] },
+ *   { label: 'Layouts', children: [{ href: '/layouts/header-only', label: 'Simple' }] },
  * ]
  */
 export type NavItem = NavLeaf | NavParent

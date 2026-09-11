@@ -1,7 +1,7 @@
 /**
- * LayoutsSimplePage — simple Header + Main + Footer layout reference.
+ * LayoutsHeaderOnlyPage — simple Header + Main + Footer layout reference.
  *
- * This page is the baseline example: one main content area, no secondary
+ * This page is the header-only baseline example: one main content area, no secondary
  * navigation, and no sidebar. It also shows how to choose a sensible number
  * of columns as the screen gets wider.
  */
@@ -20,21 +20,21 @@ import { primaryNav, footerLinks } from './index'
 // ---------------------------------------------------------------
 
 /**
- * Simple layout reference page. Mounted by the demo router at `/layouts/simple`.
+ * Header Only layout reference page. Mounted by the demo router at `/layouts/header-only`.
  *
  * @example
- * { path: '/layouts/simple', component: LayoutsSimplePage }
+ * { path: '/layouts/header-only', component: LayoutsHeaderOnlyPage }
  */
-function LayoutsSimplePage() {
+function LayoutsHeaderOnlyPage() {
   return (
     <PageShell>
       <SkipLink />
       <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
       <Main>
         <div className="space-y-14 pb-12">
-          <section className="space-y-5 pt-6" aria-labelledby="simple-heading">
-            <h1 id="simple-heading" className="text-4xl font-semibold tracking-tight">
-              Simple layout
+          <section className="space-y-5 pt-6" aria-labelledby="header-only-heading">
+            <h1 id="header-only-heading" className="text-4xl font-semibold tracking-tight">
+              Header Only layout
             </h1>
             <p className="text-xl leading-8 text-muted-foreground">
               A Header, a Main area, and a Footer. There is no second row of links and no sidebar.
@@ -42,8 +42,8 @@ function LayoutsSimplePage() {
             </p>
           </section>
 
-          <section className="space-y-5" aria-labelledby="simple-what-heading">
-            <h2 id="simple-what-heading" className="text-2xl font-semibold tracking-tight">
+          <section className="space-y-5" aria-labelledby="header-only-what-heading">
+            <h2 id="header-only-what-heading" className="text-2xl font-semibold tracking-tight">
               What is this layout?
             </h2>
             <p className="leading-7 text-muted-foreground">
@@ -53,9 +53,9 @@ function LayoutsSimplePage() {
             </p>
           </section>
 
-          <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="simple-use-heading">
+          <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="header-only-use-heading">
             <div className="space-y-5">
-              <h2 id="simple-use-heading" className="text-2xl font-semibold tracking-tight">
+              <h2 id="header-only-use-heading" className="text-2xl font-semibold tracking-tight">
                 When to use this layout
               </h2>
               <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -67,9 +67,9 @@ function LayoutsSimplePage() {
             </div>
             <aside
               className="rounded-xl border bg-muted/40 p-6"
-              aria-labelledby="simple-recommendation-heading"
+              aria-labelledby="header-only-recommendation-heading"
             >
-              <h2 id="simple-recommendation-heading" className="text-lg font-semibold">
+              <h2 id="header-only-recommendation-heading" className="text-lg font-semibold">
                 When not to use this layout
               </h2>
               <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
@@ -81,9 +81,9 @@ function LayoutsSimplePage() {
             </aside>
           </section>
 
-          <section className="space-y-5" aria-labelledby="simple-considerations-heading">
+          <section className="space-y-5" aria-labelledby="header-only-considerations-heading">
             <h2
-              id="simple-considerations-heading"
+              id="header-only-considerations-heading"
               className="text-2xl font-semibold tracking-tight"
             >
               Design/accessibility considerations
@@ -112,10 +112,10 @@ function LayoutsSimplePage() {
             </div>
           </section>
 
-          <section className="space-y-5" aria-labelledby="simple-available-columns-heading">
+          <section className="space-y-5" aria-labelledby="header-only-available-columns-heading">
             <div className="space-y-3">
               <h2
-                id="simple-available-columns-heading"
+                id="header-only-available-columns-heading"
                 className="text-2xl font-semibold tracking-tight"
               >
                 Available columns
@@ -126,7 +126,7 @@ function LayoutsSimplePage() {
                 one column on narrow screens.
               </p>
               <p className="leading-7 text-muted-foreground">
-                The simple layout makes up to four columns available at large widths. Keep the
+                The Header Only layout makes up to four columns available at large widths. Keep the
                 maximum at four only when the cards remain readable and easy to scan.
               </p>
             </div>
@@ -137,16 +137,16 @@ function LayoutsSimplePage() {
             </Columns>
           </section>
         </div>
-        <section className="space-y-5" aria-labelledby="simple-available-splits-heading">
+        <section className="space-y-5" aria-labelledby="header-only-available-splits-heading">
           <div className="space-y-2">
             <h2
-              id="simple-available-splits-heading"
+              id="header-only-available-splits-heading"
               className="text-2xl font-semibold tracking-tight"
             >
               Available split views
             </h2>
             <p className="text-muted-foreground">
-              The simple layout makes both split sizes available when the content needs a secondary
+              The Header Only layout makes both split sizes available when the content needs a secondary
               area.
             </p>
           </div>
@@ -167,4 +167,4 @@ function LayoutsSimplePage() {
   )
 }
 
-export { LayoutsSimplePage }
+export { LayoutsHeaderOnlyPage }

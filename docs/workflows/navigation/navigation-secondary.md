@@ -25,5 +25,5 @@ Choose [Simple navigation](./navigation-simple.md) when peer-page navigation is 
 
 ## Example
 
-- Route: `/workflows/navigation/secondary`
+- Route: `/navigation/secondary`
 - Source: [`src/pages/navigation-secondary.tsx`](../../../src/pages/navigation-secondary.tsx)

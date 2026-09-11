@@ -30,7 +30,7 @@ For using the kit in a separate application, see [`docs/consumer-guide.md`](./do
 For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
 For the focused navigation workflow slices, see [`docs/workflows/navigation/`](./docs/workflows/navigation/).
-For a complete workflow proof, see [`docs/workflows/search-results.md`](./docs/workflows/search-results.md).
+The search-and-results workflow proof is paused for now; its documentation remains available for later work.
 
 ```powershell
 # Install dependencies
@@ -47,9 +47,9 @@ pnpm build
 Node 24 + pnpm 12 (via corepack) recommended.
 
 The demo app is a history-routed reference application — visit `/`,
-`/layouts/simple`, `/layouts/secondary`, `/layouts/sidebar`, `/layouts/full`,
-or `/workflows/search-results` (or use the header navigation) to see the
-current layout and workflow proofs.
+`/layouts/header-only`, `/layouts/secondary`, `/layouts/sidebar`, `/layouts/full`,
+or the layout and navigation guide pages (or use the header navigation) to see
+the current component and layout proofs.
 
 ## Repo structure
 
@@ -90,7 +90,6 @@ src/
 │   ├── layouts-secondary.tsx
 │   ├── layouts-sidebar.tsx
 │   ├── layouts-full.tsx
-│   ├── search-results.tsx
 │   └── _*.tsx                     ← private demo-only helpers
 ├── lib/
 │   └── utils.ts                   ← cn() helper
@@ -108,7 +107,7 @@ Each meaningful folder has its own README explaining what belongs there, why it 
 - [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
 - [`templates/README.md`](./templates/README.md) — copyable project artifacts
 - [`docs/workflows/navigation/`](./docs/workflows/navigation/) — focused navigation workflow slices
-- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — complete search-and-results workflow proof
+- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — paused search-and-results workflow proof
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
 verification steps, and debugging playbook.

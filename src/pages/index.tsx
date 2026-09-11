@@ -1,7 +1,7 @@
 /**
  * Demo pages barrel + shared demo config.
  *
- * Exports the route table used by App.tsx's hash router, plus the
+ * Exports the route table used by App.tsx's history router, plus the
  * shared nav configs (primaryNav, footerLinks) that every demo
  * page consumes. Centralizing these means one edit updates the
  * whole demo — a page can't drift from the rest by accident.
@@ -9,7 +9,7 @@
  * When adding a new demo page:
  *   1. Create the page in this folder.
  *   2. Import it here.
- *   3. Add an entry to `routes` with a hash path.
+ *   3. Add an entry to `routes` with a path.
  *   4. If the page should appear in Header's primary nav, add it
  *      to `primaryNav` (a top-level entry or inside the Layouts
  *      dropdown).
@@ -18,14 +18,14 @@
 import type { LucideIcon } from 'lucide-react'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 import { HomePage } from './home'
-import { LayoutsSimplePage } from './layouts-simple'
+import { LayoutsHeaderOnlyPage } from './layouts-header-only'
 import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
-import { SearchResultsPage } from './search-results'
-import { NavigationSimplePage } from './navigation-simple'
+import { NavigationHeaderPage } from './navigation-header'
 import { NavigationSecondaryPage } from './navigation-secondary'
 import { NavigationSidebarPage } from './navigation-sidebar'
+import { NavigationFooterPage } from './navigation-footer'
 
 // ---------------------------------------------------------------
 // Routes
@@ -41,21 +41,21 @@ type Route = {
  * home / fallback route — unknown hashes fall back to it.
  *
  * @example
- * // Consumed by App.tsx's hash router:
+ * // Consumed by App.tsx's history router:
  * const route = routes.find((r) => r.path === path) ?? routes[0]
  * const Page = route.component
  * return <Page />
  */
 const routes: Route[] = [
   { path: '/', component: HomePage },
-  { path: '/layouts/simple', component: LayoutsSimplePage },
+  { path: '/layouts/header-only', component: LayoutsHeaderOnlyPage },
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
-  { path: '/workflows/navigation/simple', component: NavigationSimplePage },
-  { path: '/workflows/navigation/secondary', component: NavigationSecondaryPage },
-  { path: '/workflows/navigation/sidebar', component: NavigationSidebarPage },
-  { path: '/workflows/search-results', component: SearchResultsPage },
+  { path: '/navigation/header', component: NavigationHeaderPage },
+  { path: '/navigation/secondary', component: NavigationSecondaryPage },
+  { path: '/navigation/sidebar', component: NavigationSidebarPage },
+  { path: '/navigation/footer', component: NavigationFooterPage },
 ]
 
 // ---------------------------------------------------------------
@@ -73,21 +73,21 @@ const routes: Route[] = [
  */
 const primaryNav: NavItem[] = [
   {
-    label: 'Navigation workflows',
-    children: [
-      { href: '/workflows/navigation/simple', label: 'Simple' },
-      { href: '/workflows/navigation/secondary', label: 'Secondary' },
-      { href: '/workflows/navigation/sidebar', label: 'Sidebar' },
-    ],
-  },
-  { href: '/workflows/search-results', label: 'Search workflow' },
-  {
     label: 'Layouts',
     children: [
-      { href: '/layouts/simple', label: 'Simple' },
+      { href: '/layouts/header-only', label: 'Header Only' },
       { href: '/layouts/secondary', label: 'Secondary' },
       { href: '/layouts/sidebar', label: 'Sidebar' },
       { href: '/layouts/full', label: 'Full' },
+    ],
+  },
+  {
+    label: 'Navigation',
+    children: [
+      { href: '/navigation/header', label: 'Header' },
+      { href: '/navigation/secondary', label: 'Secondary' },
+      { href: '/navigation/sidebar', label: 'Sidebar' },
+      { href: '/navigation/footer', label: 'Footer' },
     ],
   },
 ]

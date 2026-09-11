@@ -1,8 +1,7 @@
 /**
- * NavigationSecondaryPage — Header, SecondaryNav, and Footer workflow.
+ * NavigationSecondaryPage — SecondaryNav component usage guide.
  *
- * This page shows a short peer navigation row inside a section and
- * how the same links move into the mobile menu below the breakpoint.
+ * Explains how to keep a short set of peer links together inside a section.
  */
 
 import { Header, SkipLink } from '@/components/layout/header'
@@ -14,64 +13,37 @@ import { SecondaryNav } from '@/components/layout/secondary-nav'
 import type { NavLeaf } from '@/components/layout/types'
 import { primaryNav, footerLinks } from './index'
 
-const sectionNav: NavLeaf[] = [
-  { href: '/workflows/navigation/secondary', label: 'Overview' },
-  { href: '/workflows/navigation/secondary/one', label: 'Section one' },
-  { href: '/workflows/navigation/secondary/two', label: 'Section two' },
+const sectionLinks: NavLeaf[] = [
+  { href: '/navigation/secondary', label: 'Overview' },
+  { href: '/navigation/header', label: 'Header' },
+  { href: '/navigation/sidebar', label: 'Sidebar' },
 ]
 
 function NavigationSecondaryPage() {
   return (
-    <LayoutProvider
-      secondaryNav={sectionNav}
-      secondaryNavLabel="Section navigation"
-      activeHref="/workflows/navigation/secondary"
-    >
+    <LayoutProvider secondaryNav={sectionLinks} secondaryNavLabel="Navigation components" activeHref="/navigation/secondary">
       <PageShell>
         <SkipLink />
         <Header logo={{ href: '/', label: 'Application Delivery Kit' }} nav={primaryNav} />
-        <SecondaryNav aria-label="Section navigation" />
+        <SecondaryNav aria-label="Navigation components" />
         <Main>
           <div className="space-y-12 pb-12 pt-6">
             <section className="space-y-5" aria-labelledby="navigation-secondary-heading">
-              <h1
-                id="navigation-secondary-heading"
-                className="text-4xl font-semibold tracking-tight"
-              >
-                Secondary navigation: keep peer pages together
-              </h1>
-              <p className="max-w-3xl text-xl leading-8 text-muted-foreground">
-                Use a short row of real links when people move between related pages inside the same
-                section.
-              </p>
+              <h1 id="navigation-secondary-heading" className="text-4xl font-semibold tracking-tight">Secondary navigation</h1>
+              <p className="text-xl leading-8 text-muted-foreground">Use SecondaryNav for a short row of peer links inside the current section. On smaller screens, LayoutProvider makes the same links available in the Header drawer.</p>
             </section>
-            <section className="space-y-5" aria-labelledby="navigation-secondary-contract-heading">
-              <h2
-                id="navigation-secondary-contract-heading"
-                className="text-2xl font-semibold tracking-tight"
-              >
-                What this workflow proves
-              </h2>
-              <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
-                <li>Header remains responsible for the broadest destinations.</li>
-                <li>SecondaryNav contains only peer pages in the current section.</li>
-                <li>The active page is marked on the real anchor.</li>
-                <li>The same links appear under a named section in the mobile menu.</li>
-                <li>The row disappears on narrow screens without removing the destinations.</li>
-              </ul>
+            <section className="space-y-5" aria-labelledby="navigation-secondary-what-heading">
+              <h2 id="navigation-secondary-what-heading" className="text-2xl font-semibold tracking-tight">What is it for?</h2>
+              <p className="leading-7 text-muted-foreground">SecondaryNav gives people nearby context without mixing section links into the application-wide Header. It renders real anchors and marks the active page with <code>aria-current="page"</code>.</p>
             </section>
-            <aside
-              className="max-w-3xl rounded-xl border bg-muted/40 p-6"
-              aria-labelledby="navigation-secondary-boundary-heading"
-            >
-              <h2 id="navigation-secondary-boundary-heading" className="text-lg font-semibold">
-                Do not turn this into a second primary menu
-              </h2>
-              <p className="mt-2 leading-7 text-muted-foreground">
-                Keep the list short and made of peer pages. Use a Sidebar when people need grouped,
-                deeper navigation instead.
-              </p>
-            </aside>
+            <section className="grid gap-10 lg:grid-cols-2" aria-labelledby="navigation-secondary-use-heading">
+              <div className="space-y-5"><h2 id="navigation-secondary-use-heading" className="text-2xl font-semibold tracking-tight">When to use it</h2><ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground"><li>For a small number of sibling pages.</li><li>When the links share one clear section identity.</li><li>When a horizontal row remains easy to scan.</li></ul></div>
+              <aside className="rounded-xl border bg-muted/40 p-6" aria-labelledby="navigation-secondary-not-heading"><h2 id="navigation-secondary-not-heading" className="text-lg font-semibold">When not to use it</h2><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>For a deep or heavily grouped page map.</li><li>For broad application destinations.</li><li>When the row would wrap into an unclear second menu.</li></ul></aside>
+            </section>
+            <section className="space-y-5" aria-labelledby="navigation-secondary-design-heading"><h2 id="navigation-secondary-design-heading" className="text-2xl font-semibold tracking-tight">Design/accessibility considerations</h2><div className="grid gap-6 md:grid-cols-2"><div><h3 className="text-lg font-semibold">Design</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Keep labels short and parallel.</li><li>Keep the active state visually clear.</li><li>Use the same links in the mobile drawer, not a second data set.</li></ul></div><div><h3 className="text-lg font-semibold">Accessibility</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Give the landmark a specific <code>aria-label</code>.</li><li>Use real links so keyboard and browser link actions work.</li><li>Verify the mobile replacement remains named and reachable.</li></ul></div></div></section>
+            <section className="space-y-5" aria-labelledby="navigation-secondary-example-heading"><h2 id="navigation-secondary-example-heading" className="text-2xl font-semibold tracking-tight">Example configuration</h2><pre className="overflow-x-auto rounded-xl border bg-muted/40 p-5 text-sm"><code>{`<LayoutProvider secondaryNav={sectionLinks} activeHref={pathname}>
+  <SecondaryNav aria-label="Navigation components" />
+</LayoutProvider>`}</code></pre></section>
           </div>
         </Main>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />
