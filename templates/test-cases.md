@@ -2,33 +2,32 @@
 
 ## Learn it
 
-A test case turns one expected behavior into a repeatable check. It records the setup, action, and expected result so another tester can reproduce it and the team can keep evidence of what was verified.
+A test case is one repeatable check from a scenario. Write it in Given/When/Then/And form so the setup, action, and expected result are easy to follow and record.
 
 ## Example
 
-| ID | Setup and action | Expected result |
-| --- | --- | --- |
-| SR-01 | Load the page | One `main`, one `h1`, named form, and instructions are present. |
-| SR-02 | Submit whitespace | No request occurs; the field is invalid and explains how to recover. |
-| SR-03 | Submit `accessibility` | Loading is announced, then matching records and a count appear. |
-| SR-04 | Submit `empty` | An explicit no-results message and edit path appear. |
-| SR-05 | Submit `error` | An error message and retry action appear. |
-| SR-06 | Retry after changing to `accessibility` | Normal results return. |
-| SR-07 | Activate a result | A success confirmation names the selected result. |
-| SR-08 | Use only keyboard at 320px | Every action is reachable, focused, and usable without overflow. |
+| ID | Given | When | Then and And |
+| --- | --- | --- | --- |
+| SR-01 | The Search and Results page is loaded | The tester inspects the page | Then there is one clear heading and a labeled form; And the result region has an understandable status. |
+| SR-02 | The query is blank or spaces | The tester submits the form | Then validation appears; And no request is made. |
+| SR-03 | The page is ready | The tester submits `accessibility` | Then loading is announced and matching records appear; And the result count and actions are understandable. |
+| SR-04 | The page is ready | The tester submits `empty` | Then an explicit no-results message appears; And the query can be edited. |
+| SR-05 | The page is ready | The tester submits `error` | Then an error message appears; And retry or query editing is available. |
+| SR-06 | An error is visible | The tester changes the query to `accessibility` and submits | Then normal results return; And the previous failure does not block recovery. |
+| SR-07 | Results are visible | The tester activates a result | Then a success confirmation names the selected result; And focus or reading context remains understandable. |
+| SR-08 | The page is loaded at 320px | The tester uses only the keyboard | Then every action is reachable with visible focus; And content does not overflow horizontally. |
 
 ## Use it
 
 ```text
-| ID | Setup and action | Expected result |
-| --- | --- | --- |
-| [ID-01] | [starting state and action] | [observable result] |
-| [ID-02] | [boundary, error, or recovery action] | [message, state, and recovery] |
+| ID | Given | When | Then and And |
+| --- | --- | --- | --- |
+| [ID-01] | [starting situation] | [action] | Then [observable result]; And [additional result]. |
 ```
 
 Keep true:
 
-- Give each case a stable ID.
+- Give every case a stable ID.
+- Keep one main behavior per case.
 - Include enough setup for another person to repeat the check.
-- Use observable results and avoid implementation-only assertions.
-- Include at least one boundary, error, recovery, keyboard, or responsive case when relevant.
+- Use observable results, not implementation-only assertions.

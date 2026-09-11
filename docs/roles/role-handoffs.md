@@ -19,6 +19,8 @@ Each role can ask questions and send work backward when something important is u
 
 ## Business analyst
 
+Use Given/When/Then/And for acceptance criteria so the behavior agreement is easy to read and test.
+
 **Receives:** a request, problem, opportunity, or observed user need.
 
 **Produces:**

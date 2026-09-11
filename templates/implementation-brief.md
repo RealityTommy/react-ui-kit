@@ -2,7 +2,7 @@
 
 ## Learn it
 
-An implementation brief carries the agreed experience into code. It tells the developer what must remain true, what may vary, and how the result can be checked. It should reduce questions without pretending to design the whole application.
+An implementation brief carries the agreed behavior into code. It tells the developer what must remain true, what may vary, and how to verify the Given/When/Then scenarios. It should reduce questions without pretending to design the whole application.
 
 ## Example
 
@@ -10,15 +10,19 @@ An implementation brief carries the agreed experience into code. It tells the de
 
 Use the existing PageShell, Header, Main, Footer, Card, and Button primitives. Keep the workflow behavior in a maintained page or feature module, not in `src/components/ui/`.
 
-The query is trimmed before validation. The reference lookup is asynchronous so loading is observable. Replace `searchRecords` with the consuming application's request function without changing the state contract.
+The query is trimmed before validation. The reference lookup is asynchronous so the loading state is observable. Replace `searchRecords` with the consuming application’s request function without changing the acceptance-criteria state contract.
 
 ### Stable hooks
 
-Preserve `search-results-form`, `search-query`, `search-submit`, and `search-status`. Keep the status text in a polite live region and associate validation text with the input.
+Preserve `search-results-form`, `search-query`, `search-submit`, and `search-status`. Keep status text in a polite live region and associate validation text with the input.
 
 ### Do not assume
 
 Do not assume a successful response contains records, that retrying will work, or that result titles alone are enough context. Keep the result action a real keyboard-accessible control.
+
+### Verification
+
+Implement against the acceptance criteria and test cases. Confirm the Given/When/Then scenarios for matches, blank input, no results, failure/recovery, keyboard use, and 320px reflow.
 
 ## Use it
 
@@ -27,7 +31,7 @@ Do not assume a successful response contains records, that retrying will work, o
 
 Use [existing patterns or primitives]. Keep [application behavior] in [owned location].
 
-Implement [states, rules, and important behavior]. Do not change [approved contract].
+Implement the behavior described by [acceptance criteria link]. Do not change [approved contract].
 
 ## Stable hooks
 
@@ -42,14 +46,14 @@ Fixed: [behavior, accessibility, structure, or state that must remain true].
 
 Do not assume [unknown, failure, content, or integration condition].
 
-## Verification notes
+## Verification
 
-Check [commands, scenarios, viewport, keyboard path, and accessibility expectations].
+Run the Given/When/Then scenarios for [main path, alternate states, recovery, keyboard, and responsive behavior].
 ```
 
 Keep true:
 
-- Describe behavior and boundaries before naming implementation details.
+- Implement the behavior contract before optimizing the component structure.
 - Separate generated primitives from maintained application behavior.
-- Name stable hooks only when they support real verification or integration.
 - Call out what is configurable and what is fixed.
+- Make every acceptance scenario verifiable by a test case or documented manual check.
