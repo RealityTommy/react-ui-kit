@@ -1,6 +1,6 @@
 # Roadmap
 
-The kit is built in layers. Establish the small, concrete pieces first, then connect them into larger patterns and complete delivery examples.
+The kit is built outside in. Establish the concrete page and navigation workflows first, then connect those slices into larger delivery examples.
 
 ## Complete
 
@@ -9,23 +9,42 @@ The kit is built in layers. Establish the small, concrete pieces first, then con
 - Canonical pattern contract.
 - Role handoff guide connecting the delivery model to the copyable artifacts.
 - Human, copyable delivery artifacts for user stories, acceptance criteria, implementation briefs, tester scenarios, test cases, accessibility, and definition of done.
-- A bounded Search and Results React example that demonstrates the key workflow states.
+- Layout examples for the current Header, SecondaryNav, Sidebar, mobile menu, Footer, Columns, and split-view components.
 
-## Next: establish the granular foundation
+## Next: navigation workflow slice
 
-Before expanding the end-to-end workflow proof, make the concrete building blocks easy to understand and reuse:
+Use the existing navigation components together as one outside-in workflow:
 
-- document the small UI and layout building blocks with their purpose, boundaries, and composition examples;
-- make each important primitive's semantic, responsive, and accessibility contract visible;
-- connect the smallest useful examples to the relevant implementation and verification guidance;
-- identify which pieces are generated, which are hand-written, and which behavior belongs in an application wrapper;
-- record the decisions and limits that a developer needs before assembling a larger page or workflow.
+- Header and primary navigation;
+- SecondaryNav for related section pages;
+- Sidebar for deeper page groups;
+- the mobile menu's combined hierarchy and handoff;
+- Footer links and the end of the page.
 
-The goal is not to create a large component inventory. A building block is ready when a person can understand what problem it solves, when to use it, what must remain true, and how to verify it.
+The slice should explain when each navigation area earns its place, how the areas relate, what the mobile menu preserves, and what keyboard, focus, landmark, active-state, and narrow-screen behavior must remain true.
+
+## Then: layout workflow slice
+
+Use the existing layout examples to make column behavior understandable:
+
+- available column counts at each supported viewport size;
+- one-column behavior on narrow screens;
+- how content width and card readability limit the maximum;
+- how the layout changes without breaking reading order or causing overflow.
+
+## Then: split-view workflow slice
+
+Use the existing split-view examples to make the supported split sizes understandable:
+
+- when `third` and `half` are available;
+- how Main and Secondary divide the available space;
+- how columns behave inside each pane;
+- how the panes stack and preserve reading order on smaller screens;
+- why Sidebar and Full layouts have a narrower split choice.
 
 ## Later: connect the layers
 
-- Revisit Search and Results as the first complete delivery proof after the granular foundation is established.
+- Revisit Search and Results as the first complete delivery proof after the three workflow slices are established and reviewed.
 - Add another common workflow only after the first proof has been used and its boundaries are clear.
 - Add automated browser tests when the project chooses a test runner and a stable test environment.
 - Consider a registry or package only after copied-file APIs and update rules have proven stable.
