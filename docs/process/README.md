@@ -8,6 +8,8 @@ This process is a guide for turning a product need into an application experienc
 
 It is a set of useful checkpoints, not a mandatory ceremony for every project.
 
+For the big-picture model—role handoffs, artifact flow, behavior-driven development, test-driven development, and definition of done—read the [application delivery model](./delivery-model.md) first.
+
 ## The path
 
 ```text
