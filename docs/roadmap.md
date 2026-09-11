@@ -32,7 +32,11 @@ Use the existing layout examples to make column behavior understandable:
 - how content width and card readability limit the maximum;
 - how the layout changes without breaking reading order or causing overflow.
 
-The four layout reference pages now provide the visual starting point. The next documentation pass should connect their visible guidance to a reusable layout pattern contract and the relevant delivery artifacts without turning the app pages into process documents.
+The four layout reference pages now provide the visual starting point, and [`docs/workflows/layout.md`](./workflows/layout.md) records the shared layout and responsive review contract without turning the app pages into process documents.
+
+## Review gate: layout workflow slice
+
+Review [`docs/workflows/layout.md`](./workflows/layout.md) against the four running layout pages before starting the split-view slice. Confirm that the column guidance, mobile-first behavior, and distinction between app evidence and repository guidance are the right foundation.
 
 ## Then: split-view workflow slice
 

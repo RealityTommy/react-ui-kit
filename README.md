@@ -118,6 +118,7 @@ Each meaningful folder has its own README explaining what belongs there, why it 
 - [`docs/reviewer-guide.md`](./docs/reviewer-guide.md) — shortest review paths through the repository
 - [`templates/README.md`](./templates/README.md) — copyable project artifacts
 - [`docs/workflows/navigation/`](./docs/workflows/navigation/) — focused navigation workflow slices
+- [`docs/workflows/layout.md`](./docs/workflows/layout.md) — layout and responsive review contract
 - [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — paused search-and-results workflow proof and contract
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
