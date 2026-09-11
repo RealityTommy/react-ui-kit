@@ -2,6 +2,10 @@
 
 This directory contains reusable page and workflow patterns. A pattern explains a user or application need, not merely a visual arrangement.
 
+## Start a new pattern
+
+Use the [pattern contract template](./pattern-template.md) so every pattern connects its purpose, structure, behavior, accessibility, implementation, testing, and delivery artifacts.
+
 ## A pattern should describe
 
 - the problem and user goal;
