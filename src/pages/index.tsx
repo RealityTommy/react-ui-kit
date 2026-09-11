@@ -23,6 +23,9 @@ import { LayoutsSecondaryPage } from './layouts-secondary'
 import { LayoutsSidebarPage } from './layouts-sidebar'
 import { LayoutsFullPage } from './layouts-full'
 import { SearchResultsPage } from './search-results'
+import { NavigationSimplePage } from './navigation-simple'
+import { NavigationSecondaryPage } from './navigation-secondary'
+import { NavigationSidebarPage } from './navigation-sidebar'
 
 // ---------------------------------------------------------------
 // Routes
@@ -49,6 +52,9 @@ const routes: Route[] = [
   { path: '/layouts/secondary', component: LayoutsSecondaryPage },
   { path: '/layouts/sidebar', component: LayoutsSidebarPage },
   { path: '/layouts/full', component: LayoutsFullPage },
+  { path: '/workflows/navigation/simple', component: NavigationSimplePage },
+  { path: '/workflows/navigation/secondary', component: NavigationSecondaryPage },
+  { path: '/workflows/navigation/sidebar', component: NavigationSidebarPage },
   { path: '/workflows/search-results', component: SearchResultsPage },
 ]
 
@@ -66,6 +72,14 @@ const routes: Route[] = [
  * <Header logo={{ href: '#/', label: 'Application Delivery Kit' }} nav={primaryNav} />
  */
 const primaryNav: NavItem[] = [
+  {
+    label: 'Navigation workflows',
+    children: [
+      { href: '#/workflows/navigation/simple', label: 'Simple' },
+      { href: '#/workflows/navigation/secondary', label: 'Secondary' },
+      { href: '#/workflows/navigation/sidebar', label: 'Sidebar' },
+    ],
+  },
   { href: '#/workflows/search-results', label: 'Search workflow' },
   {
     label: 'Layouts',

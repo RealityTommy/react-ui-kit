@@ -8,7 +8,8 @@ This directory explains how the Application Delivery Kit is organized, why it ex
 
 1. Read the [operating philosophy](./operating-philosophy.md).
 2. Read the [application delivery model](./process/delivery-model.md).
-3. Follow a [complete workflow proof](./workflows/search-results.md).
+3. Study the [focused navigation workflow slices](./workflows/navigation/).
+4. Follow the later [search-and-results workflow proof](./workflows/search-results.md).
 
 ### I want to see the system
 
@@ -36,7 +37,8 @@ Start with the role guides in [`roles/`](./roles/) and the reusable artifacts in
 
 - [`architecture/`](./architecture/) — system boundaries, repository structure, and ownership.
 - [`patterns/`](./patterns/) — reusable page and workflow patterns.
-- [`workflows/search-results.md`](./workflows/search-results.md) — the first complete workflow proof and its delivery artifacts.
+- [`workflows/navigation/`](./workflows/navigation/) — the focused navigation workflow slices.
+- [`workflows/search-results.md`](./workflows/search-results.md) — the later search-and-results workflow proof.
 - [`roles/`](./roles/) — guidance for business stakeholders, business analysts, designers, developers, and testers.
 - [`process/`](./process/) — how an idea becomes a documented, implemented, and verified experience.
 - [`decisions/`](./decisions/) — decisions that shape the project and their tradeoffs.
@@ -66,4 +68,5 @@ Examples and guidance must be generic, original, and safe to publish. Do not add
 - [Understand the system layers](./architecture/system-layers.md)
 - [See the repository map](./architecture/repository-map.md)
 - [Read the consumer guide](./consumer-guide.md)
+- [Study the focused navigation workflow slices](./workflows/navigation/)
 - [Study the search-and-results workflow](./workflows/search-results.md)

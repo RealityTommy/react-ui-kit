@@ -29,6 +29,7 @@ For the role handoffs, see [`docs/roles/role-handoffs.md`](./docs/roles/role-han
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
 For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
+For the focused navigation workflow slices, see [`docs/workflows/navigation/`](./docs/workflows/navigation/).
 For a complete workflow proof, see [`docs/workflows/search-results.md`](./docs/workflows/search-results.md).
 
 ```powershell
@@ -106,6 +107,7 @@ Each meaningful folder has its own README explaining what belongs there, why it 
 - [`docs/README.md`](./docs/README.md) — documentation map and learning paths
 - [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
 - [`templates/README.md`](./templates/README.md) — copyable project artifacts
+- [`docs/workflows/navigation/`](./docs/workflows/navigation/) — focused navigation workflow slices
 - [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — complete search-and-results workflow proof
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
