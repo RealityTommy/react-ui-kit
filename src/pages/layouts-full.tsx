@@ -166,7 +166,7 @@ function LayoutsFullPage() {
             <h2 id="layouts-full-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">The page has both a section-link row and a sidebar, so less width remains for the main content. Start with one stack and add side-by-side cards only when their content remains clear.</p>
+            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack on the narrowest screen. On wider screens, the section-link row and Sidebar take their places, and cards can move side by side only when the remaining space keeps them clear.</p>
           </section>
 
               <section className="space-y-5" aria-labelledby="full-card-count-heading">
@@ -178,7 +178,7 @@ function LayoutsFullPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
+                    Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side, but the extra navigation layers mean fewer may fit comfortably.
                   </p>
                   <p className="leading-7 text-muted-foreground">
                     The section links and sidebar both take room from the page, so the example shows three groups at the widest size. Keep the number lower when the cards feel crowded.

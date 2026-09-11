@@ -112,7 +112,7 @@ function LayoutsHeaderOnlyPage() {
             <h2 id="layouts-header-only-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">The page starts with one vertical stack. As the screen gets wider, the cards can sit side by side when each card still has enough room to be read and used.</p>
+            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack for the narrowest screen, then let cards sit side by side only as the screen gives each card enough room to be read and used.</p>
           </section>
 
           <section className="space-y-5" aria-labelledby="header-only-card-count-heading">
@@ -124,10 +124,10 @@ function LayoutsHeaderOnlyPage() {
                 How many cards can fit across the page?
               </h2>
               <p className="leading-7 text-muted-foreground">
-                Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
+                Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
               </p>
               <p className="leading-7 text-muted-foreground">
-                The example below shows four groups at the widest size. More groups are not automatically better; use only as many as the content can support.
+                The live demonstration below shows four groups at the widest size. More groups are not automatically better; use only as many as the content can support.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">

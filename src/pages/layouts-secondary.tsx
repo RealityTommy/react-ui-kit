@@ -144,7 +144,7 @@ function LayoutsSecondaryPage() {
             <h2 id="layouts-secondary-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">The row of section links stays above the content on wider screens. The content cards still begin in one stack and move side by side only when they remain comfortable to read.</p>
+            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack for the narrowest screen. On wider screens, the row of section links stays above the content and cards can move side by side when they remain comfortable to read.</p>
           </section>
 
             <section className="space-y-5" aria-labelledby="secondary-card-count-heading">
@@ -156,7 +156,7 @@ function LayoutsSecondaryPage() {
                   How many cards can fit across the page?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
+                  Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
                 </p>
                 <p className="leading-7 text-muted-foreground">
                   The section links sit above the page, leaving the main content with room for four groups at the widest size. Use fewer when the cards need more breathing room.

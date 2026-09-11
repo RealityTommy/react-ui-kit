@@ -163,7 +163,7 @@ function LayoutsSidebarPage() {
             <h2 id="layouts-sidebar-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">The sidebar uses part of the width, so the main content needs more room to breathe. Cards begin in one stack and move side by side more cautiously than they do in a page without a sidebar.</p>
+            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack on the narrowest screen. When the screen is wide enough for the Sidebar to sit beside Main, cards can move side by side more cautiously because the Sidebar uses part of the width.</p>
           </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-card-count-heading">
@@ -175,7 +175,7 @@ function LayoutsSidebarPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
+                    Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read, but the Sidebar means fewer may fit comfortably.
                   </p>
                   <p className="leading-7 text-muted-foreground">
                     The sidebar takes room from the page, so the example shows three groups at the widest size. Use fewer when the cards need more width.
