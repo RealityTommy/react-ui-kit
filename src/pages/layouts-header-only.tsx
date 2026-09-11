@@ -108,23 +108,26 @@ function LayoutsHeaderOnlyPage() {
               </div>
             </div>
           </section>
+          <section className="space-y-5" aria-labelledby="layouts-header-only-responsive-heading">
+            <h2 id="layouts-header-only-responsive-heading" className="text-2xl font-semibold tracking-tight">
+              Responsive behavior
+            </h2>
+            <p className="leading-7 text-muted-foreground">The page starts with one vertical stack. As the screen gets wider, the cards can sit side by side when each card still has enough room to be read and used.</p>
+          </section>
 
-          <section className="space-y-5" aria-labelledby="header-only-available-columns-heading">
+          <section className="space-y-5" aria-labelledby="header-only-card-count-heading">
             <div className="space-y-3">
               <h2
-                id="header-only-available-columns-heading"
+                id="header-only-card-count-heading"
                 className="text-2xl font-semibold tracking-tight"
               >
-                Available columns
+                How many cards can fit across the page?
               </h2>
               <p className="leading-7 text-muted-foreground">
-                The available configuration is <code className="ml-1">base=1 sm=2 md=3 lg=4</code>.
-                This layout makes up to four columns available at larger widths, but it starts with
-                one column on narrow screens.
+                Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
               </p>
               <p className="leading-7 text-muted-foreground">
-                The Header Only layout makes up to four columns available at large widths. Keep the
-                maximum at four only when the cards remain readable and easy to scan.
+                The example below shows four groups at the widest size. More groups are not automatically better; use only as many as the content can support.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">
@@ -134,26 +137,25 @@ function LayoutsHeaderOnlyPage() {
             </Columns>
           </section>
         </div>
-        <section className="space-y-5" aria-labelledby="header-only-available-splits-heading">
+        <section className="space-y-5" aria-labelledby="header-only-second-area-heading">
           <div className="space-y-2">
             <h2
-              id="header-only-available-splits-heading"
+              id="header-only-second-area-heading"
               className="text-2xl font-semibold tracking-tight"
             >
-              Available split views
+              When the page needs a second area
             </h2>
             <p className="text-muted-foreground">
-              The Header Only layout makes both split sizes available when the content needs a secondary
-              area.
+              This layout can place a main area beside a secondary area when the page needs both. The live demonstrations below show two ways to share the available width.
             </p>
           </div>
           <div className="space-y-8">
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold">Main 2/3 + Secondary 1/3</h3>
+              <h3 className="text-lg font-semibold">More room for the main area</h3>
               <SplitPaneDemo secondarySize="third" />
             </div>
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+              <h3 className="text-lg font-semibold">Equal room for both areas</h3>
               <SplitPaneDemo secondarySize="half" />
             </div>
           </div>

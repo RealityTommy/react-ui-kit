@@ -66,6 +66,12 @@ function NavigationHeaderPage() {
               <div><h3 className="text-lg font-semibold">Accessibility</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Keep the named <code>Primary</code> landmark.</li><li>Use the skip link to reach Main.</li><li>Test keyboard focus, dropdown controls, and the mobile drawer.</li></ul></div>
             </div>
           </section>
+          <section className="space-y-5" aria-labelledby="navigation-header-responsive-heading">
+            <h2 id="navigation-header-responsive-heading" className="text-2xl font-semibold tracking-tight">
+              Responsive behavior
+            </h2>
+            <p className="leading-7 text-muted-foreground">On wider screens, the primary links sit in the Header. On narrow screens, they move into the mobile menu so the Header does not crowd the page.</p>
+          </section>
         </div>
       </Main>
       <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />

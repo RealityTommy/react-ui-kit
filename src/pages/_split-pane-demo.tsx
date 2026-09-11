@@ -37,7 +37,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
       <div className="space-y-3 rounded-xl border bg-muted/40 p-6">
         <h3 className="text-lg font-semibold">Main area</h3>
         <p className="text-sm text-muted-foreground">
-          Available columns: <code>{mainColumns}</code>
+          Cards shown: <code>{mainColumns}</code>
         </p>
         <Columns
           responsive="container"
@@ -58,7 +58,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
       <SecondaryPane aria-label="Secondary content" className="space-y-3 rounded-xl border p-6">
         <h3 className="text-lg font-semibold">Secondary area</h3>
         <p className="text-sm text-muted-foreground">
-          Available columns: <code>{secondaryColumns}</code>
+          Cards shown: <code>{secondaryColumns}</code>
         </p>
         <Columns responsive="container" base={1} md={2} gap="sm">
           <DemoCard title="Secondary card 1" />

@@ -140,24 +140,26 @@ function LayoutsSecondaryPage() {
                 </div>
               </div>
             </section>
+          <section className="space-y-5" aria-labelledby="layouts-secondary-responsive-heading">
+            <h2 id="layouts-secondary-responsive-heading" className="text-2xl font-semibold tracking-tight">
+              Responsive behavior
+            </h2>
+            <p className="leading-7 text-muted-foreground">The row of section links stays above the content on wider screens. The content cards still begin in one stack and move side by side only when they remain comfortable to read.</p>
+          </section>
 
-            <section className="space-y-5" aria-labelledby="secondary-available-columns-heading">
+            <section className="space-y-5" aria-labelledby="secondary-card-count-heading">
               <div className="space-y-2">
                 <h2
-                  id="secondary-available-columns-heading"
+                  id="secondary-card-count-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Available columns
+                  How many cards can fit across the page?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  The available configuration is <code className="ml-1">base=1 sm=2 md=3 lg=4</code>
-                  . This layout makes up to four columns available at larger widths, but it starts
-                  with one column on narrow screens.
+                  Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  The SecondaryNav sits above the page, so this layout still makes up to four
-                  columns available in the main content. Add columns only when the cards remain easy
-                  to scan and use.
+                  The section links sit above the page, leaving the main content with room for four groups at the widest size. Use fewer when the cards need more breathing room.
                 </p>
               </div>
               <Columns base={1} sm={2} md={3} lg={4}>
@@ -167,26 +169,25 @@ function LayoutsSecondaryPage() {
               </Columns>
             </section>
           </div>
-          <section className="space-y-5" aria-labelledby="secondary-available-splits-heading">
+          <section className="space-y-5" aria-labelledby="secondary-second-area-heading">
             <div className="space-y-2">
               <h2
-                id="secondary-available-splits-heading"
+                id="secondary-second-area-heading"
                 className="text-2xl font-semibold tracking-tight"
               >
-                Available split views
+                When the page needs a second area
               </h2>
               <p className="text-muted-foreground">
-                The SecondaryNav sits above the page, so both split sizes remain available in the
-                content area.
+                The section links sit above the page, so the content can place a main area beside a secondary area. The live demonstrations below show two ways to share the width.
               </p>
             </div>
             <div className="space-y-8">
               <div className="space-y-3">
-                <h3 className="text-lg font-semibold">Main 2/3 + Secondary 1/3</h3>
+                <h3 className="text-lg font-semibold">More room for the main area</h3>
                 <SplitPaneDemo secondarySize="third" />
               </div>
               <div className="space-y-3">
-                <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+                <h3 className="text-lg font-semibold">Equal room for both areas</h3>
                 <SplitPaneDemo secondarySize="half" />
               </div>
             </div>

@@ -41,6 +41,12 @@ function NavigationSecondaryPage() {
               <div className="space-y-5" aria-labelledby="navigation-secondary-not-heading"><h2 id="navigation-secondary-not-heading" className="text-2xl font-semibold tracking-tight">When not to use it</h2><ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground"><li>For a deep or heavily grouped page map.</li><li>For broad application destinations.</li><li>When the row would wrap into an unclear second menu.</li></ul></div>
             </section>
             <section className="space-y-5" aria-labelledby="navigation-secondary-design-heading"><h2 id="navigation-secondary-design-heading" className="text-2xl font-semibold tracking-tight">Design/accessibility considerations</h2><div className="grid gap-6 md:grid-cols-2"><div><h3 className="text-lg font-semibold">Design</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Keep labels short and parallel.</li><li>Keep the active state visually clear.</li><li>Use the same links in the mobile drawer, not a second data set.</li></ul></div><div><h3 className="text-lg font-semibold">Accessibility</h3><ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground"><li>Give the landmark a specific <code>aria-label</code>.</li><li>Use real links so keyboard and browser link actions work.</li><li>Verify the mobile replacement remains named and reachable.</li></ul></div></div></section>
+          <section className="space-y-5" aria-labelledby="navigation-secondary-responsive-heading">
+            <h2 id="navigation-secondary-responsive-heading" className="text-2xl font-semibold tracking-tight">
+              Responsive behavior
+            </h2>
+            <p className="leading-7 text-muted-foreground">On wider screens, the short section-link row sits below the Header. On narrow screens, it is replaced by the same links in the Header's mobile menu.</p>
+          </section>
           </div>
         </Main>
         <Footer copyright={<>© 2026 Tommy Truong</>} links={footerLinks} />

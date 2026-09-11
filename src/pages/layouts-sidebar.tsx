@@ -159,25 +159,26 @@ function LayoutsSidebarPage() {
                   </div>
                 </div>
               </section>
+          <section className="space-y-5" aria-labelledby="layouts-sidebar-responsive-heading">
+            <h2 id="layouts-sidebar-responsive-heading" className="text-2xl font-semibold tracking-tight">
+              Responsive behavior
+            </h2>
+            <p className="leading-7 text-muted-foreground">The sidebar uses part of the width, so the main content needs more room to breathe. Cards begin in one stack and move side by side more cautiously than they do in a page without a sidebar.</p>
+          </section>
 
-              <section className="space-y-5" aria-labelledby="sidebar-available-columns-heading">
+              <section className="space-y-5" aria-labelledby="sidebar-card-count-heading">
                 <div className="space-y-2">
                   <h2
-                    id="sidebar-available-columns-heading"
+                    id="sidebar-card-count-heading"
                     className="text-2xl font-semibold tracking-tight"
                   >
-                    Available columns
+                    How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    The available configuration is{' '}
-                    <code className="ml-1">base=1 sm=2 md=2 lg=3</code>. This layout makes up to
-                    three columns available at larger widths, but it starts with one column on
-                    narrow screens.
+                    Start with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
                   </p>
                   <p className="leading-7 text-muted-foreground">
-                    The Sidebar takes up room, so this layout makes up to three columns available in
-                    the main content. Stop at three when the cards still have enough width for their
-                    content.
+                    The sidebar takes room from the page, so the example shows three groups at the widest size. Use fewer when the cards need more width.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -187,22 +188,21 @@ function LayoutsSidebarPage() {
                 </Columns>
               </section>
             </div>
-            <section className="space-y-5" aria-labelledby="sidebar-available-splits-heading">
+            <section className="space-y-5" aria-labelledby="sidebar-second-area-heading">
               <div className="space-y-2">
                 <h2
-                  id="sidebar-available-splits-heading"
+                  id="sidebar-second-area-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  Available split views
+                  When the page needs a second area
                 </h2>
                 <p className="text-muted-foreground">
-                  The Sidebar already uses part of the page width, so this layout makes only the
-                  half split available.
+                  The sidebar already uses part of the page width, so the content uses an even main-and-secondary split when both areas are needed.
                 </p>
               </div>
               <div className="space-y-8">
                 <div className="space-y-3">
-                  <h3 className="text-lg font-semibold">Main 1/2 + Secondary 1/2</h3>
+                  <h3 className="text-lg font-semibold">Equal room for both areas</h3>
                   <SplitPaneDemo secondarySize="half" />
                 </div>
               </div>
