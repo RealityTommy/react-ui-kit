@@ -4,6 +4,12 @@ This directory explains how the Application Delivery Kit is organized, why it ex
 
 ## Choose a path
 
+### I want to understand the project philosophy
+
+1. Read the [operating philosophy](./operating-philosophy.md).
+2. Read the [application delivery model](./process/delivery-model.md).
+3. Follow a [complete workflow proof](./workflows/search-results.md).
+
 ### I want to see the system
 
 1. Run the [demo application](../README.md#getting-started).

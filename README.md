@@ -23,6 +23,7 @@ consuming project and edit freely.** No npm install, no lock-in.
 ## Getting started
 
 For a guided tour, see [`docs/README.md`](./docs/README.md).
+For the project philosophy, see [`docs/operating-philosophy.md`](./docs/operating-philosophy.md).
 For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
 For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
 For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
