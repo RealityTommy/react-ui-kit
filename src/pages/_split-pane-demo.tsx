@@ -16,9 +16,14 @@ import { DemoCard } from './_demo-card'
 // Types
 // ---------------------------------------------------------------
 
+type SplitColumns = Pick<ColumnsProps, 'base' | 'sm' | 'md' | 'lg'>
+
 type SplitPaneDemoProps = {
   secondarySize: SecondarySize
-  mainColumns: Pick<ColumnsProps, 'base' | 'sm' | 'md' | 'lg'>
+  mainColumns: {
+    visible: SplitColumns
+    hidden: SplitColumns
+  }
   mainCardCount: number
 }
 
@@ -39,11 +44,12 @@ type SplitPaneDemoProps = {
 function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(true)
   const secondaryId = useId()
+  const activeColumns = secondaryVisible ? mainColumns.visible : mainColumns.hidden
   const mainColumnsLabel = [
-    `base=${mainColumns.base}`,
-    mainColumns.sm && `sm=${mainColumns.sm}`,
-    mainColumns.md && `md=${mainColumns.md}`,
-    mainColumns.lg && `lg=${mainColumns.lg}`,
+    `base=${activeColumns.base}`,
+    activeColumns.sm && `sm=${activeColumns.sm}`,
+    activeColumns.md && `md=${activeColumns.md}`,
+    activeColumns.lg && `lg=${activeColumns.lg}`,
   ]
     .filter(Boolean)
     .join(' ')
@@ -72,7 +78,7 @@ function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneD
         </div>
         <Columns
           responsive="container"
-          {...mainColumns}
+          {...activeColumns}
           gap="lg"
         >
           {Array.from({ length: mainCardCount }, (_, i) => (
