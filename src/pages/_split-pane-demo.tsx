@@ -37,7 +37,8 @@ type SplitPaneDemoProps = {
 function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(true)
   const secondaryId = useId()
-  const mainColumns = secondarySize === 'third' ? 'base=1 md=2 lg=3' : 'base=1 md=2'
+  const mainLargeColumns = secondaryVisible ? (secondarySize === 'third' ? 3 : 2) : 4
+  const mainColumns = `base=1 md=2 lg=${mainLargeColumns}`
   const secondaryColumns = 'base=1 md=2'
 
   return (
@@ -65,17 +66,19 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
           responsive="container"
           base={1}
           md={2}
-          lg={secondarySize === 'third' ? 3 : 2}
+          lg={mainLargeColumns}
           gap="sm"
         >
           <DemoCard title="Main card 1" />
           <DemoCard title="Main card 2" />
           <DemoCard title="Main card 3" />
+          <DemoCard title="Main card 4" />
         </Columns>
         <p className="leading-7 text-muted-foreground">
           The primary content stays first in the reading order and gets the larger share of the
-          available space. Hide the secondary area to see Main grow into the space, then show it
-          again to compare the split.
+          available space. When the secondary area is hidden, the Main grid also uses one more
+          column to show how the extra width can support more content. Show it again to compare the
+          original split.
         </p>
       </div>
       <SecondaryPane
