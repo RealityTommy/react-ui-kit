@@ -184,11 +184,11 @@ function LayoutsSecondaryPage() {
             <div className="space-y-8">
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold">More room for the main area</h3>
-                <SplitPaneDemo secondarySize="third" mainColumns={{ visible: { base: 1, sm: 2, md: 2, lg: 3 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} />
+                <SplitPaneDemo secondarySize="third" mainColumns={{ visible: { base: 1, sm: 2, md: 2, lg: 3 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} />
+                <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
               </div>
             </div>
           </section>

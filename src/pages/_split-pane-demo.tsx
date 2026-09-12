@@ -25,6 +25,8 @@ type SplitPaneDemoProps = {
     hidden: SplitColumns
   }
   mainCardCount: number
+  secondaryColumns: Record<SecondarySize, SplitColumns>
+  secondaryCardCount: number
 }
 
 // ---------------------------------------------------------------
@@ -41,7 +43,13 @@ type SplitPaneDemoProps = {
  * @example
  * <SplitPaneDemo secondarySize="half" />
  */
-function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneDemoProps) {
+function SplitPaneDemo({
+  secondarySize,
+  mainColumns,
+  mainCardCount,
+  secondaryColumns,
+  secondaryCardCount,
+}: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(true)
   const secondaryId = useId()
   const activeColumns = secondaryVisible ? mainColumns.visible : mainColumns.hidden
@@ -53,7 +61,15 @@ function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneD
   ]
     .filter(Boolean)
     .join(' ')
-  const secondaryColumns = 'base=1 md=2'
+  const activeSecondaryColumns = secondaryColumns[secondarySize]
+  const secondaryColumnsLabel = [
+    `base=${activeSecondaryColumns.base}`,
+    activeSecondaryColumns.sm && `sm=${activeSecondaryColumns.sm}`,
+    activeSecondaryColumns.md && `md=${activeSecondaryColumns.md}`,
+    activeSecondaryColumns.lg && `lg=${activeSecondaryColumns.lg}`,
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <SplitPane secondarySize={secondarySize} secondaryVisible={secondaryVisible}>
@@ -99,11 +115,12 @@ function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneD
       >
         <h3 className="text-lg font-semibold">Secondary area</h3>
         <p className="text-sm text-muted-foreground">
-          Cards shown: <code>{secondaryColumns}</code>
+          Cards shown: <code>{secondaryColumnsLabel}</code>
         </p>
-        <Columns responsive="container" base={1} md={2} gap="sm">
-          <DemoCard title="Secondary card 1" />
-          <DemoCard title="Secondary card 2" />
+        <Columns responsive="container" {...activeSecondaryColumns} gap="sm">
+          {Array.from({ length: secondaryCardCount }, (_, i) => (
+            <DemoCard key={i} title={`Secondary card ${i + 1}`} />
+          ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
           Related details, filters, a preview, or another focused piece of supporting content can

@@ -203,7 +203,7 @@ function LayoutsSidebarPage() {
               <div className="space-y-8">
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                  <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 2, lg: 3 } }} mainCardCount={6} />
+                  <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 2, lg: 3 } }} mainCardCount={6} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
                 </div>
               </div>
             </section>
