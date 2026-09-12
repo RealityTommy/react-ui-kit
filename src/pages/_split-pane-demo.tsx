@@ -101,11 +101,7 @@ function SplitPaneDemo({
             {secondaryVisible ? 'Hide details' : 'View details'}
           </Button>
         </div>
-        <Columns
-          responsive="container"
-          {...activeColumns}
-          gap="lg"
-        >
+        <Columns responsive="container" {...activeColumns} gap="lg">
           {Array.from({ length: mainCardCount }, (_, i) => (
             <DemoCard key={i} title={`Main card ${i + 1}`} />
           ))}
@@ -113,23 +109,23 @@ function SplitPaneDemo({
         <p className="leading-7 text-muted-foreground">
           Main stays first in the reading order and starts with the wider page configuration because
           the details area is closed. Choose View details to open supporting information without
-          leaving the current page. When details are open, Main uses a more conservative column pattern
-          so its cards remain readable.
+          leaving the current page. When details are open, Main uses a more conservative column
+          pattern so its cards remain readable.
         </p>
         <p className="leading-7 text-muted-foreground">
-          The button controls the details area in place. Its expanded state and controlled region are
-          exposed to assistive technology, and the details content remains after Main in the reading
-          order.
+          The button controls the details area in place. Its expanded state and controlled region
+          are exposed to assistive technology, and the details content remains after Main in the
+          reading order.
         </p>
       </div>
       <SecondaryPane
         id={secondaryId}
-        aria-label="Record details"
+        aria-label="Secondary area"
         hidden={!secondaryVisible}
         className="space-y-3 rounded-xl border p-6"
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <h3 className="text-lg font-semibold">Record details</h3>
+          <h3 className="text-lg font-semibold">Secondary area</h3>
           <Button
             type="button"
             variant="outline"

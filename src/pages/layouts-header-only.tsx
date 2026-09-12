@@ -66,7 +66,10 @@ function LayoutsHeaderOnlyPage() {
               </ul>
             </div>
             <div className="space-y-5" aria-labelledby="header-only-recommendation-heading">
-              <h2 id="header-only-recommendation-heading" className="text-2xl font-semibold tracking-tight">
+              <h2
+                id="header-only-recommendation-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
                 When not to use this layout
               </h2>
               <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -100,19 +103,34 @@ function LayoutsHeaderOnlyPage() {
               <div>
                 <h3 className="text-lg font-semibold">Accessibility</h3>
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep one clear <code>h1</code> as the first meaningful heading in Main.</li>
+                  <li>
+                    Keep one clear <code>h1</code> as the first meaningful heading in Main.
+                  </li>
                   <li>Verify that the skip link moves focus directly to Main.</li>
-                  <li>Give Header navigation a clear accessible name and keep focus styles visible.</li>
-                  <li>Check at a narrow viewport that Main remains first and no horizontal scrolling is required.</li>
+                  <li>
+                    Give Header navigation a clear accessible name and keep focus styles visible.
+                  </li>
+                  <li>
+                    Check at a narrow viewport that Main remains first and no horizontal scrolling
+                    is required.
+                  </li>
                 </ul>
               </div>
             </div>
           </section>
           <section className="space-y-5" aria-labelledby="layouts-header-only-responsive-heading">
-            <h2 id="layouts-header-only-responsive-heading" className="text-2xl font-semibold tracking-tight">
+            <h2
+              id="layouts-header-only-responsive-heading"
+              className="text-2xl font-semibold tracking-tight"
+            >
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">On a narrow screen, Header navigation moves into the mobile menu and Main begins with one vertical stack. As the available width grows, cards can sit side by side only when each remains easy to read and use. The Header, Main, and Footer keep their page-level jobs throughout.</p>
+            <p className="leading-7 text-muted-foreground">
+              On a narrow screen, Header navigation moves into the mobile menu and Main begins with
+              one vertical stack. As the available width grows, cards can sit side by side only when
+              each remains easy to read and use. The Header, Main, and Footer keep their page-level
+              jobs throughout.
+            </p>
           </section>
 
           <section className="space-y-5" aria-labelledby="header-only-card-count-heading">
@@ -124,10 +142,14 @@ function LayoutsHeaderOnlyPage() {
                 How many cards can fit across the page?
               </h2>
               <p className="leading-7 text-muted-foreground">
-                Start with one content group in a vertical stack. As the available width grows, more groups can sit side by side when each card still has room for its label, content, and actions.
+                Start with one content group in a vertical stack. As the available width grows, more
+                groups can sit side by side when each card still has room for its label, content,
+                and actions.
               </p>
               <p className="leading-7 text-muted-foreground">
-                This example starts with one column, allows two at small widths, three at medium widths, and four at large widths. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
+                This example starts with one column, allows two at small widths, three at medium
+                widths, and four at large widths. Those are starting points, not a rule: use fewer
+                columns when the real card content needs more room.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">
@@ -146,17 +168,43 @@ function LayoutsHeaderOnlyPage() {
               Optional split view
             </h2>
             <p className="text-muted-foreground">
-              The base layout has one Main area. A split view is an optional extension for pages that need supporting content beside the primary work. The demonstrations show two ways to share the available width.
+              The base layout has one Main area. A split view is an optional extension for pages
+              that need supporting content beside the primary work. The demonstrations show two ways
+              to share the available width.
             </p>
           </div>
           <div className="space-y-8">
             <div className="space-y-3">
               <h3 className="text-lg font-semibold">More room for the main area</h3>
-              <SplitPaneDemo secondarySize="third" mainColumns={{ visible: { base: 1, sm: 2, md: 2, lg: 3 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+              <SplitPaneDemo
+                secondarySize="third"
+                mainColumns={{
+                  visible: { base: 1, sm: 2, md: 2, lg: 3 },
+                  hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                }}
+                mainCardCount={8}
+                secondaryColumns={{
+                  third: { base: 1, sm: 1, md: 1, lg: 2 },
+                  half: { base: 1, sm: 1, md: 2, lg: 2 },
+                }}
+                secondaryCardCount={4}
+              />
             </div>
             <div className="space-y-3">
               <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-              <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+              <SplitPaneDemo
+                secondarySize="half"
+                mainColumns={{
+                  visible: { base: 1, sm: 1, md: 2, lg: 2 },
+                  hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                }}
+                mainCardCount={8}
+                secondaryColumns={{
+                  third: { base: 1, sm: 1, md: 1, lg: 2 },
+                  half: { base: 1, sm: 1, md: 2, lg: 2 },
+                }}
+                secondaryCardCount={4}
+              />
             </div>
           </div>
         </section>

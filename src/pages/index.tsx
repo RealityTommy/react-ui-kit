@@ -15,6 +15,7 @@
  *      dropdown).
  */
 
+import type { ComponentType } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import type { NavItem, NavLeaf } from '@/components/layout/types'
 import { HomePage } from './home'
@@ -33,12 +34,12 @@ import { NavigationFooterPage } from './navigation-footer'
 
 type Route = {
   path: string
-  component: React.ComponentType
+  component: ComponentType
 }
 
 /**
- * Route table for the hash router in App.tsx. First entry is the
- * home / fallback route — unknown hashes fall back to it.
+ * Route table for the history router in App.tsx. First entry is the
+ * home / fallback route — unknown paths fall back to it.
  *
  * @example
  * // Consumed by App.tsx's history router:

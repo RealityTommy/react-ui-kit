@@ -119,7 +119,10 @@ function LayoutsFullPage() {
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="full-recommendation-heading">
-                  <h2 id="full-recommendation-heading" className="text-2xl font-semibold tracking-tight">
+                  <h2
+                    id="full-recommendation-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     When not to use this layout
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -153,19 +156,33 @@ function LayoutsFullPage() {
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
                       <li>Give Header, SecondaryNav, and Sidebar distinct accessible names.</li>
-                      <li>Keep one clear <code>h1</code> in Main and verify that Main remains first in the reading order.</li>
+                      <li>
+                        Keep one clear <code>h1</code> in Main and verify that Main remains first in
+                        the reading order.
+                      </li>
                       <li>Verify that the skip link moves focus directly to Main.</li>
-                      <li>Check that the mobile menu preserves the same hierarchy without repeating links unnecessarily.</li>
+                      <li>
+                        Check that the mobile menu preserves the same hierarchy without repeating
+                        links unnecessarily.
+                      </li>
                     </ul>
                   </div>
                 </div>
               </section>
-          <section className="space-y-5" aria-labelledby="layouts-full-responsive-heading">
-            <h2 id="layouts-full-responsive-heading" className="text-2xl font-semibold tracking-tight">
-              Responsive behavior
-            </h2>
-            <p className="leading-7 text-muted-foreground">On a narrow screen, SecondaryNav and the Sidebar move into the mobile menu, and Main begins with one vertical stack. On wider screens, the section-link row and Sidebar take their places, while cards use only the remaining Main width. Main stays first in the reading order, and each navigation region keeps its own job.</p>
-          </section>
+              <section className="space-y-5" aria-labelledby="layouts-full-responsive-heading">
+                <h2
+                  id="layouts-full-responsive-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Responsive behavior
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  On a narrow screen, SecondaryNav and the Sidebar move into the mobile menu, and
+                  Main begins with one vertical stack. On wider screens, the section-link row and
+                  Sidebar take their places, while cards use only the remaining Main width. Main
+                  stays first in the reading order, and each navigation region keeps its own job.
+                </p>
+              </section>
 
               <section className="space-y-5" aria-labelledby="full-card-count-heading">
                 <div className="space-y-2">
@@ -176,10 +193,14 @@ function LayoutsFullPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Start with one content group in a vertical stack. As the available width grows, cards can sit side by side, but SecondaryNav and the Sidebar both reduce the space available to each card.
+                    Start with one content group in a vertical stack. As the available width grows,
+                    cards can sit side by side, but SecondaryNav and the Sidebar both reduce the
+                    space available to each card.
                   </p>
                   <p className="leading-7 text-muted-foreground">
-                    This example starts with one column, keeps two at medium widths, and allows three at the largest size. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
+                    This example starts with one column, keeps two at medium widths, and allows
+                    three at the largest size. Those are starting points, not a rule: use fewer
+                    columns when the real card content needs more room.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -191,20 +212,32 @@ function LayoutsFullPage() {
             </div>
             <section className="space-y-5" aria-labelledby="full-second-area-heading">
               <div className="space-y-2">
-                <h2
-                  id="full-second-area-heading"
-                  className="text-2xl font-semibold tracking-tight"
-                >
+                <h2 id="full-second-area-heading" className="text-2xl font-semibold tracking-tight">
                   Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The base layout already uses Header navigation, SecondaryNav, and Sidebar. A split view is an optional extension for supporting content inside Main, not another required navigation layer. Because the shell already uses substantial width, this example uses an even split.
+                  The base layout already uses Header navigation, SecondaryNav, and Sidebar. A split
+                  view is an optional extension for supporting content inside Main, not another
+                  required navigation layer. Because the shell already uses substantial width, this
+                  example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                  <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 2, lg: 3 } }} mainCardCount={6} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+                  <SplitPaneDemo
+                    secondarySize="half"
+                    mainColumns={{
+                      visible: { base: 1, sm: 1, md: 2, lg: 2 },
+                      hidden: { base: 1, sm: 2, md: 2, lg: 3 },
+                    }}
+                    mainCardCount={6}
+                    secondaryColumns={{
+                      third: { base: 1, sm: 1, md: 1, lg: 2 },
+                      half: { base: 1, sm: 1, md: 2, lg: 2 },
+                    }}
+                    secondaryCardCount={4}
+                  />
                 </div>
               </div>
             </section>

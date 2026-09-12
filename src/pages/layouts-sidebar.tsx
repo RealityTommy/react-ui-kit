@@ -112,7 +112,10 @@ function LayoutsSidebarPage() {
                   </ul>
                 </div>
                 <div className="space-y-5" aria-labelledby="sidebar-recommendation-heading">
-                  <h2 id="sidebar-recommendation-heading" className="text-2xl font-semibold tracking-tight">
+                  <h2
+                    id="sidebar-recommendation-heading"
+                    className="text-2xl font-semibold tracking-tight"
+                  >
                     When not to use this layout
                   </h2>
                   <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -149,22 +152,38 @@ function LayoutsSidebarPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give the Sidebar its own accessible name so it is distinct from Header navigation.</li>
+                      <li>
+                        Give the Sidebar its own accessible name so it is distinct from Header
+                        navigation.
+                      </li>
                       <li>
                         Use headings and group labels that still make sense without the styling.
                       </li>
-                      <li>Expose the current page with <code>aria-current="page"</code>.</li>
-                      <li>Verify that the mobile-menu version preserves the hierarchy and works with a keyboard.</li>
+                      <li>
+                        Expose the current page with <code>aria-current="page"</code>.
+                      </li>
+                      <li>
+                        Verify that the mobile-menu version preserves the hierarchy and works with a
+                        keyboard.
+                      </li>
                     </ul>
                   </div>
                 </div>
               </section>
-          <section className="space-y-5" aria-labelledby="layouts-sidebar-responsive-heading">
-            <h2 id="layouts-sidebar-responsive-heading" className="text-2xl font-semibold tracking-tight">
-              Responsive behavior
-            </h2>
-            <p className="leading-7 text-muted-foreground">On a narrow screen, the Sidebar moves into the mobile menu and Main begins with one vertical stack. When the screen is wide enough, the Sidebar sits beside Main and cards use the remaining content width more cautiously. Main stays first in the reading order at every size.</p>
-          </section>
+              <section className="space-y-5" aria-labelledby="layouts-sidebar-responsive-heading">
+                <h2
+                  id="layouts-sidebar-responsive-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
+                  Responsive behavior
+                </h2>
+                <p className="leading-7 text-muted-foreground">
+                  On a narrow screen, the Sidebar moves into the mobile menu and Main begins with
+                  one vertical stack. When the screen is wide enough, the Sidebar sits beside Main
+                  and cards use the remaining content width more cautiously. Main stays first in the
+                  reading order at every size.
+                </p>
+              </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-card-count-heading">
                 <div className="space-y-2">
@@ -175,10 +194,14 @@ function LayoutsSidebarPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Start with one content group in a vertical stack. As the available width grows, cards can sit side by side, but the Sidebar reduces the space available to each card.
+                    Start with one content group in a vertical stack. As the available width grows,
+                    cards can sit side by side, but the Sidebar reduces the space available to each
+                    card.
                   </p>
                   <p className="leading-7 text-muted-foreground">
-                    This example starts with one column, keeps two at medium widths, and allows three at the largest size. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
+                    This example starts with one column, keeps two at medium widths, and allows
+                    three at the largest size. Those are starting points, not a rule: use fewer
+                    columns when the real card content needs more room.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -197,13 +220,27 @@ function LayoutsSidebarPage() {
                   Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The base layout uses the Sidebar beside one Main area. A split view is an optional extension for pages that also need supporting content inside Main. Because the Sidebar already uses width, this example uses an even split.
+                  The base layout uses the Sidebar beside one Main area. A split view is an optional
+                  extension for pages that also need supporting content inside Main. Because the
+                  Sidebar already uses width, this example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                  <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 2, lg: 3 } }} mainCardCount={6} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+                  <SplitPaneDemo
+                    secondarySize="half"
+                    mainColumns={{
+                      visible: { base: 1, sm: 1, md: 2, lg: 2 },
+                      hidden: { base: 1, sm: 2, md: 2, lg: 3 },
+                    }}
+                    mainCardCount={6}
+                    secondaryColumns={{
+                      third: { base: 1, sm: 1, md: 1, lg: 2 },
+                      half: { base: 1, sm: 1, md: 2, lg: 2 },
+                    }}
+                    secondaryCardCount={4}
+                  />
                 </div>
               </div>
             </section>

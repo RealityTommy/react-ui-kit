@@ -96,7 +96,10 @@ function LayoutsSecondaryPage() {
                 </ul>
               </div>
               <div className="space-y-5" aria-labelledby="secondary-recommendation-heading">
-                <h2 id="secondary-recommendation-heading" className="text-2xl font-semibold tracking-tight">
+                <h2
+                  id="secondary-recommendation-heading"
+                  className="text-2xl font-semibold tracking-tight"
+                >
                   When not to use this layout
                 </h2>
                 <ul className="list-disc space-y-3 pl-5 leading-7 text-muted-foreground">
@@ -129,23 +132,40 @@ function LayoutsSecondaryPage() {
                 <div>
                   <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                   <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                    <li>Give SecondaryNav its own accessible name so it is distinct from Header navigation.</li>
+                    <li>
+                      Give SecondaryNav its own accessible name so it is distinct from Header
+                      navigation.
+                    </li>
                     <li>
                       Use real links and mark the current page with <code>aria-current="page"</code>
                       .
                     </li>
-                    <li>Keep a visible focus indicator and verify that each item is a real keyboard-accessible link.</li>
-                    <li>Verify that the mobile menu preserves the same link order and current-page state.</li>
+                    <li>
+                      Keep a visible focus indicator and verify that each item is a real
+                      keyboard-accessible link.
+                    </li>
+                    <li>
+                      Verify that the mobile menu preserves the same link order and current-page
+                      state.
+                    </li>
                   </ul>
                 </div>
               </div>
             </section>
-          <section className="space-y-5" aria-labelledby="layouts-secondary-responsive-heading">
-            <h2 id="layouts-secondary-responsive-heading" className="text-2xl font-semibold tracking-tight">
-              Responsive behavior
-            </h2>
-            <p className="leading-7 text-muted-foreground">On a narrow screen, the section links move into the mobile menu and Main begins with one vertical stack. On wider screens, the named SecondaryNav stays above Main, while cards move side by side only when the remaining content width keeps them comfortable to read.</p>
-          </section>
+            <section className="space-y-5" aria-labelledby="layouts-secondary-responsive-heading">
+              <h2
+                id="layouts-secondary-responsive-heading"
+                className="text-2xl font-semibold tracking-tight"
+              >
+                Responsive behavior
+              </h2>
+              <p className="leading-7 text-muted-foreground">
+                On a narrow screen, the section links move into the mobile menu and Main begins with
+                one vertical stack. On wider screens, the named SecondaryNav stays above Main, while
+                cards move side by side only when the remaining content width keeps them comfortable
+                to read.
+              </p>
+            </section>
 
             <section className="space-y-5" aria-labelledby="secondary-card-count-heading">
               <div className="space-y-2">
@@ -156,10 +176,14 @@ function LayoutsSecondaryPage() {
                   How many cards can fit across the page?
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Start with one content group in a vertical stack. As the available width grows, more groups can sit side by side when each card still has room for its label, content, and actions.
+                  Start with one content group in a vertical stack. As the available width grows,
+                  more groups can sit side by side when each card still has room for its label,
+                  content, and actions.
                 </p>
                 <p className="leading-7 text-muted-foreground">
-                  The section links use some vertical space but leave Main broad enough for four columns at the largest size in this example. These are starting points, not a rule: use fewer columns when the real card content needs more room.
+                  The section links use some vertical space but leave Main broad enough for four
+                  columns at the largest size in this example. These are starting points, not a
+                  rule: use fewer columns when the real card content needs more room.
                 </p>
               </div>
               <Columns base={1} sm={2} md={3} lg={4}>
@@ -178,17 +202,43 @@ function LayoutsSecondaryPage() {
                 Optional split view
               </h2>
               <p className="text-muted-foreground">
-                The base layout uses SecondaryNav above one Main area. A split view is an optional extension for pages that also need supporting content beside the primary work. The demonstrations show two ways to share the remaining width.
+                The base layout uses SecondaryNav above one Main area. A split view is an optional
+                extension for pages that also need supporting content beside the primary work. The
+                demonstrations show two ways to share the remaining width.
               </p>
             </div>
             <div className="space-y-8">
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold">More room for the main area</h3>
-                <SplitPaneDemo secondarySize="third" mainColumns={{ visible: { base: 1, sm: 2, md: 2, lg: 3 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+                <SplitPaneDemo
+                  secondarySize="third"
+                  mainColumns={{
+                    visible: { base: 1, sm: 2, md: 2, lg: 3 },
+                    hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                  }}
+                  mainCardCount={8}
+                  secondaryColumns={{
+                    third: { base: 1, sm: 1, md: 1, lg: 2 },
+                    half: { base: 1, sm: 1, md: 2, lg: 2 },
+                  }}
+                  secondaryCardCount={4}
+                />
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                <SplitPaneDemo secondarySize="half" mainColumns={{ visible: { base: 1, sm: 1, md: 2, lg: 2 }, hidden: { base: 1, sm: 2, md: 3, lg: 4 } }} mainCardCount={8} secondaryColumns={{ third: { base: 1, sm: 1, md: 1, lg: 2 }, half: { base: 1, sm: 1, md: 2, lg: 2 } }} secondaryCardCount={4} />
+                <SplitPaneDemo
+                  secondarySize="half"
+                  mainColumns={{
+                    visible: { base: 1, sm: 1, md: 2, lg: 2 },
+                    hidden: { base: 1, sm: 2, md: 3, lg: 4 },
+                  }}
+                  mainCardCount={8}
+                  secondaryColumns={{
+                    third: { base: 1, sm: 1, md: 1, lg: 2 },
+                    half: { base: 1, sm: 1, md: 2, lg: 2 },
+                  }}
+                  secondaryCardCount={4}
+                />
               </div>
             </div>
           </section>
