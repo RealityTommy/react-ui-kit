@@ -34,7 +34,7 @@ function LayoutsHeaderOnlyPage() {
         <div className="space-y-14 pb-12">
           <section className="space-y-5 pt-6" aria-labelledby="header-only-heading">
             <h1 id="header-only-heading" className="text-4xl font-semibold tracking-tight">
-              Header Only layout
+              Keep the page focused when the content has one clear job.
             </h1>
             <p className="text-xl leading-8 text-muted-foreground">
               A Header, a Main area, and a Footer. There is no second row of links and no sidebar.
@@ -100,10 +100,10 @@ function LayoutsHeaderOnlyPage() {
               <div>
                 <h3 className="text-lg font-semibold">Accessibility</h3>
                 <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                  <li>Keep the page heading as the first meaningful heading in Main.</li>
-                  <li>Keep the skip link so keyboard users can reach the content quickly.</li>
-                  <li>Make sure Header navigation has a clear name and visible focus styles.</li>
-                  <li>Check the reading order at small widths and with a keyboard.</li>
+                  <li>Keep one clear <code>h1</code> as the first meaningful heading in Main.</li>
+                  <li>Verify that the skip link moves focus directly to Main.</li>
+                  <li>Give Header navigation a clear accessible name and keep focus styles visible.</li>
+                  <li>Check at a narrow viewport that Main remains first and no horizontal scrolling is required.</li>
                 </ul>
               </div>
             </div>
@@ -112,7 +112,7 @@ function LayoutsHeaderOnlyPage() {
             <h2 id="layouts-header-only-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack for the narrowest screen, then let cards sit side by side only as the screen gives each card enough room to be read and used.</p>
+            <p className="leading-7 text-muted-foreground">On a narrow screen, Header navigation moves into the mobile menu and Main begins with one vertical stack. As the available width grows, cards can sit side by side only when each remains easy to read and use. The Header, Main, and Footer keep their page-level jobs throughout.</p>
           </section>
 
           <section className="space-y-5" aria-labelledby="header-only-card-count-heading">
@@ -124,10 +124,10 @@ function LayoutsHeaderOnlyPage() {
                 How many cards can fit across the page?
               </h2>
               <p className="leading-7 text-muted-foreground">
-                Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read.
+                Start with one content group in a vertical stack. As the available width grows, more groups can sit side by side when each card still has room for its label, content, and actions.
               </p>
               <p className="leading-7 text-muted-foreground">
-                The live demonstration below shows four groups at the widest size. More groups are not automatically better; use only as many as the content can support.
+                This example starts with one column, allows two at small widths, three at medium widths, and four at large widths. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
               </p>
             </div>
             <Columns base={1} sm={2} md={3} lg={4} gap="lg">
@@ -143,10 +143,10 @@ function LayoutsHeaderOnlyPage() {
               id="header-only-second-area-heading"
               className="text-2xl font-semibold tracking-tight"
             >
-              When the page needs a second area
+              Optional split view
             </h2>
             <p className="text-muted-foreground">
-              This layout can place a main area beside a secondary area when the page needs both. The live demonstrations below show two ways to share the available width.
+              The base layout has one Main area. A split view is an optional extension for pages that need supporting content beside the primary work. The demonstrations show two ways to share the available width.
             </p>
           </div>
           <div className="space-y-8">

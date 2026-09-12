@@ -41,7 +41,7 @@ type SplitPaneDemoProps = {
  * restore it to compare both states.
  *
  * @example
- * <SplitPaneDemo secondarySize="half" />
+ * See the layout pages for complete configurations.
  */
 function SplitPaneDemo({
   secondarySize,
@@ -78,7 +78,7 @@ function SplitPaneDemo({
           <div className="space-y-1">
             <h3 className="text-lg font-semibold">Main area</h3>
             <p className="text-sm text-muted-foreground">
-              Cards shown: <code>{mainColumnsLabel}</code>
+              Cards: <code>{mainCardCount}</code> · Columns: <code>{mainColumnsLabel}</code>
             </p>
           </div>
           <Button
@@ -102,9 +102,14 @@ function SplitPaneDemo({
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
-          The primary content stays first in the reading order and gets the larger share of the
-          available space. When the secondary area is hidden, the Main grid also uses one more
-          available space changes. Show it again to compare the original split.
+          Main stays first in the reading order and gets the larger share of the available space.
+          When Secondary is visible, Main uses a more conservative column pattern so its cards remain
+          readable. When Secondary is hidden, Main uses the wider page configuration.
+        </p>
+        <p className="leading-7 text-muted-foreground">
+          The button is a comparison tool for this example. It shows how Main can use the extra width
+          when Secondary is not present; it does not prescribe that every product should let people
+          hide Secondary.
         </p>
       </div>
       <SecondaryPane
@@ -115,7 +120,7 @@ function SplitPaneDemo({
       >
         <h3 className="text-lg font-semibold">Secondary area</h3>
         <p className="text-sm text-muted-foreground">
-          Cards shown: <code>{secondaryColumnsLabel}</code>
+          Cards: <code>{secondaryCardCount}</code> · Columns: <code>{secondaryColumnsLabel}</code>
         </p>
         <Columns responsive="container" {...activeSecondaryColumns} gap="sm">
           {Array.from({ length: secondaryCardCount }, (_, i) => (
@@ -123,8 +128,8 @@ function SplitPaneDemo({
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
-          Related details, filters, a preview, or another focused piece of supporting content can
-          live here.
+          Secondary can hold related details, filters, a preview, or another focused piece of
+          supporting content. Its column pattern becomes more cautious when the pane is narrower.
         </p>
       </SecondaryPane>
     </SplitPane>

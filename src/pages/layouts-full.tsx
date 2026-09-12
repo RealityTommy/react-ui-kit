@@ -152,12 +152,10 @@ function LayoutsFullPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give each navigation area its own clear name.</li>
-                      <li>Keep the page heading in Main and keep the reading order sensible.</li>
-                      <li>Make the skip link move directly to the main content.</li>
-                      <li>
-                        Check that the menu keeps the same hierarchy without feeling repetitive.
-                      </li>
+                      <li>Give Header, SecondaryNav, and Sidebar distinct accessible names.</li>
+                      <li>Keep one clear <code>h1</code> in Main and verify that Main remains first in the reading order.</li>
+                      <li>Verify that the skip link moves focus directly to Main.</li>
+                      <li>Check that the mobile menu preserves the same hierarchy without repeating links unnecessarily.</li>
                     </ul>
                   </div>
                 </div>
@@ -166,7 +164,7 @@ function LayoutsFullPage() {
             <h2 id="layouts-full-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack on the narrowest screen. On wider screens, the section-link row and Sidebar take their places, and cards can move side by side only when the remaining space keeps them clear.</p>
+            <p className="leading-7 text-muted-foreground">On a narrow screen, SecondaryNav and the Sidebar move into the mobile menu, and Main begins with one vertical stack. On wider screens, the section-link row and Sidebar take their places, while cards use only the remaining Main width. Main stays first in the reading order, and each navigation region keeps its own job.</p>
           </section>
 
               <section className="space-y-5" aria-labelledby="full-card-count-heading">
@@ -178,10 +176,10 @@ function LayoutsFullPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side, but the extra navigation layers mean fewer may fit comfortably.
+                    Start with one content group in a vertical stack. As the available width grows, cards can sit side by side, but SecondaryNav and the Sidebar both reduce the space available to each card.
                   </p>
                   <p className="leading-7 text-muted-foreground">
-                    The section links and sidebar both take room from the page, so the example shows three groups at the widest size. Keep the number lower when the cards feel crowded.
+                    This example starts with one column, keeps two at medium widths, and allows three at the largest size. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -197,10 +195,10 @@ function LayoutsFullPage() {
                   id="full-second-area-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  When the page needs a second area
+                  Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The section links and sidebar already use navigation space, so the content uses an even main-and-secondary split when both areas are needed.
+                  The base layout already uses Header navigation, SecondaryNav, and Sidebar. A split view is an optional extension for supporting content inside Main, not another required navigation layer. Because the shell already uses substantial width, this example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">

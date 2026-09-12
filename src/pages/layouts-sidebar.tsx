@@ -149,12 +149,12 @@ function LayoutsSidebarPage() {
                   <div>
                     <h3 className="text-lg font-semibold">Accessibility decisions</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 text-muted-foreground">
-                      <li>Give the sidebar a name that separates it from the other navigation.</li>
+                      <li>Give the Sidebar its own accessible name so it is distinct from Header navigation.</li>
                       <li>
                         Use headings and group labels that still make sense without the styling.
                       </li>
-                      <li>Make sure assistive technology can tell which page is current.</li>
-                      <li>Make the menu version easy to find and use with a keyboard.</li>
+                      <li>Expose the current page with <code>aria-current="page"</code>.</li>
+                      <li>Verify that the mobile-menu version preserves the hierarchy and works with a keyboard.</li>
                     </ul>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ function LayoutsSidebarPage() {
             <h2 id="layouts-sidebar-responsive-heading" className="text-2xl font-semibold tracking-tight">
               Responsive behavior
             </h2>
-            <p className="leading-7 text-muted-foreground">This layout is designed mobile-first. Begin with one vertical stack on the narrowest screen. When the screen is wide enough for the Sidebar to sit beside Main, cards can move side by side more cautiously because the Sidebar uses part of the width.</p>
+            <p className="leading-7 text-muted-foreground">On a narrow screen, the Sidebar moves into the mobile menu and Main begins with one vertical stack. When the screen is wide enough, the Sidebar sits beside Main and cards use the remaining content width more cautiously. Main stays first in the reading order at every size.</p>
           </section>
 
               <section className="space-y-5" aria-labelledby="sidebar-card-count-heading">
@@ -175,10 +175,10 @@ function LayoutsSidebarPage() {
                     How many cards can fit across the page?
                   </h2>
                   <p className="leading-7 text-muted-foreground">
-                    Mobile-first means the page begins with one content group in a vertical stack. As the screen gets wider, more groups can sit side by side when they remain easy to read, but the Sidebar means fewer may fit comfortably.
+                    Start with one content group in a vertical stack. As the available width grows, cards can sit side by side, but the Sidebar reduces the space available to each card.
                   </p>
                   <p className="leading-7 text-muted-foreground">
-                    The sidebar takes room from the page, so the example shows three groups at the widest size. Use fewer when the cards need more width.
+                    This example starts with one column, keeps two at medium widths, and allows three at the largest size. Those are starting points, not a rule: use fewer columns when the real card content needs more room.
                   </p>
                 </div>
                 <Columns base={1} sm={2} md={2} lg={3}>
@@ -194,10 +194,10 @@ function LayoutsSidebarPage() {
                   id="sidebar-second-area-heading"
                   className="text-2xl font-semibold tracking-tight"
                 >
-                  When the page needs a second area
+                  Optional split view
                 </h2>
                 <p className="text-muted-foreground">
-                  The sidebar already uses part of the page width, so the content uses an even main-and-secondary split when both areas are needed.
+                  The base layout uses the Sidebar beside one Main area. A split view is an optional extension for pages that also need supporting content inside Main. Because the Sidebar already uses width, this example uses an even split.
                 </p>
               </div>
               <div className="space-y-8">
