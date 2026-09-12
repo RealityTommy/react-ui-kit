@@ -36,9 +36,8 @@ type SplitPaneDemoProps = {
 /**
  * Renders one supported split-pane example for a layout reference page.
  *
- * The secondary area starts visible so the example shows the intended split.
- * The Main button lets people hide it and see Main grow into the space, then
- * restore it to compare both states.
+ * The secondary area starts hidden so the example reflects a common detail-view
+ * pattern. The Main button opens it in place, then lets people close it again.
  *
  * @example
  * See the layout pages for complete configurations.
@@ -50,7 +49,7 @@ function SplitPaneDemo({
   secondaryColumns,
   secondaryCardCount,
 }: SplitPaneDemoProps) {
-  const [secondaryVisible, setSecondaryVisible] = useState(true)
+  const [secondaryVisible, setSecondaryVisible] = useState(false)
   const secondaryId = useId()
   const activeColumns = secondaryVisible ? mainColumns.visible : mainColumns.hidden
   const mainColumnsLabel = [
@@ -89,7 +88,7 @@ function SplitPaneDemo({
             aria-expanded={secondaryVisible}
             onClick={() => setSecondaryVisible((visible) => !visible)}
           >
-            {secondaryVisible ? 'Hide secondary area' : 'Show secondary area'}
+            {secondaryVisible ? 'Hide details' : 'View details'}
           </Button>
         </div>
         <Columns
@@ -102,23 +101,24 @@ function SplitPaneDemo({
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
-          Main stays first in the reading order and gets the larger share of the available space.
-          When Secondary is visible, Main uses a more conservative column pattern so its cards remain
-          readable. When Secondary is hidden, Main uses the wider page configuration.
+          Main stays first in the reading order and starts with the wider page configuration because
+          the details area is closed. Choose View details to open supporting information without
+          leaving the current page. When details are open, Main uses a more conservative column pattern
+          so its cards remain readable.
         </p>
         <p className="leading-7 text-muted-foreground">
-          The button is a comparison tool for this example. It shows how Main can use the extra width
-          when Secondary is not present; it does not prescribe that every product should let people
-          hide Secondary.
+          The button controls the details area in place. Its expanded state and controlled region are
+          exposed to assistive technology, and the details content remains after Main in the reading
+          order.
         </p>
       </div>
       <SecondaryPane
         id={secondaryId}
-        aria-label="Secondary content"
+        aria-label="Record details"
         hidden={!secondaryVisible}
         className="space-y-3 rounded-xl border p-6"
       >
-        <h3 className="text-lg font-semibold">Secondary area</h3>
+        <h3 className="text-lg font-semibold">Record details</h3>
         <p className="text-sm text-muted-foreground">
           Cards: <code>{secondaryCardCount}</code> · Columns: <code>{secondaryColumnsLabel}</code>
         </p>
@@ -128,8 +128,8 @@ function SplitPaneDemo({
           ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
-          Secondary can hold related details, filters, a preview, or another focused piece of
-          supporting content. Its column pattern becomes more cautious when the pane is narrower.
+          This area can hold the selected record's details, a preview, or other supporting content.
+          Its column pattern becomes more cautious when the pane is narrower.
         </p>
       </SecondaryPane>
     </SplitPane>
