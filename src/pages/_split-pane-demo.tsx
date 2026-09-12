@@ -43,7 +43,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
 
   return (
     <SplitPane secondarySize={secondarySize} secondaryVisible={secondaryVisible}>
-      <div className="space-y-3 rounded-xl border bg-muted/40 p-6">
+      <div className="space-y-3 rounded-xl border p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-1">
             <h3 className="text-lg font-semibold">Main area</h3>
