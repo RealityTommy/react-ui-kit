@@ -41,7 +41,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
   const secondaryColumns = 'base=1 md=2'
 
   return (
-    <SplitPane secondarySize={secondarySize}>
+    <SplitPane secondarySize={secondarySize} secondaryVisible={secondaryVisible}>
       <div className="space-y-3 rounded-xl border bg-muted/40 p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-1">
@@ -81,8 +81,15 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
       <SecondaryPane
         id={secondaryId}
         aria-label="Secondary content"
-        hidden={!secondaryVisible}
-        className="space-y-3 rounded-xl border p-6"
+        aria-hidden={!secondaryVisible}
+        className={[
+          'space-y-3 overflow-hidden rounded-xl border p-6',
+          'transition-[max-height,opacity,transform,padding,border-width] duration-300 ease-in-out',
+          'motion-reduce:transition-none',
+          secondaryVisible
+            ? 'max-h-[40rem] translate-y-0 scale-100 opacity-100'
+            : 'pointer-events-none max-h-0 -translate-y-2 scale-[0.98] border-0 p-0 opacity-0',
+        ].join(' ')}
       >
         <h3 className="text-lg font-semibold">Secondary area</h3>
         <p className="text-sm text-muted-foreground">

@@ -23,6 +23,13 @@ type SplitPaneProps = React.ComponentProps<'div'> & {
    * @default "half"
    */
   secondarySize?: SecondarySize
+  /**
+   * Whether the secondary area should occupy its grid track.
+   * Set this to `false` when the secondary content is collapsed so Main
+   * expands to the available width.
+   * @default true
+   */
+  secondaryVisible?: boolean
 }
 
 // ---------------------------------------------------------------
@@ -42,20 +49,31 @@ const secondarySizeClasses: Record<SecondarySize, string> = {
  * Renders primary and secondary content in a responsive split layout.
  *
  * Keep the primary child first so the reading order remains sensible when
- * the areas stack on narrow screens.
+ * the areas stack on narrow screens. When `secondaryVisible` is false, the
+ * large-screen grid transitions to one full-width Main column.
  *
  * @example
- * <SplitPane secondarySize="third">
+ * <SplitPane secondarySize="third" secondaryVisible>
  *   <div>Main results</div>
  *   <SecondaryPane>Selected result</SecondaryPane>
  * </SplitPane>
  */
-function SplitPane({ className, secondarySize = 'half', ...props }: SplitPaneProps) {
+function SplitPane({
+  className,
+  secondarySize = 'half',
+  secondaryVisible = true,
+  ...props
+}: SplitPaneProps) {
   return (
     <div
       data-slot="split-pane"
       data-secondary-size={secondarySize}
-      className={cn('grid gap-6', secondarySizeClasses[secondarySize], className)}
+      data-secondary-visible={secondaryVisible}
+      className={cn(
+        'grid gap-6 transition-[grid-template-columns] duration-300 ease-in-out motion-reduce:transition-none',
+        secondaryVisible ? secondarySizeClasses[secondarySize] : 'lg:grid-cols-1',
+        className,
+      )}
       {...props}
     />
   )
