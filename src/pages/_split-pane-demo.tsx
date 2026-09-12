@@ -67,7 +67,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
           base={1}
           md={2}
           lg={mainLargeColumns}
-          gap="sm"
+          gap="lg"
         >
           <DemoCard title="Main card 1" />
           <DemoCard title="Main card 2" />
