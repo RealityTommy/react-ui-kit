@@ -6,7 +6,7 @@
  * demo private to the pages folder; consumers should use SplitPane directly.
  */
 
-import { useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Columns, type ColumnsProps } from '@/components/layout/columns'
 import { SecondaryPane, SplitPane, type SecondarySize } from '@/components/layout/split-pane'
@@ -51,6 +51,15 @@ function SplitPaneDemo({
 }: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(false)
   const secondaryId = useId()
+  const mainToggleRef = useRef<HTMLButtonElement>(null)
+  const wasSecondaryVisible = useRef(false)
+
+  useEffect(() => {
+    if (!secondaryVisible && wasSecondaryVisible.current) {
+      mainToggleRef.current?.focus()
+    }
+    wasSecondaryVisible.current = secondaryVisible
+  }, [secondaryVisible])
   const activeColumns = secondaryVisible ? mainColumns.visible : mainColumns.hidden
   const mainColumnsLabel = [
     `base=${activeColumns.base}`,
@@ -81,6 +90,7 @@ function SplitPaneDemo({
             </p>
           </div>
           <Button
+            ref={mainToggleRef}
             type="button"
             variant="outline"
             size="sm"
@@ -118,7 +128,19 @@ function SplitPaneDemo({
         hidden={!secondaryVisible}
         className="space-y-3 rounded-xl border p-6"
       >
-        <h3 className="text-lg font-semibold">Record details</h3>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <h3 className="text-lg font-semibold">Record details</h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            aria-controls={secondaryId}
+            aria-expanded={secondaryVisible}
+            onClick={() => setSecondaryVisible(false)}
+          >
+            Close details
+          </Button>
+        </div>
         <p className="text-sm text-muted-foreground">
           Cards: <code>{secondaryCardCount}</code> · Columns: <code>{secondaryColumnsLabel}</code>
         </p>
