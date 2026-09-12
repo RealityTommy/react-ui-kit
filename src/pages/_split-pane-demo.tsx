@@ -8,7 +8,7 @@
 
 import { useId, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Columns } from '@/components/layout/columns'
+import { Columns, type ColumnsProps } from '@/components/layout/columns'
 import { SecondaryPane, SplitPane, type SecondarySize } from '@/components/layout/split-pane'
 import { DemoCard } from './_demo-card'
 
@@ -18,6 +18,8 @@ import { DemoCard } from './_demo-card'
 
 type SplitPaneDemoProps = {
   secondarySize: SecondarySize
+  mainColumns: Pick<ColumnsProps, 'base' | 'sm' | 'md' | 'lg'>
+  mainCardCount: number
 }
 
 // ---------------------------------------------------------------
@@ -34,11 +36,17 @@ type SplitPaneDemoProps = {
  * @example
  * <SplitPaneDemo secondarySize="half" />
  */
-function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
+function SplitPaneDemo({ secondarySize, mainColumns, mainCardCount }: SplitPaneDemoProps) {
   const [secondaryVisible, setSecondaryVisible] = useState(true)
   const secondaryId = useId()
-  const mainLargeColumns = secondaryVisible ? (secondarySize === 'third' ? 3 : 2) : 4
-  const mainColumns = `base=1 md=2 lg=${mainLargeColumns}`
+  const mainColumnsLabel = [
+    `base=${mainColumns.base}`,
+    mainColumns.sm && `sm=${mainColumns.sm}`,
+    mainColumns.md && `md=${mainColumns.md}`,
+    mainColumns.lg && `lg=${mainColumns.lg}`,
+  ]
+    .filter(Boolean)
+    .join(' ')
   const secondaryColumns = 'base=1 md=2'
 
   return (
@@ -48,7 +56,7 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
           <div className="space-y-1">
             <h3 className="text-lg font-semibold">Main area</h3>
             <p className="text-sm text-muted-foreground">
-              Cards shown: <code>{mainColumns}</code>
+              Cards shown: <code>{mainColumnsLabel}</code>
             </p>
           </div>
           <Button
@@ -64,21 +72,17 @@ function SplitPaneDemo({ secondarySize }: SplitPaneDemoProps) {
         </div>
         <Columns
           responsive="container"
-          base={1}
-          md={2}
-          lg={mainLargeColumns}
+          {...mainColumns}
           gap="lg"
         >
-          <DemoCard title="Main card 1" />
-          <DemoCard title="Main card 2" />
-          <DemoCard title="Main card 3" />
-          <DemoCard title="Main card 4" />
+          {Array.from({ length: mainCardCount }, (_, i) => (
+            <DemoCard key={i} title={`Main card ${i + 1}`} />
+          ))}
         </Columns>
         <p className="leading-7 text-muted-foreground">
           The primary content stays first in the reading order and gets the larger share of the
           available space. When the secondary area is hidden, the Main grid also uses one more
-          column to show how the extra width can support more content. Show it again to compare the
-          original split.
+          available space changes. Show it again to compare the original split.
         </p>
       </div>
       <SecondaryPane

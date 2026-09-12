@@ -206,7 +206,7 @@ function LayoutsFullPage() {
               <div className="space-y-8">
                 <div className="space-y-3">
                   <h3 className="text-lg font-semibold">Equal room for both areas</h3>
-                  <SplitPaneDemo secondarySize="half" />
+                  <SplitPaneDemo secondarySize="half" mainColumns={{ base: 1, sm: 2, md: 2, lg: 3 }} mainCardCount={6} />
                 </div>
               </div>
             </section>
