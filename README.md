@@ -1,286 +1,92 @@
-# Application Delivery Kit
+# React application delivery kit
 
-A practical, reusable system for turning product needs into clear, accessible,
-testable applications. The current reference implementation is React, but the
-patterns, delivery artifacts, and guidance are intended to remain portable.
+A Vite + React reference application for exploring clear, accessible, responsive page layouts and navigation.
 
-This repository is both a working reference application and a public guide to the decisions,
-structures, delivery artifacts, examples, and quality checks behind it.
+This repository is intentionally focused on the React app: its source code, styling, configuration, and the README files that explain how those pieces fit together. The broader application-delivery artifacts are being kept separate for now.
 
-Distribution model is shadcn-style: **copy the components and guidance you need into your
-consuming project and edit freely.** The kit is not currently published as an npm package;
-the repository itself uses pnpm for development.
+## Run the app
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open the local URL printed by Vite. The app uses clean, history-based routes:
+
+- `/` — project introduction
+- `/layouts/header-only` — Header, Main, and Footer
+- `/layouts/secondary` — SecondaryNav with Main
+- `/layouts/sidebar` — Sidebar beside Main
+- `/layouts/full` — SecondaryNav and Sidebar together
+- `/navigation/header` — primary Header navigation
+- `/navigation/secondary` — SecondaryNav
+- `/navigation/sidebar` — Sidebar navigation
+- `/navigation/footer` — supporting Footer links
+
+The pages are reference examples. They are not a separate product and the demo route table is not a consumer API.
+
+## Verify changes
+
+```bash
+pnpm lint
+pnpm build
+git diff --check
+```
+
+Lint currently reports four accepted `react-refresh/only-export-components` warnings for legitimate co-located variant functions or hooks. Any additional warning or error needs investigation.
 
 ## Stack
 
-- **Vite** + **React 19** + **TypeScript** (strict)
-- **Tailwind CSS v4**
-- **shadcn/ui** with the `aria-nova` preset — components are backed by
-  [React Aria Components](https://react-spectrum.adobe.com/react-aria/) for
-  accessibility depth over Radix
-- **Lucide** icons, **Geist** font
-- **MIT** licensed
+- Vite
+- React 19
+- TypeScript in strict mode
+- Tailwind CSS v4
+- shadcn/ui `aria-nova` primitives backed by React Aria Components
+- Lucide icons
+- Geist font
 
-## Getting started
+## Repository structure
 
-For a guided tour, see [`docs/README.md`](./docs/README.md).
-For the shortest path through the repository as a reviewer, see [`docs/reviewer-guide.md`](./docs/reviewer-guide.md).
-For the project philosophy, see [`docs/operating-philosophy.md`](./docs/operating-philosophy.md).
-For the role handoffs, see [`docs/roles/role-handoffs.md`](./docs/roles/role-handoffs.md).
-For using the kit in a separate application, see [`docs/consumer-guide.md`](./docs/consumer-guide.md).
-For the repository map and system architecture, see [`docs/architecture/`](./docs/architecture/).
-For machine-readable component and pattern metadata, see [`docs/kit-catalog.json`](./docs/kit-catalog.json).
-For the focused navigation workflow slices, see [`docs/workflows/navigation/`](./docs/workflows/navigation/).
-The search-and-results workflow proof is paused for now; its documentation remains available for later work.
-
-## Choose what you are reviewing
-
-This project has two public review surfaces:
-
-- **React app:** a focused, shareable reference experience for reviewing the visible layouts, navigation, responsive behavior, and accessibility decisions.
-- **GitHub repository:** the broader delivery playbook for reviewing the philosophy, patterns, role handoffs, copyable artifacts, implementation, verification, and project limits.
-
-The app demonstrates the system; the repository explains and supports it. The app is not the consumer API, and the repository does not require every visitor to study the app first. Use the [reviewer guide](./docs/reviewer-guide.md) to choose a path through the repository.
-
-```powershell
-# Install dependencies
-pnpm install
-
-# Run the demo pages at http://localhost:5173
-pnpm dev
-
-# Verify (before committing)
-pnpm lint
-pnpm build
+```text
+.
+├── public/                  Static public assets
+├── src/
+│   ├── components/
+│   │   ├── ui/              shadcn-generated UI primitives
+│   │   └── layout/          hand-written page and navigation components
+│   ├── pages/               React reference pages and shared demo route data
+│   ├── lib/                 Small shared utilities
+│   ├── App.tsx              History-based demo router
+│   ├── main.tsx             React entry point
+│   └── index.css            Tailwind entry point and theme tokens
+├── docs/                    App-level documentation; see its README
+├── components.json          shadcn configuration
+├── index.html               Vite HTML entry point
+├── package.json             Scripts and dependencies
+├── vite.config.ts           Vite configuration and path alias
+└── tsconfig*.json           TypeScript configuration
 ```
 
-Node 24 + pnpm 12 (via corepack) recommended.
+## Component ownership
 
-The demo app is a history-routed reference application — visit `/`,
-`/layouts/header-only`, `/layouts/secondary`, `/layouts/sidebar`, `/layouts/full`,
-or the layout and navigation guide pages (or use the header navigation) to see
-the current component and layout proofs.
+- `src/components/ui/` contains replaceable output generated by the shadcn CLI. Keep hand-written application behavior outside this directory.
+- `src/components/layout/` contains the hand-written layout and navigation components used by the pages.
+- `src/pages/` contains the reference application. Private page helpers use an underscore prefix.
+- Shared navigation data and the route table live in `src/pages/index.tsx` so pages do not drift apart.
 
-## Repo structure
+Read the directory guides for more detail:
 
-The [documentation map](./docs/README.md) explains how to navigate, learn, use, and contribute to the repository.
+- [`src/README.md`](./src/README.md) — React source tree
+- [`src/components/README.md`](./src/components/README.md) — component folders and ownership
+- [`src/components/layout/README.md`](./src/components/layout/README.md) — hand-written layout authoring
+- [`src/components/ui/README.md`](./src/components/ui/README.md) — shadcn primitive management
+- [`docs/README.md`](./docs/README.md) — app-level documentation directory
+- [`CONTRIBUTING.md`](./CONTRIBUTING.md) — code, comment, and verification conventions
 
-```
-src/
-├── components/
-│   ├── ui/                        ← shadcn-managed primitives
-│   │   ├── button.tsx             ← Button + LinkButton (React Aria)
-│   │   ├── card.tsx               ← Card (compound: Header/Title/Content/Footer/Action)
-│   │   ├── dialog.tsx             ← centered modal
-│   │   ├── dropdown-menu.tsx      ← click-to-open menu (used by Header)
-│   │   ├── sheet.tsx              ← side drawer (used by MobileNav)
-│   │   ├── tabs.tsx               ← Nova React Aria Tabs (for panel UIs)
-│   │   └── tooltip.tsx            ← hover/focus tooltip (used by Sidebar)
-│   └── layout/                    ← hand-written layouts
-│       ├── container.tsx          ← max-width + responsive padding
-│       ├── main.tsx               ← <main> landmark with size presets
-│       ├── footer.tsx             ← copyright + secondary links
-│       ├── page-body.tsx          ← Sidebar+Main flex wrapper w/ size cap
-│       ├── page-shell.tsx         ← outer wrapper — pins Footer to bottom
-│       ├── secondary-nav.tsx      ← horizontal sub-nav below Header
-│       ├── layout-provider.tsx    ← shared config for multi-slot components
-│       ├── types.ts               ← NavLeaf, NavParent, NavGroup, guards
-│       ├── header/                ← multi-file: Header + SkipLink + MobileNav
-│       │   ├── index.ts
-│       │   ├── header.tsx
-│       │   ├── mobile-nav.tsx
-│       │   └── skip-link.tsx
-│       └── sidebar/               ← multi-file: Sidebar (labeled + icon-only)
-│           ├── index.ts
-│           └── sidebar.tsx
-├── pages/                         ← reference pages (not consumer API)
-│   ├── index.tsx                  ← routes table + shared demo config
-│   ├── home.tsx
-│   ├── layouts-header-only.tsx
-│   ├── layouts-secondary.tsx
-│   ├── layouts-sidebar.tsx
-│   ├── layouts-full.tsx
-│   └── _*.tsx                     ← private demo-only helpers
-├── lib/
-│   └── utils.ts                   ← cn() helper
-├── App.tsx                        ← history router for the demo
-├── main.tsx                       ← Vite entry
-└── index.css                      ← Tailwind entry + global tokens
-```
+## Development boundaries
 
-Each meaningful folder has its own README explaining what belongs there, why it exists, and what to read next:
-
-- [`src/components/README.md`](./src/components/README.md) — folder layout overview
-- [`src/components/ui/README.md`](./src/components/ui/README.md) — shadcn-managed rules
-- [`src/components/layout/README.md`](./src/components/layout/README.md) — hand-authored component pattern, layout composition, NavItem types
-- [`docs/README.md`](./docs/README.md) — documentation map and learning paths
-- [`docs/architecture/repository-map.md`](./docs/architecture/repository-map.md) — ownership and repository structure
-- [`docs/reviewer-guide.md`](./docs/reviewer-guide.md) — shortest review paths through the repository
-- [`templates/README.md`](./templates/README.md) — copyable project artifacts
-- [`docs/workflows/navigation/`](./docs/workflows/navigation/) — focused navigation workflow slices
-- [`docs/workflows/layout.md`](./docs/workflows/layout.md) — layout and responsive review contract
-- [`docs/workflows/search-results.md`](./docs/workflows/search-results.md) — paused search-and-results workflow proof and contract
-
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for commit conventions, comment style,
-verification steps, and debugging playbook.
-
-## What's built
-
-**Primitives (`ui/`):**
-
-- Button + LinkButton (React Aria)
-- Card (compound: `Card` + `CardHeader` + `CardTitle` + `CardDescription` + `CardContent` + `CardFooter` + `CardAction`)
-- Dialog (centered modal)
-- DropdownMenu (click-to-open, React Aria)
-- Sheet (side drawer)
-- Tabs (Nova React Aria — for switching between panels, not for page navigation)
-- Tooltip (hover/focus, React Aria)
-
-**Layouts (`layout/`):**
-
-- **Container** — max-width + responsive padding, 6 size variants
-- **PageShell** — outer viewport wrapper that pins Footer to the bottom
-  on short pages (`min-h-svh flex flex-col`); no props beyond
-  `children` / `className`
-- **Header** — sticky nav with scroll-triggered blur, mobile hamburger
-  drawer, prop-configurable breakpoint, `contained` / `full` size,
-  supports NavItem dropdowns via `NavParent`
-- **SkipLink** — WCAG 2.4.1 keyboard bypass to `#main-content`
-- **Main** — `<main id="main-content">` landmark with `contained` /
-  `full` size presets, `flex-1` for sticky-footer growth
-- **Footer** — copyright + optional links with `contained` / `full`
-  size, semantic `<footer>` landmark; links accept optional icons
-- **PageBody** — flex wrapper for `Sidebar + Main`, owns the size
-  cap so the pair aligns with Header/Footer above, `flex-1` for
-  sticky-footer growth
-- **SecondaryNav** — horizontal sub-nav under Header, shadcn Nova
-  "pill" tab styling on real anchor navigation, hidden on mobile
-  (drawer takes over)
-- **Sidebar** — left rail with `labeled` (240px, icon + label) and
-  `icon-only` (56px, tooltip on hover) variants; supports flat items
-  or `NavGroup`s; shadcn Nova visual language
-- **LayoutProvider** — shared config context so `SecondaryNav` and
-  `Sidebar` items also appear in Header's mobile drawer without
-  duplication
-
-Header, Main, Footer, PageBody, and SecondaryNav share a single
-`size` prop (`"contained"` default = Container 2xl ~1536px, or
-`"full"` = edge-to-edge with padding). PageShell has no `size` — it
-only owns viewport height. Keep all chrome components in sync for a
-consistent page rhythm.
-
-**Navigation types (`layout/types.ts`):**
-
-- `NavLeaf` — real link with `href`, `label`, optional `external`
-  and `icon` (Lucide component)
-- `NavParent` — dropdown trigger: `label` + `children: NavLeaf[]`,
-  one level deep, only used in Header's primary nav
-- `NavGroup` — labeled group of leaves, only used in Sidebar for
-  section headings
-- Type guards: `isNavParent`, `isNavGroup`
-
-## Quick start — full page shell
-
-```tsx
-import { Home, Book, Palette } from "lucide-react"
-import { Header, SkipLink } from "@/components/layout/header"
-import { Main } from "@/components/layout/main"
-import { Footer } from "@/components/layout/footer"
-import { PageShell } from "@/components/layout/page-shell"
-import { LinkButton } from "@/components/ui/button"
-
-function App() {
-  return (
-    <PageShell>
-      <SkipLink />
-      {/* All chrome components default to size="contained"
-          (Container 2xl ~1536px). Switch all to size="full"
-          for edge-to-edge dashboards. PageShell has no size —
-          it only owns viewport height. */}
-      <Header
-        logo={{ href: "/", label: "My Site" }}
-        nav={[
-          { href: "/", label: "Home", icon: Home },
-          {
-            // NavParent — renders as a dropdown on desktop
-            // and an indented group in the mobile drawer.
-            label: "Docs",
-            icon: Book,
-            children: [
-              { href: "/docs/intro", label: "Intro" },
-              { href: "/docs/theming", label: "Theming", icon: Palette },
-            ],
-          },
-        ]}
-        actions={
-          <LinkButton href="/github" variant="outline" size="sm">
-            GitHub
-          </LinkButton>
-        }
-      />
-      <Main>
-        <h1>Page title</h1>
-        <p>Content goes here.</p>
-      </Main>
-      <Footer
-        copyright={<>© 2026 Your Name</>}
-        links={[
-          { href: "/privacy", label: "Privacy" },
-          { href: "/terms", label: "Terms" },
-        ]}
-      />
-    </PageShell>
-  )
-}
-```
-
-`PageShell` wraps the whole tree in `min-h-svh flex flex-col`. Without
-it, short pages leave the Footer floating mid-viewport instead of
-sitting at the bottom. Every page in this kit should be wrapped in
-PageShell unless you explicitly don't want sticky-footer behavior.
-
-## Docs-site shell (with SecondaryNav + Sidebar)
-
-`LayoutProvider` shares config across chrome components so the mobile
-drawer stays unified. `PageBody` wraps `Sidebar + Main` so the pair
-caps at the same width as `Header` / `Footer` above, and its `flex-1`
-grows the pair to fill space between Header and Footer inside
-PageShell.
-
-```tsx
-import { Header, SkipLink } from "@/components/layout/header"
-import { Main } from "@/components/layout/main"
-import { Footer } from "@/components/layout/footer"
-import { PageBody } from "@/components/layout/page-body"
-import { PageShell } from "@/components/layout/page-shell"
-import { LayoutProvider } from "@/components/layout/layout-provider"
-import { SecondaryNav } from "@/components/layout/secondary-nav"
-import { Sidebar } from "@/components/layout/sidebar"
-
-function DocsShell({ children, pathname }) {
-  return (
-    <LayoutProvider
-      secondaryNav={sectionTabs}
-      secondaryNavLabel="Documentation"     // drawer heading + landmark
-      sidebarNav={sidebarEntries}
-      sidebarNavLabel="On this page"
-      activeHref={pathname}
-    >
-      <PageShell>
-        <SkipLink />
-        <Header logo={{ href: "/", label: "My Docs" }} nav={primaryNav} />
-        <SecondaryNav aria-label="Documentation" />
-        <PageBody>
-          <Sidebar aria-label="On this page" />
-          <Main size="full">{children}</Main>
-        </PageBody>
-        <Footer copyright={<>© 2026 Your Name</>} />
-      </PageShell>
-    </LayoutProvider>
-  )
-}
-```
+Keep this repository focused on the React app. Add a component, page, style, test, or configuration change when it directly supports the running application. Do not add unrelated framework implementations or a separate delivery-process system here.
 
 ## License
 
-[MIT](./LICENSE) — copy, adapt, use freely.
+[MIT](./LICENSE)

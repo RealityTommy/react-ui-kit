@@ -1,21 +1,21 @@
 # Operating rules
 
-This repository is a public Application Delivery Kit. Keep the concepts portable even though the reference example is React.
+This repository contains the React reference application. Keep changes focused on the app, its source, styling, configuration, and the README files that explain them.
 
 ## Before changing files
 
 - Work on `main` in `/home/tommy/dev/react-ui-kit`.
-- Read `docs/roadmap.md`, the relevant README, and the pattern contract before starting.
+- Read the root README and the relevant directory README first.
 - Check `git status`, recent commits, and the current implementation.
 - Do not add private, employer-specific, or proprietary material.
 
 ## Boundaries
 
-- `src/components/ui/` is disposable shadcn output. Put maintained behavior and guidance elsewhere.
-- Keep examples router-neutral unless the demo itself needs a route.
+- `src/components/ui/` is disposable shadcn-generated output. Put maintained behavior in hand-written components outside that directory.
+- Keep the demo router and route data in `src/pages/` accurate when pages are added or renamed.
 - Prefer small, reviewable changes over broad rewrites or new dependencies.
-- Do not make product or architecture decisions that are not supported by the roadmap; stop and report when one is needed.
+- Keep the implementation limited to the React app; do not add unrelated framework implementations or a separate process/documentation system.
 
 ## Verification
 
-For code, run `pnpm lint` and `pnpm build`. For documentation, run `git diff --check`, validate JSON, and check local Markdown links. Keep each coherent change in a local commit. Do not push from an autonomous run.
+For code changes, run `pnpm lint` and `pnpm build`. Run `git diff --check` for every change. Check the affected route at desktop and narrow widths. Keep each coherent change in a local commit. Do not push from an autonomous run.
