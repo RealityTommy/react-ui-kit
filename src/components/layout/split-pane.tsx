@@ -50,7 +50,7 @@ const secondarySizeClasses: Record<SecondarySize, string> = {
  *
  * Keep the primary child first so the reading order remains sensible when
  * the areas stack on narrow screens. When `secondaryVisible` is false, the
- * large-screen grid transitions to one full-width Main column.
+ * large-screen grid switches to one full-width Main column.
  *
  * @example
  * <SplitPane secondarySize="third" secondaryVisible>
@@ -70,7 +70,7 @@ function SplitPane({
       data-secondary-size={secondarySize}
       data-secondary-visible={secondaryVisible}
       className={cn(
-        'grid gap-6 transition-[grid-template-columns] duration-300 ease-in-out motion-reduce:transition-none',
+        'grid gap-6',
         secondaryVisible ? secondarySizeClasses[secondarySize] : 'lg:grid-cols-1',
         className,
       )}
